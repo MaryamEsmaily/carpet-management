@@ -1,12 +1,11 @@
 import { lazy } from "react";
 
-const ProductsPage = lazy(() => import("views/app/products"));
+const ProductsPage = lazy(() => import("views/app/ProductsPage"));
 
 const appRoutes = [
   {
     path: "/app/products",
-    component: ProductsPage,
-    // kindRoute: "",
+    element: ProductsPage,
   },
 ];
 

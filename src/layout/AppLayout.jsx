@@ -1,15 +1,8 @@
-// ** Core Layout Import
-// !Do not remove the Layout import
-import Layout from "layout/AppLayout";
-
-// ** Menu Items Array
+import { Box } from "@chakra-ui/react";
+import { memo } from "react";
 
 const AppLayout = (props) => {
-  return (
-    <Layout menuData={[]} {...props}>
-      {props.children}
-    </Layout>
-  );
+  return <Box>{props.children}</Box>;
 };
 
-export default AppLayout;
+export default memo(AppLayout);
