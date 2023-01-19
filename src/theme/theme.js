@@ -15,6 +15,7 @@ const theme = (direction) =>
           "layout-deep": { default: "#F4F6F8", _dark: "#171A1F" },
           "layout-over": { default: "white", _dark: "#20252F" },
           layout: { default: "white", _dark: "#2F3440" },
+          "text-primary": { default: "#8992A1", _dark: "" },
         },
       },
       colors,
@@ -22,7 +23,7 @@ const theme = (direction) =>
       fontSizes,
     },
     withDefaultColorScheme({
-      colorScheme: "brand",
+      colorScheme: "green",
     })
   );
 
