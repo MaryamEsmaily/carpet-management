@@ -11,7 +11,11 @@ const theme = (direction) =>
       direction: direction,
       styles,
       semanticTokens: {
-        colors: {},
+        colors: {
+          "layout-deep": { default: "#F4F6F8", _dark: "#171A1F" },
+          "layout-over": { default: "white", _dark: "#20252F" },
+          layout: { default: "white", _dark: "#2F3440" },
+        },
       },
       colors,
       fonts,
