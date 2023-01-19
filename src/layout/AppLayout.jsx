@@ -1,4 +1,11 @@
-import { Avatar, Box, Stack, Text } from "@chakra-ui/react";
+import {
+  Avatar,
+  Container,
+  Grid,
+  GridItem,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import CallIcon from "components/icon/CallIcon";
 import LogoIcon from "components/icon/LogoIcon";
 import SearchIcon from "components/icon/SearchIcon";
@@ -16,6 +23,7 @@ const AppLayout = (props) => {
         align="center"
         py={3}
         px={10}
+        mb={4}
       >
         <Stack
           direction="row"
@@ -55,7 +63,13 @@ const AppLayout = (props) => {
           />
         </Stack>
       </Stack>
-      <Box>{props.children}</Box>
+      <Container maxW="full" py={8}>
+        <Grid templateColumns="repeat(24,minmax(0,1fr))">
+          <GridItem colStart={4} colSpan={18}>
+            {props.children}
+          </GridItem>
+        </Grid>
+      </Container>
     </>
   );
 };
