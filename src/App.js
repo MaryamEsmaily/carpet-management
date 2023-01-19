@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "router/ProtectedRoute";
 import appRoutes from "router/routes/app.routes";
-import ProductsPage from "views/app/ProductsPage";
 
 const App = () => {
   return (
