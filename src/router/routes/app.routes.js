@@ -8,11 +8,11 @@ const appRoutes = [
     element: ProductsPage,
   },
   {
-    path: "/app/add-product",
+    path: "/app/products/add-product",
     element: AddProductPage,
   },
   {
-    path: "/app/product-details/:id",
+    path: "/app/products/product-details/:id",
     element: ProductDetailsPage,
   },
 ];

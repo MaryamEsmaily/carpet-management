@@ -15,6 +15,7 @@ import ColorFilterIcon from "components/icon/ColorFilterIcon";
 import EraserIcon from "components/icon/EraserIcon";
 import MoreIcon from "components/icon/MoreIcon";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function AllProducts() {
   // for pagination
@@ -79,55 +80,57 @@ function AllProducts() {
       <Grid mt={5} templateColumns="repeat(2,minmax(0,1fr))" gap={7}>
         {products.map((product) => (
           <GridItem key={product.id} colSpan={1}>
-            <Stack
-              direction="row"
-              borderRadius={14}
-              bg="layout"
-              p={4}
-              spacing={3}
-            >
-              <Image
-                src={product.image}
-                objectFit="cover"
-                width={400}
-                height={200}
+            <Link to={`product-details/${product.id}`}>
+              <Stack
+                direction="row"
                 borderRadius={14}
-              />
-              <Stack w="full" justifyContent="space-between">
-                <Box w="full" textAlign="end">
-                  <IconButton
-                    icon={<MoreIcon boxSize={5} />}
-                    variant="unstyled"
-                  />
-                </Box>
-                <Stack spacing={4}>
-                  <Stack direction="row" align="center" spacing={1}>
-                    <CardIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">نـام محصول :</Text>
-                    <Text>{product.label}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={1}>
-                    <AddNewOrderIcon
-                      color="text-primary"
-                      fill="white"
-                      boxSize={5}
+                bg="layout"
+                p={4}
+                spacing={3}
+              >
+                <Image
+                  src={product.image}
+                  objectFit="cover"
+                  width={400}
+                  height={200}
+                  borderRadius={14}
+                />
+                <Stack w="full" justifyContent="space-between">
+                  <Box w="full" textAlign="end">
+                    <IconButton
+                      icon={<MoreIcon boxSize={5} />}
+                      variant="unstyled"
                     />
-                    <Text color="text-primary">کـد طـرح :</Text>
-                    <Text>{product.code}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={1}>
-                    <ColorFilterIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">رنـگ :</Text>
-                    <Text>{product.color}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={1}>
-                    <EraserIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">سایـز :</Text>
-                    <Text>{product.size}</Text>
+                  </Box>
+                  <Stack spacing={4}>
+                    <Stack direction="row" align="center" spacing={1}>
+                      <CardIcon color="text-primary" boxSize={5} />
+                      <Text color="text-primary">نـام محصول :</Text>
+                      <Text>{product.label}</Text>
+                    </Stack>
+                    <Stack direction="row" align="center" spacing={1}>
+                      <AddNewOrderIcon
+                        color="text-primary"
+                        fill="white"
+                        boxSize={5}
+                      />
+                      <Text color="text-primary">کـد طـرح :</Text>
+                      <Text>{product.code}</Text>
+                    </Stack>
+                    <Stack direction="row" align="center" spacing={1}>
+                      <ColorFilterIcon color="text-primary" boxSize={5} />
+                      <Text color="text-primary">رنـگ :</Text>
+                      <Text>{product.color}</Text>
+                    </Stack>
+                    <Stack direction="row" align="center" spacing={1}>
+                      <EraserIcon color="text-primary" boxSize={5} />
+                      <Text color="text-primary">سایـز :</Text>
+                      <Text>{product.size}</Text>
+                    </Stack>
                   </Stack>
                 </Stack>
               </Stack>
-            </Stack>
+            </Link>
           </GridItem>
         ))}
       </Grid>

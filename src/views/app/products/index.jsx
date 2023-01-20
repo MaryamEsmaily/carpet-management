@@ -12,6 +12,7 @@ import {
 import BasketIcon from "components/icon/BasketIcon";
 import FilterProduct from "container/views/app/products/FilterProduct";
 import AllProducts from "container/views/app/products/AllProducts";
+import { Link } from "react-router-dom";
 
 function ProductsPage() {
   return (
@@ -39,7 +40,9 @@ function ProductsPage() {
             </BreadcrumbItem>
           </Breadcrumb>
         </Box>
-        <Button>افـزودن محصول</Button>
+        <Link to="add-product">
+          <Button>افـزودن محصول</Button>
+        </Link>
       </Flex>
       <FilterProduct />
       <AllProducts />
