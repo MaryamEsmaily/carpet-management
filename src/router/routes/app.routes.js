@@ -1,6 +1,8 @@
 import ProductsPage from "views/app/products";
 import AddProductPage from "views/app/products/AddProduct";
+import ColorsPage from "views/app/products/Colors";
 import ProductDetailsPage from "views/app/products/ProductDetails";
+import SizesPage from "views/app/products/Sizes";
 
 const appRoutes = [
   {
@@ -14,6 +16,14 @@ const appRoutes = [
   {
     path: "/app/products/product-details/:id",
     element: ProductDetailsPage,
+  },
+  {
+    path: "/app/products/colors",
+    element: ColorsPage,
+  },
+  {
+    path: "/app/products/sizes",
+    element: SizesPage,
   },
 ];
 
