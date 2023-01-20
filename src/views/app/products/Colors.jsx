@@ -12,10 +12,15 @@ import {
 import FilterColor from "container/views/app/products/FilterColor";
 import ColorIcon from "components/icon/ColorIcon";
 import AllColors from "container/views/app/products/AllColors";
+import useModal from "hook/useModal";
+import ModalAddColor from "components/modal/ModalAddColor";
 
 function ColorsPage() {
+  const { toggle, config } = useModal();
+
   return (
-    <Box>
+    <>
+      <ModalAddColor config={config} />
       <Flex justifyContent="space-between" alignItems="center">
         <Box>
           <Stack direction="row" alignItems="center" spacing={2}>
@@ -39,11 +44,11 @@ function ColorsPage() {
             </BreadcrumbItem>
           </Breadcrumb>
         </Box>
-        <Button>افـزودن رنـگ</Button>
+        <Button onClick={toggle}>افـزودن رنـگ</Button>
       </Flex>
       <FilterColor />
       <AllColors />
-    </Box>
+    </>
   );
 }
 

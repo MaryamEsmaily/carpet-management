@@ -12,10 +12,15 @@ import {
 import SizeIcon from "components/icon/SizeIcon";
 import FilterSize from "container/views/app/products/FilterSize";
 import AllSizes from "container/views/app/products/AllSizes";
+import useModal from "hook/useModal";
+import ModalAddSize from "components/modal/ModalAddSize";
 
 function SizesPage() {
+  const { toggle, config } = useModal();
+  //
   return (
-    <Box>
+    <>
+      <ModalAddSize config={config} />
       <Flex justifyContent="space-between" alignItems="center">
         <Box>
           <Stack direction="row" alignItems="center" spacing={2}>
@@ -39,11 +44,11 @@ function SizesPage() {
             </BreadcrumbItem>
           </Breadcrumb>
         </Box>
-        <Button>افـزودن سایـز</Button>
+        <Button onClick={toggle}>افـزودن سایـز</Button>
       </Flex>
       <FilterSize />
       <AllSizes />
-    </Box>
+    </>
   );
 }
 
