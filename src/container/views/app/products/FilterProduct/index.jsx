@@ -38,8 +38,8 @@ function FilterProduct() {
         borderRadius={14}
         direction="row"
         spacing={6}
-        py={3}
-        px={4}
+        py={4}
+        px={5}
         mt={8}
         bg="layout-over"
       >
