@@ -44,7 +44,6 @@ function AddProduct() {
           <FormControl isRequired>
             <FormLabel fontWeight="bold">نـام محصول </FormLabel>
             <Input
-              size="lg"
               variant="filled"
               _placeholder={{ color: "text-primary" }}
               placeholder="نـام محصول"
@@ -53,11 +52,7 @@ function AddProduct() {
           </FormControl>
           <FormControl mt={10} isRequired>
             <FormLabel fontWeight="bold">سایز بندی </FormLabel>
-            <Input
-              size="lg"
-              variant="filled"
-              {...formik.getFieldProps("sizes")}
-            />
+            <Input variant="filled" {...formik.getFieldProps("sizes")} />
           </FormControl>
           <FormControl mt={10}>
             <FormLabel fontWeight="bold">توضیحـات</FormLabel>
@@ -74,7 +69,6 @@ function AddProduct() {
           <FormControl isRequired>
             <FormLabel fontWeight="bold">کـد طرح </FormLabel>
             <Input
-              size="lg"
               variant="filled"
               _placeholder={{ color: "text-primary" }}
               placeholder="کـد طرح "
@@ -83,11 +77,7 @@ function AddProduct() {
           </FormControl>
           <FormControl mt={10} isRequired>
             <FormLabel fontWeight="bold">رنگ بندی </FormLabel>
-            <Input
-              size="lg"
-              variant="filled"
-              {...formik.getFieldProps("colors")}
-            />
+            <Input variant="filled" {...formik.getFieldProps("colors")} />
           </FormControl>
           <FormControl mt={10} isRequired>
             <FormLabel fontWeight="bold">افزودن عکس </FormLabel>
@@ -98,11 +88,7 @@ function AddProduct() {
               placeholder="پیوست فـایـل"
               {...formik.getFieldProps("images")}
             />
-            <Input
-              size="lg"
-              variant="filled"
-              {...formik.getFieldProps("images")}
-            />
+            <Input variant="filled" {...formik.getFieldProps("images")} />
           </FormControl>
         </GridItem>
       </Grid>

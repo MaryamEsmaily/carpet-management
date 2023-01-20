@@ -97,7 +97,9 @@ function FilterProduct() {
               <Text>فیلتــر هــا</Text>
             </Stack>
             <IconButton
-              icon={<CloseIcon fill="none" color="black" boxSize={5} />}
+              icon={
+                <CloseIcon fill="none" color="text-secondary" boxSize={5} />
+              }
               variant="unstyled"
               onClick={onClose}
             />
@@ -113,8 +115,7 @@ function FilterProduct() {
               </Stack>
               <InputGroup mt={3}>
                 <Input
-                  size="lg"
-                  _placeholder={{ fontSize: 16 }}
+                  _placeholder={{ color: "text-primary", fontSize: 16 }}
                   placeholder="بر اساس کد طـرح"
                   variant="filled"
                 />
@@ -139,8 +140,7 @@ function FilterProduct() {
               </Stack>
               <InputGroup mt={3}>
                 <Input
-                  size="lg"
-                  _placeholder={{ fontSize: 16 }}
+                  _placeholder={{ color: "text-primary", fontSize: 16 }}
                   placeholder="بر اساس رنـگ"
                   variant="filled"
                 />
@@ -164,8 +164,7 @@ function FilterProduct() {
               </Stack>
               <InputGroup mt={3}>
                 <Input
-                  size="lg"
-                  _placeholder={{ fontSize: 16 }}
+                  _placeholder={{ color: "text-primary", fontSize: 16 }}
                   placeholder="بر اساس سایـز"
                   variant="filled"
                 />
