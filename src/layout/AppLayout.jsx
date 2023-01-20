@@ -17,6 +17,9 @@ const AppLayout = (props) => {
   return (
     <>
       <Stack
+        position="sticky"
+        top={0}
+        zIndex={10}
         direction="row"
         justifyContent="space-between"
         bgColor="layout-over"
