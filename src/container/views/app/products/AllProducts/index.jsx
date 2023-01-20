@@ -111,7 +111,7 @@ function AllProducts() {
                     <Stack direction="row" align="center" spacing={1}>
                       <AddNewOrderIcon
                         color="text-primary"
-                        fill="white"
+                        fill="none"
                         boxSize={5}
                       />
                       <Text color="text-primary">کـد طـرح :</Text>

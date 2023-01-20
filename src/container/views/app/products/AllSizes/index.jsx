@@ -9,7 +9,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import sizeImage from "assets/images/size-image.jpg";
+import sizeImage from "assets/images/size-image.png";
 import Pagination from "components/custom/Pagination";
 import DeleteIcon from "components/icon/DeleteIcon";
 import React, { useState } from "react";

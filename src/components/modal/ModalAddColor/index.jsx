@@ -2,7 +2,7 @@
 import * as React from "react";
 import Modal from "components/custom/Modal";
 import { Button, Image, Input, Stack, Text } from "@chakra-ui/react";
-import addImage from "assets/images/add.jpg";
+import addImage from "assets/images/add.png";
 
 const ModalAddColor = ({ config }) => {
   return (

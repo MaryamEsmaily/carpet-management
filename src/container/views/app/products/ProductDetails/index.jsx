@@ -26,11 +26,7 @@ function ProductDetails() {
           <Stack spacing={8} mt={8}>
             <Stack direction="row">
               <Stack direction="row" align="center" spacing={3} width={120}>
-                <AddNewOrderIcon
-                  color="text-primary"
-                  fill="white"
-                  boxSize={5}
-                />
+                <AddNewOrderIcon color="text-primary" fill="none" boxSize={5} />
                 <Text fontWeight="bold" color="text-primary">
                   کـد طـرح :
                 </Text>
