@@ -43,7 +43,7 @@ const AppLayout = (props) => {
               return (
                 <NavLink key={menu.label} to={menu.path}>
                   <Stack direction="row" align="center" spacing={2}>
-                    {Icon && <Icon fill="#fff" boxSize={5} />}
+                    {Icon && <Icon fill="none" boxSize={5} />}
                     <Text fontWeight="bold" fontSize="sm">
                       {menu.label}
                     </Text>
@@ -54,8 +54,8 @@ const AppLayout = (props) => {
           </Stack>
         </Stack>
         <Stack direction="row" align="center" spacing={10}>
-          <SearchIcon fill="#fff" boxSize={5} />
-          <CallIcon fill="#fff" boxSize={5} />
+          <SearchIcon fill="none" boxSize={5} />
+          <CallIcon fill="none" boxSize={5} />
           <Avatar
             size="sm"
             name="Carper Management"
