@@ -66,7 +66,7 @@ const AppLayout = (props) => {
           />
         </Stack>
       </Stack>
-      <Container maxW="full" py={8}>
+      <Container maxW="full" my={8}>
         <Grid templateColumns="repeat(24,minmax(0,1fr))">
           <GridItem colStart={4} colSpan={18}>
             {props.children}

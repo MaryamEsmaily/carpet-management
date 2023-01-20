@@ -40,7 +40,7 @@ function FilterProduct() {
         spacing={6}
         py={3}
         px={4}
-        mt={4}
+        mt={8}
         bg="layout-over"
       >
         <InputGroup>
