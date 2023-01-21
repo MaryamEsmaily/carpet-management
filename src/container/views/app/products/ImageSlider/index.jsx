@@ -5,26 +5,29 @@ import { Box, Flex, Image } from "@chakra-ui/react";
 import "swiper/css";
 import "swiper/css/thumbs";
 import firstProduct from "assets/images/product-1.avif";
+import secondProduct from "assets/images/product-2.avif";
+import thirdProduct from "assets/images/product-3.avif";
+import forthProduct from "assets/images/product-4.avif";
 
 const ImageSlider = ({ Images }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
-    <Flex direction="column" justifyContent="center" align="center">
+    <Flex direction="column" justifyContent="center">
       <Swiper
         loop={true}
         thumbs={{
           swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
         }}
+        style={{ width: "100%" }}
         modules={[Thumbs]}
-        style={{ width: "400px" }}
         centeredSlides={false}
         spaceBetween={8}
       >
         <SwiperSlide>
           <Image
             src={firstProduct}
-            width={400}
+            width="100%"
             height={400}
             objectFit="cover"
             borderRadius={18}
@@ -32,11 +35,29 @@ const ImageSlider = ({ Images }) => {
         </SwiperSlide>
         <SwiperSlide>
           <Image
-            src="https://swiperjs.com/demos/images/nature-1.jpg"
-            width={400}
+            src={secondProduct}
+            width="100%"
             height={400}
             objectFit="cover"
-            borderRadius={10}
+            borderRadius={18}
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Image
+            src={thirdProduct}
+            width="100%"
+            height={400}
+            objectFit="cover"
+            borderRadius={18}
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Image
+            src={forthProduct}
+            width="100%"
+            height={400}
+            objectFit="cover"
+            borderRadius={18}
           />
         </SwiperSlide>
       </Swiper>
@@ -47,25 +68,40 @@ const ImageSlider = ({ Images }) => {
           slidesPerView={5}
           spaceBetween={10}
           modules={[Thumbs]}
-          style={{
-            width: "400px",
-          }}
           centeredSlidesBounds={true}
         >
           <SwiperSlide>
             <Image
               src={firstProduct}
-              width={80}
-              height={70}
+              width="80px"
+              height="80px"
               objectFit="cover"
               borderRadius={10}
             />
           </SwiperSlide>
           <SwiperSlide>
             <Image
-              src="https://swiperjs.com/demos/images/nature-1.jpg"
-              width={80}
-              height={70}
+              src={secondProduct}
+              width="80px"
+              height="80px"
+              objectFit="cover"
+              borderRadius={10}
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <Image
+              src={thirdProduct}
+              width="80px"
+              height="80px"
+              objectFit="cover"
+              borderRadius={10}
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <Image
+              src={forthProduct}
+              width="80px"
+              height="80px"
               objectFit="cover"
               borderRadius={10}
             />
