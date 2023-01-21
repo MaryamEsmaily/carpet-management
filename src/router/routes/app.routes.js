@@ -1,9 +1,13 @@
-import ProductsPage from "views/app/products";
-import AddProductPage from "views/app/products/AddProduct";
-import ColorsPage from "views/app/products/Colors";
-import ProductDetailsPage from "views/app/products/ProductDetails";
-import SizesPage from "views/app/products/Sizes";
-
+import { lazy } from "react";
+// routes
+const ProductsPage = lazy(() => import("views/app/products"));
+const AddProductPage = lazy(() => import("views/app/products/AddProduct"));
+const ColorsPage = lazy(() => import("views/app/products/Colors"));
+const SizesPage = lazy(() => import("views/app/products/Sizes"));
+const ProductDetailsPage = lazy(() =>
+  import("views/app/products/ProductDetails")
+);
+//
 const appRoutes = [
   {
     path: "/app/products",

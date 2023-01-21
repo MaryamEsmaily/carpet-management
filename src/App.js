@@ -1,4 +1,7 @@
-import { Routes, Route } from "react-router-dom";
+import { Box, Spinner } from "@chakra-ui/react";
+import AppLayout from "layout/AppLayout";
+import { Suspense } from "react";
+import { Routes, Route, Outlet } from "react-router-dom";
 import ProtectedRoute from "router/ProtectedRoute";
 import appRoutes from "router/routes/app.routes";
 
@@ -8,12 +11,34 @@ const App = () => {
       {/* for index route. usually is landing page or login */}
       <Route index element={<div>ورود</div>} />
       {/* for protected routes */}
-      <Route element={<ProtectedRoute isAllowed={true} />}>
+      <Route
+        element={
+          <ProtectedRoute isAllowed={true}>
+            <AppLayout>
+              <Outlet />
+            </AppLayout>
+          </ProtectedRoute>
+        }
+      >
         {/* map over all protected routes */}
         {appRoutes.map((route) => {
           const Component = route.element;
           return (
-            <Route key={route.path} path={route.path} element={<Component />} />
+            <Route
+              key={route.path}
+              path={route.path}
+              element={
+                <Suspense
+                  fallback={
+                    <Box textAlign="center">
+                      <Spinner />
+                    </Box>
+                  }
+                >
+                  <Component />
+                </Suspense>
+              }
+            />
           );
         })}
       </Route>

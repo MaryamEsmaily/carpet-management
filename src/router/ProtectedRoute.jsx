@@ -1,18 +1,11 @@
-import AppLayout from "layout/AppLayout";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({ isAllowed, redirectPath = "/401", children }) => {
   if (!isAllowed) {
     return <Navigate to={redirectPath} replace />;
   }
 
-  return children ? (
-    children
-  ) : (
-    <AppLayout>
-      <Outlet />
-    </AppLayout>
-  );
+  return children;
 };
 
 export default ProtectedRoute;
