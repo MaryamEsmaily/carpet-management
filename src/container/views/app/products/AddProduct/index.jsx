@@ -9,8 +9,9 @@ import {
   Stack,
   Textarea,
 } from "@chakra-ui/react";
+import SelectCustom from "components/custom/SelectCustom";
 import { useFormik } from "formik";
-import React from "react";
+import React, { useState } from "react";
 //
 const initialValues = {
   productName: "",
@@ -24,11 +25,21 @@ const initialValues = {
 function AddProduct() {
   //
   const handleSubmit = () => {};
+
   //
   const formik = useFormik({
     onSubmit: handleSubmit,
     initialValues: initialValues,
   });
+  // multi selects stuff
+  const options = [
+    { value: "1", label: "Wheat Gluten" },
+    { value: "2", label: "Rye Gluten" },
+  ];
+  const [selected, setSelected] = useState([]);
+  const handleSelectChange = (values) => {
+    setSelected(values);
+  };
   //
   return (
     <Box
@@ -52,7 +63,12 @@ function AddProduct() {
           </FormControl>
           <FormControl mt={10} isRequired>
             <FormLabel fontWeight="bold">سایز بندی </FormLabel>
-            <Input variant="filled" {...formik.getFieldProps("sizes")} />
+            <SelectCustom
+              onChange={handleSelectChange}
+              isMulti
+              options={options}
+              value={selected}
+            />
           </FormControl>
           <FormControl mt={10}>
             <FormLabel fontWeight="bold">توضیحـات</FormLabel>
