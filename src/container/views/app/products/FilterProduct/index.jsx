@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
   Button,
   Checkbox,
@@ -26,11 +26,22 @@ import CloseIcon from "components/icon/CloseIcon";
 import AddNewOrderIcon from "components/icon/AddNewOrderIcon";
 import ColorFilterIcon from "components/icon/ColorFilterIcon";
 import EraserIcon from "components/icon/EraserIcon";
+import OptionsOutsideSelect from "components/custom/OptionsOutsideSelect";
 
 function FilterProduct() {
   //
   const { isOpen, onOpen, onClose } = useDisclosure();
+  //
   const btnRef = useRef();
+  // multi selects stuff
+  const options = [
+    { value: "1", label: "Wheat Gluten" },
+    { value: "2", label: "Rye Gluten" },
+  ];
+  const [selected, setSelected] = useState([]);
+  const handleSelectChange = (values) => {
+    setSelected(values);
+  };
   //
   return (
     <>
@@ -132,55 +143,36 @@ function FilterProduct() {
             </Box>
             {/*  */}
             <Box mt={10}>
-              <Stack direction="row" spacing={2} align="center">
+              <Stack direction="row" spacing={2} align="center" mb={3}>
                 <ColorFilterIcon fill="none" />
                 <Text fontSize={14} fontWeight="bold">
                   براساس رنـگ :
                 </Text>
               </Stack>
-              <InputGroup mt={3}>
-                <Input
-                  _placeholder={{ color: "text-primary", fontSize: 16 }}
-                  placeholder="بر اساس رنـگ"
-                  variant="filled"
-                />
-                <InputRightElement
-                  sx={{
-                    left: 0,
-                    right: "unset",
-                  }}
-                  pointerEvents="none"
-                >
-                  <SearchIcon fill="none" boxSize={5} />
-                </InputRightElement>
-              </InputGroup>
+              <OptionsOutsideSelect
+                placeholder="بر اساس رنـگ"
+                onChange={handleSelectChange}
+                isMulti
+                options={options}
+                value={selected}
+              />
             </Box>
             <Box mt={10}>
-              <Stack direction="row" spacing={2} align="center">
+              <Stack direction="row" spacing={2} align="center" mb={3}>
                 <EraserIcon fill="none" />
                 <Text fontSize={14} fontWeight="bold">
                   براساس سایـز :
                 </Text>
               </Stack>
-              <InputGroup mt={3}>
-                <Input
-                  _placeholder={{ color: "text-primary", fontSize: 16 }}
-                  placeholder="بر اساس سایـز"
-                  variant="filled"
-                />
-                <InputRightElement
-                  sx={{
-                    left: 0,
-                    right: "unset",
-                  }}
-                  pointerEvents="none"
-                >
-                  <SearchIcon fill="none" boxSize={5} />
-                </InputRightElement>
-              </InputGroup>
+              <OptionsOutsideSelect
+                placeholder="بر اساس سایـز"
+                onChange={handleSelectChange}
+                isMulti
+                options={options}
+                value={selected}
+              />
             </Box>
           </DrawerBody>
-
           <DrawerFooter justifyContent="space-between" gap={2}>
             <Button borderRadius={12} w="full" variant="outline">
               حـذف فیلتـر هـا
