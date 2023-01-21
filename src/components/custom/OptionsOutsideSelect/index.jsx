@@ -83,7 +83,7 @@ const OptionsOutsideSelect = (props) => {
                 align="center"
                 key={val.value}
                 bg="green"
-                fontSize="sm"
+                fontSize="xs"
                 borderRadius="full"
                 px={2}
                 py={1}
