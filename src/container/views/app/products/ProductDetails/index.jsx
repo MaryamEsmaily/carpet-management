@@ -1,4 +1,13 @@
-import { Box, Divider, Flex, IconButton, Stack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Divider,
+  Flex,
+  Grid,
+  GridItem,
+  IconButton,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import AddNewOrderIcon from "components/icon/AddNewOrderIcon";
 import CalenderIcon from "components/icon/CalenderIcon";
 import ColorFilterIcon from "components/icon/ColorFilterIcon";
@@ -12,57 +21,71 @@ import ImageSlider from "../ImageSlider";
 function ProductDetails() {
   return (
     <Box mt={8}>
-      <Stack direction="row" borderRadius={24} bg="layout" p={5} spacing={10}>
-        <ImageSlider />
-        <Box w="full">
-          <Stack direction="row" justifyContent="space-between">
-            <Text fontSize={24}>product.label</Text>
-            <IconButton
-              icon={<MoreBorderedIcon fill="none" boxSize={5} />}
-              variant="unstyled"
-            />
-          </Stack>
-          <Divider variant="dashed" my={5} />
-          <Stack spacing={8} mt={8}>
-            <Stack direction="row">
-              <Stack direction="row" align="center" spacing={3} width={120}>
-                <AddNewOrderIcon color="text-primary" fill="none" boxSize={5} />
-                <Text fontWeight="bold" color="text-primary">
-                  کـد طـرح :
-                </Text>
-              </Stack>
-              <Text>{"product.code"}</Text>
+      <Grid
+        templateColumns="repeat(13,minmax(0,1fr))"
+        borderRadius={24}
+        bg="layout"
+        gap={14}
+        p={5}
+      >
+        <GridItem colSpan={6}>
+          <ImageSlider />
+        </GridItem>
+        <GridItem colSpan={7}>
+          <Box w="full">
+            <Stack direction="row" justifyContent="space-between">
+              <Text fontSize={24}>product.label</Text>
+              <IconButton
+                icon={<MoreBorderedIcon fill="none" boxSize={5} />}
+                variant="unstyled"
+              />
             </Stack>
-            <Stack direction="row">
-              <Stack direction="row" align="center" spacing={3} width={120}>
-                <ColorFilterIcon color="text-primary" boxSize={5} />
-                <Text fontWeight="bold" color="text-primary">
-                  رنـگ :
-                </Text>
+            <Divider variant="dashed" my={5} />
+            <Stack spacing={8} mt={8}>
+              <Stack direction="row">
+                <Stack direction="row" align="center" spacing={3} width={120}>
+                  <AddNewOrderIcon
+                    color="text-primary"
+                    fill="none"
+                    boxSize={5}
+                  />
+                  <Text fontWeight="bold" color="text-primary">
+                    کـد طـرح :
+                  </Text>
+                </Stack>
+                <Text>{"product.code"}</Text>
               </Stack>
-              <Text>{"product.color"}</Text>
-            </Stack>
-            <Stack direction="row">
-              <Stack direction="row" align="center" spacing={3} width={120}>
-                <EraserIcon color="text-primary" boxSize={5} />
-                <Text fontWeight="bold" color="text-primary">
-                  سایـز :
-                </Text>
+              <Stack direction="row">
+                <Stack direction="row" align="center" spacing={3} width={120}>
+                  <ColorFilterIcon color="text-primary" boxSize={5} />
+                  <Text fontWeight="bold" color="text-primary">
+                    رنـگ :
+                  </Text>
+                </Stack>
+                <Text>{"product.color"}</Text>
               </Stack>
-              <Text>{"product.size"}</Text>
-            </Stack>
-            <Stack direction="row">
-              <Stack direction="row" align="center" spacing={3} width={120}>
-                <ReportIcon fill="none" color="text-primary" boxSize={5} />
-                <Text fontWeight="bold" color="text-primary">
-                  توضیحـات :
-                </Text>
+              <Stack direction="row">
+                <Stack direction="row" align="center" spacing={3} width={120}>
+                  <EraserIcon color="text-primary" boxSize={5} />
+                  <Text fontWeight="bold" color="text-primary">
+                    سایـز :
+                  </Text>
+                </Stack>
+                <Text>{"product.size"}</Text>
               </Stack>
-              <Text>{"product.size"}</Text>
+              <Stack direction="row">
+                <Stack direction="row" align="center" spacing={3} width={120}>
+                  <ReportIcon fill="none" color="text-primary" boxSize={5} />
+                  <Text fontWeight="bold" color="text-primary">
+                    توضیحـات :
+                  </Text>
+                </Stack>
+                <Text>{"product.size"}</Text>
+              </Stack>
             </Stack>
-          </Stack>
-        </Box>
-      </Stack>
+          </Box>
+        </GridItem>
+      </Grid>
       <Divider variant="dashed" my={5} />
       {/* info */}
       <Flex justifyContent="space-between">
