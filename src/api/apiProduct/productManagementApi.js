@@ -64,6 +64,14 @@ const postAddProductSize = async (params) => {
   });
   return data?.Data;
 };
+//  PRODUCT DETAILS
+const postProductDetails = async (params) => {
+  const { data } = await instance.post(BASE_URL, {
+    payload: params,
+    opCode: 105,
+  });
+  return data?.Data;
+};
 //
 export {
   // color
@@ -76,4 +84,6 @@ export {
   deleteProductSize,
   putProductSizeStatus,
   postAddProductSize,
+  // PRODUCT DETAILS
+  postProductDetails,
 };

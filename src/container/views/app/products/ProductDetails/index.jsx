@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Box,
   Divider,
@@ -15,10 +16,26 @@ import EraserIcon from "components/icon/EraserIcon";
 import MoreBorderedIcon from "components/icon/MoreBorderedIcon";
 import ReportIcon from "components/icon/ReportIcon";
 import UserIcon from "components/icon/UserIcon";
-import React from "react";
+import { postProductDetailsData } from "data/postProductDetailsData";
 import ImageSlider from "../ImageSlider";
+import { usePostProductDetails } from "hook/api/apiProduct/useProductManagementApi";
+import { useParams } from "react-router-dom";
 
 function ProductDetails() {
+  //
+  // API
+  // const { id } = useParams();
+  // const { data } = usePostProductDetails({ id });
+  //
+  // const data = React.useMemo(() => {
+  // return data?.content;
+  // }, []);
+  //
+  // MOCK DATA
+  const data = React.useMemo(() => {
+    return postProductDetailsData?.Data?.content;
+  }, []);
+  //
   return (
     <Box mt={8}>
       <Grid
@@ -29,12 +46,12 @@ function ProductDetails() {
         p={5}
       >
         <GridItem colSpan={6}>
-          <ImageSlider />
+          <ImageSlider images={data?.images} />
         </GridItem>
         <GridItem colSpan={7}>
           <Box w="full">
             <Stack direction="row" justifyContent="space-between">
-              <Text fontSize={24}>product.label</Text>
+              <Text fontSize={24}>{data?.title}</Text>
               <IconButton
                 icon={<MoreBorderedIcon fill="none" boxSize={5} />}
                 variant="unstyled"
@@ -53,7 +70,7 @@ function ProductDetails() {
                     کـد طـرح :
                   </Text>
                 </Stack>
-                <Text>{"product.code"}</Text>
+                <Text>{data?.code}</Text>
               </Stack>
               <Stack direction="row">
                 <Stack direction="row" align="center" spacing={3} width={120}>
@@ -62,7 +79,19 @@ function ProductDetails() {
                     رنـگ :
                   </Text>
                 </Stack>
-                <Text>{"product.color"}</Text>
+                {data?.colors?.map((item, index) => (
+                  <Text key={index}>
+                    {item}{" "}
+                    <Text
+                      as="span"
+                      display={
+                        index === data?.colors.length - 1 ? "none" : "unset"
+                      }
+                    >
+                      -
+                    </Text>
+                  </Text>
+                ))}
               </Stack>
               <Stack direction="row">
                 <Stack direction="row" align="center" spacing={3} width={120}>
@@ -71,16 +100,41 @@ function ProductDetails() {
                     سایـز :
                   </Text>
                 </Stack>
-                <Text>{"product.size"}</Text>
+                {data?.sizes?.map((item, index) => (
+                  <Text key={index}>
+                    {item} متـری{" "}
+                    <Text
+                      as="span"
+                      display={
+                        index === data?.sizes.length - 1 ? "none" : "unset"
+                      }
+                    >
+                      -
+                    </Text>
+                  </Text>
+                ))}
               </Stack>
-              <Stack direction="row">
-                <Stack direction="row" align="center" spacing={3} width={120}>
+              <Stack direction="row" align="start">
+                <Stack
+                  direction="row"
+                  align="center"
+                  whiteSpace="nowrap"
+                  spacing={3}
+                  width={120}
+                >
                   <ReportIcon fill="none" color="text-primary" boxSize={5} />
                   <Text fontWeight="bold" color="text-primary">
                     توضیحـات :
                   </Text>
                 </Stack>
-                <Text>{"product.size"}</Text>
+                <Text
+                  flexGrow={1}
+                  textAlign="justify"
+                  maxW="380px"
+                  lineHeight={1.9}
+                >
+                  {data?.description}
+                </Text>
               </Stack>
             </Stack>
           </Box>
@@ -93,24 +147,24 @@ function ProductDetails() {
           <Stack direction="row" align="center" spacing={1}>
             <UserIcon color="text-primary" boxSize={5} />
             <Text color="text-primary">ساخته شده توسط :</Text>
-            <Text>product.label</Text>
+            <Text>{data?.author}</Text>
           </Stack>
           <Stack direction="row" align="center" spacing={1}>
             <CalenderIcon color="text-primary" boxSize={5} />
             <Text color="text-primary">در تـاریخ :</Text>
-            <Text>product.label</Text>
+            <Text>{data?.createData}</Text>
           </Stack>
         </Stack>
         <Stack direction="row" spacing={5}>
           <Stack direction="row" align="center" spacing={1}>
             <UserIcon color="text-primary" boxSize={5} />
             <Text color="text-primary">آخرین تغییـر توسط :</Text>
-            <Text>product.label</Text>
+            <Text dir="ltr">{data?.changeByAuthor}</Text>
           </Stack>
           <Stack direction="row" align="center" spacing={1}>
             <CalenderIcon color="text-primary" boxSize={5} />
             <Text color="text-primary">در تـاریخ :</Text>
-            <Text>product.label</Text>
+            <Text dir="ltr">{data?.lastChangeDate}</Text>
           </Stack>
         </Stack>
       </Flex>

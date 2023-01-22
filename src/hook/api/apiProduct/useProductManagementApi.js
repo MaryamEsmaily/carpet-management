@@ -1,9 +1,17 @@
 import * as apiProductManagement from "api/apiProduct/productManagementApi";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import reactQueryConfig from "config/reactQueryConfig";
 
 // COLOR
-const usePostProductColors = () => {
-  return useMutation(apiProductManagement.postProductColors);
+const usePostProductColors = (params) => {
+  return useQuery(
+    ["postProductColors", params],
+    apiProductManagement.postProductColors,
+    {
+      ...reactQueryConfig,
+      enabled: !!params,
+    }
+  );
 };
 
 const useDeleteProductColor = () => {
@@ -28,8 +36,15 @@ const usePostAddProductColor = () => {
   return useMutation(apiProductManagement.postAddProductColor);
 };
 // SIZE
-const usePostProductSizes = () => {
-  return useMutation(apiProductManagement.postProductSizes);
+const usePostProductSizes = (params) => {
+  return useQuery(
+    ["postProductSizes", params],
+    apiProductManagement.postProductSizes,
+    {
+      ...reactQueryConfig,
+      enabled: !!params,
+    }
+  );
 };
 
 const useDeleteProductSize = () => {
@@ -53,6 +68,17 @@ const usePutProductSizeStatus = () => {
 const usePostAddProductSize = () => {
   return useMutation(apiProductManagement.postAddProductSize);
 };
+//  PRODUCT DETAILS
+const usePostProductDetails = (params) => {
+  return useQuery(
+    ["postProductDetails", params],
+    apiProductManagement.postProductDetails,
+    {
+      ...reactQueryConfig,
+      enabled: !!params,
+    }
+  );
+};
 
 export {
   // color
@@ -65,4 +91,6 @@ export {
   useDeleteProductSize,
   usePutProductSizeStatus,
   usePostAddProductSize,
+  //  PRODUCT DETAILS
+  usePostProductDetails,
 };
