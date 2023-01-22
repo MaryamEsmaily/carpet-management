@@ -9,15 +9,14 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import FilterColor from "container/views/app/products/FilterColor";
 import ColorIcon from "components/icon/ColorIcon";
-import AllColors from "container/views/app/products/AllColors";
 import useModal from "hook/useModal";
 import ModalAddColor from "components/modal/ModalAddColor";
+import ColorSection from "container/views/app/products/ColorSection";
 
 function ColorsPage() {
   const { toggle, config } = useModal();
-
+  //
   return (
     <>
       <ModalAddColor config={config} />
@@ -46,8 +45,7 @@ function ColorsPage() {
         </Box>
         <Button onClick={toggle}>افـزودن رنـگ</Button>
       </Flex>
-      <FilterColor />
-      <AllColors />
+      <ColorSection />
     </>
   );
 }

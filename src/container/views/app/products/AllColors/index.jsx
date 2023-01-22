@@ -12,46 +12,97 @@ import {
 import colorImage from "assets/images/color-image.png";
 import Pagination from "components/custom/Pagination";
 import DeleteIcon from "components/icon/DeleteIcon";
+import { postProductColorsData } from "data/postProductColorsData";
+import {
+  useDeleteProductColor,
+  usePostProductColors,
+  usePutProductColorStatus,
+} from "hook/api/apiProduct/useProductManagementApi";
+import useToast from "hook/useToast";
 import React, { useState } from "react";
+import matchSorter from "utils/matchSorter";
 
-function AllColors() {
-  // for pagination
-  const [pageSize, setPageSize] = useState(8);
-  const [pageNumber, setPageNumber] = useState(1);
+const AllColors = ({ searchInput, status }) => {
   //
-  const colors = [
-    {
-      id: 1,
-      colorName: "خــاکستـــری",
-    },
-    {
-      id: 2,
-      colorName: "خــاکستـــری",
-    },
-    {
-      id: 3,
-      colorName: "خــاکستـــری",
-    },
-    {
-      id: 4,
-      colorName: "خــاکستـــری",
-    },
-    {
-      id: 5,
-      colorName: "خــاکستـــری",
-    },
-    {
-      id: 6,
-      colorName: "خــاکستـــری",
-    },
+  const toast = useToast();
+  // for pagination
+  const pageNumberOptions = [
+    { value: 15, label: "15" },
+    { value: 30, label: "30" },
+    { value: 45, label: "45" },
   ];
 
-  // const colors = useGetAllColors()
+  const [pageSize, setPageSize] = useState(pageNumberOptions?.[0].value);
+  const [pageNumber, setPageNumber] = useState(1);
+  //
+  const deleteProductColor = useDeleteProductColor();
+  const putProductColorStatus = usePutProductColorStatus();
+  //
+  // API
+  // const { data: productColors, totalCount } = usePostProductColors({
+  //   pageSize,
+  //   pageNumber,
+  // });
 
+  // const data = React.useMemo(() => {
+  //   const list = productColors?.content;
+  //   if (!searchInput && status === "2") return list;
+  //   else if (searchInput) return matchSorter(list, searchInput, ["colorName"]);
+  //   else return list.filter((item) => item.status === status);
+  // }, [searchInput, status]);
+  // //
+  // const totalCount = productColors?.totalCount;
+
+  // // mock data.
+  // const data = React.useMemo(
+  //   () => postProductColorsData?.Data?.content ?? [],
+  //   []
+  // );
+
+  const data = React.useMemo(() => {
+    const list = postProductColorsData?.Data?.content;
+    if (!searchInput && status === "2") return list;
+    else if (searchInput) return matchSorter(list, searchInput, ["colorName"]);
+    else return list.filter((item) => item.status === status);
+  }, [searchInput, status]);
+
+  const totalCount = postProductColorsData?.Data?.totalCount;
+  //
+  const handleDelete = (id) => {
+    deleteProductColor.mutate(
+      {
+        id,
+      },
+      {
+        onSuccess: (res) => {
+          toast.success({ res });
+        },
+        onError: (err) => {
+          toast.error({ err });
+        },
+      }
+    );
+  };
+  const handleStatus = (id) => {
+    putProductColorStatus.mutate(
+      {
+        id,
+      },
+      {
+        onSuccess: (res) => {
+          toast.success({ res });
+        },
+        onError: (err) => {
+          toast.error({ err });
+        },
+      }
+    );
+  };
+  //
   return (
     <Box>
       <Grid mt={5} templateColumns="repeat(5,minmax(0,1fr))" gap={7}>
-        {colors.map((color) => (
+        {data?.map((color) => (
           <GridItem key={color.id} colSpan={1}>
             <Stack
               bg="layout"
@@ -74,7 +125,11 @@ function AllColors() {
                 justifyContent="space-between"
                 fontSize={14}
               >
-                <Button variant="unstyled" size="sm" fontWeight="medium">
+                <Button
+                  variant="unstyled"
+                  fontWeight="medium"
+                  onClick={() => handleDelete(color.id)}
+                >
                   <Stack
                     direction="row"
                     align="center"
@@ -85,7 +140,12 @@ function AllColors() {
                     <Text>حذف</Text>
                   </Stack>
                 </Button>
-                <Radio>غیـرفعـال</Radio>
+                <Radio
+                  isChecked={color.status === "0"}
+                  onClick={() => handleStatus(color.id)}
+                >
+                  غیـرفعـال
+                </Radio>
               </Stack>
             </Stack>
           </GridItem>
@@ -96,10 +156,11 @@ function AllColors() {
         setPageNumber={setPageNumber}
         pageSize={pageSize}
         setPageSize={setPageSize}
-        totalCount={18}
+        totalCount={totalCount}
+        pageNumberOptions={pageNumberOptions}
       />
     </Box>
   );
-}
+};
 
 export default AllColors;
