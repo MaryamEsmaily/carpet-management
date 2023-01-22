@@ -3,6 +3,12 @@ import LeftArrowIcon from "components/icon/LeftArrowIcon";
 import RightArrowIcon from "components/icon/RightArrowIcon";
 import React from "react";
 import ReactSelect from "react-select";
+//
+const defaultPageNumbers = [
+  { value: 8, label: "8" },
+  { value: 16, label: "16" },
+  { value: 32, label: "32" },
+];
 
 function Pagination({
   pageNumber,
@@ -10,19 +16,13 @@ function Pagination({
   pageSize,
   setPageSize,
   totalCount,
+  pageNumberOptions = defaultPageNumbers,
 }) {
   //
   const pageCount = Math.ceil(totalCount / pageSize);
   //
-  const options = [
-    { value: 8, label: "8" },
-    { value: 16, label: "16" },
-    { value: 32, label: "32" },
-  ];
-  //
   return (
     <Box>
-      {" "}
       <Divider mt={4} mb={2} />
       <Flex justifyContent="space-between">
         <Stack direction="row" align="center" spacing={4}>
@@ -47,9 +47,9 @@ function Pagination({
           </Box>
         </Stack>
         <ReactSelect
-          defaultValue={options[0]}
-          onChange={setPageSize}
-          options={options}
+          defaultValue={pageNumberOptions[0]}
+          onChange={(e) => setPageSize(e?.value)}
+          options={pageNumberOptions}
         />
       </Flex>
     </Box>
