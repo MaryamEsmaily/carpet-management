@@ -8,6 +8,11 @@ import {
   IconButton,
   Stack,
   Text,
+  Popover,
+  PopoverArrow,
+  PopoverContent,
+  PopoverTrigger,
+  Radio,
 } from "@chakra-ui/react";
 import AddNewOrderIcon from "components/icon/AddNewOrderIcon";
 import CalenderIcon from "components/icon/CalenderIcon";
@@ -18,10 +23,22 @@ import ReportIcon from "components/icon/ReportIcon";
 import UserIcon from "components/icon/UserIcon";
 import { postProductDetailsData } from "data/postProductDetailsData";
 import ImageSlider from "../ImageSlider";
-import { usePostProductDetails } from "hook/api/apiProduct/useProductManagementApi";
+import {
+  useDeleteProduct,
+  usePostProductDetails,
+  usePutProductStatus,
+} from "hook/api/apiProduct/useProductManagementApi";
 import { useParams } from "react-router-dom";
+import EditIcon from "components/icon/EditIcon";
+import DeleteIcon from "components/icon/DeleteIcon";
+import useToast from "hook/useToast";
 
 function ProductDetails() {
+  //
+  const toast = useToast();
+  //
+  const deleteProduct = useDeleteProduct();
+  const putProductStatus = usePutProductStatus();
   //
   // API
   // const { id } = useParams();
@@ -36,6 +53,37 @@ function ProductDetails() {
     return postProductDetailsData?.Data?.content;
   }, []);
   //
+  const handleDelete = (id) => {
+    deleteProduct.mutate(
+      {
+        id,
+      },
+      {
+        onSuccess: (res) => {
+          toast.success({ res });
+        },
+        onError: (err) => {
+          toast.error({ err });
+        },
+      }
+    );
+  };
+  const handleStatus = (id) => {
+    putProductStatus.mutate(
+      {
+        id,
+      },
+      {
+        onSuccess: (res) => {
+          toast.success({ res });
+        },
+        onError: (err) => {
+          toast.error({ err });
+        },
+      }
+    );
+  };
+  //
   return (
     <Box mt={8}>
       <Grid
@@ -49,95 +97,161 @@ function ProductDetails() {
           <ImageSlider images={data?.images} />
         </GridItem>
         <GridItem colSpan={7}>
-          <Box w="full">
-            <Stack direction="row" justifyContent="space-between">
-              <Text fontSize={24}>{data?.title}</Text>
-              <IconButton
-                icon={<MoreBorderedIcon fill="none" boxSize={5} />}
-                variant="unstyled"
-              />
-            </Stack>
-            <Divider variant="dashed" my={5} />
-            <Stack spacing={8} mt={8}>
-              <Stack direction="row">
-                <Stack direction="row" align="center" spacing={3} width={120}>
-                  <AddNewOrderIcon
-                    color="text-primary"
-                    fill="none"
-                    boxSize={5}
-                  />
-                  <Text fontWeight="bold" color="text-primary">
-                    کـد طـرح :
-                  </Text>
-                </Stack>
-                <Text>{data?.code}</Text>
-              </Stack>
-              <Stack direction="row">
-                <Stack direction="row" align="center" spacing={3} width={120}>
-                  <ColorFilterIcon color="text-primary" boxSize={5} />
-                  <Text fontWeight="bold" color="text-primary">
-                    رنـگ :
-                  </Text>
-                </Stack>
-                {data?.colors?.map((item, index) => (
-                  <Text key={index}>
-                    {item}{" "}
-                    <Text
-                      as="span"
-                      display={
-                        index === data?.colors.length - 1 ? "none" : "unset"
-                      }
+          <Popover placement="left-start">
+            <PopoverTrigger>
+              <Popover placement="left-start">
+                <PopoverTrigger>
+                  <Stack direction="row" justifyContent="space-between">
+                    <Text fontSize={24}>{data?.title}</Text>
+                    <IconButton
+                      icon={<MoreBorderedIcon fill="none" boxSize={5} />}
+                      variant="unstyled"
+                    />
+                  </Stack>
+                </PopoverTrigger>
+                <PopoverContent
+                  sx={{ width: "140px", borderRadius: "8px", p: 4 }}
+                >
+                  <PopoverArrow />
+                  <Stack spacing={4}>
+                    <Radio
+                      size="lg"
+                      isChecked={data?.status === "0"}
+                      onClick={() => handleStatus(data?.id)}
                     >
-                      -
-                    </Text>
-                  </Text>
-                ))}
-              </Stack>
-              <Stack direction="row">
-                <Stack direction="row" align="center" spacing={3} width={120}>
-                  <EraserIcon color="text-primary" boxSize={5} />
-                  <Text fontWeight="bold" color="text-primary">
-                    سایـز :
-                  </Text>
-                </Stack>
-                {data?.sizes?.map((item, index) => (
-                  <Text key={index}>
-                    {item} متـری{" "}
-                    <Text
-                      as="span"
-                      display={
-                        index === data?.sizes.length - 1 ? "none" : "unset"
-                      }
+                      غیـرفعـال
+                    </Radio>
+                    <Stack
+                      cursor="pointer"
+                      direction="row"
+                      align="center"
+                      spacing={3}
                     >
-                      -
-                    </Text>
-                  </Text>
-                ))}
-              </Stack>
-              <Stack direction="row" align="start">
+                      <EditIcon boxSize={5} />
+                      <Text fontSize="16px">ویرایش</Text>
+                    </Stack>
+                    <Stack
+                      cursor="pointer"
+                      direction="row"
+                      align="center"
+                      spacing={3}
+                      onClick={() => handleDelete(data?.id)}
+                    >
+                      <DeleteIcon fill="none" color="red" boxSize={6} />
+                      <Text fontSize="16px">حذف</Text>
+                    </Stack>
+                  </Stack>
+                </PopoverContent>
+              </Popover>
+            </PopoverTrigger>
+            <PopoverContent sx={{ width: "140px", borderRadius: "8px", p: 4 }}>
+              <PopoverArrow />
+              <Stack spacing={4}>
+                <Radio
+                  size="lg"
+                  isChecked={data?.status === "0"}
+                  onClick={() => handleStatus(data?.id)}
+                >
+                  غیـرفعـال
+                </Radio>
                 <Stack
+                  cursor="pointer"
                   direction="row"
                   align="center"
-                  whiteSpace="nowrap"
                   spacing={3}
-                  width={120}
                 >
-                  <ReportIcon fill="none" color="text-primary" boxSize={5} />
-                  <Text fontWeight="bold" color="text-primary">
-                    توضیحـات :
-                  </Text>
+                  <EditIcon boxSize={5} />
+                  <Text fontSize="16px">ویرایش</Text>
                 </Stack>
-                <Text
-                  flexGrow={1}
-                  textAlign="justify"
-                  maxW="380px"
-                  lineHeight={1.9}
+                <Stack
+                  cursor="pointer"
+                  direction="row"
+                  align="center"
+                  spacing={3}
+                  onClick={() => handleDelete(data?.id)}
                 >
-                  {data?.description}
+                  <DeleteIcon fill="none" color="red" boxSize={6} />
+                  <Text fontSize="16px">حذف</Text>
+                </Stack>
+              </Stack>
+            </PopoverContent>
+          </Popover>
+          <Divider variant="dashed" my={5} />
+          <Stack spacing={8} mt={8}>
+            <Stack direction="row">
+              <Stack direction="row" align="center" spacing={3} width={120}>
+                <AddNewOrderIcon color="text-primary" fill="none" boxSize={5} />
+                <Text fontWeight="bold" color="text-primary">
+                  کـد طـرح :
                 </Text>
               </Stack>
+              <Text>{data?.code}</Text>
             </Stack>
-          </Box>
+            <Stack direction="row">
+              <Stack direction="row" align="center" spacing={3} width={120}>
+                <ColorFilterIcon color="text-primary" boxSize={5} />
+                <Text fontWeight="bold" color="text-primary">
+                  رنـگ :
+                </Text>
+              </Stack>
+              {data?.colors?.map((item, index) => (
+                <Text key={index}>
+                  {item}{" "}
+                  <Text
+                    as="span"
+                    display={
+                      index === data?.colors.length - 1 ? "none" : "unset"
+                    }
+                  >
+                    -
+                  </Text>
+                </Text>
+              ))}
+            </Stack>
+            <Stack direction="row">
+              <Stack direction="row" align="center" spacing={3} width={120}>
+                <EraserIcon color="text-primary" boxSize={5} />
+                <Text fontWeight="bold" color="text-primary">
+                  سایـز :
+                </Text>
+              </Stack>
+              {data?.sizes?.map((item, index) => (
+                <Text key={index}>
+                  {item} متـری{" "}
+                  <Text
+                    as="span"
+                    display={
+                      index === data?.sizes.length - 1 ? "none" : "unset"
+                    }
+                  >
+                    -
+                  </Text>
+                </Text>
+              ))}
+            </Stack>
+            <Stack direction="row" align="start">
+              <Stack
+                direction="row"
+                align="center"
+                whiteSpace="nowrap"
+                spacing={3}
+                width={120}
+              >
+                <ReportIcon fill="none" color="text-primary" boxSize={5} />
+                <Text fontWeight="bold" color="text-primary">
+                  توضیحـات :
+                </Text>
+              </Stack>
+              <Text
+                flexGrow={1}
+                textAlign="justify"
+                maxW="380px"
+                lineHeight={1.9}
+              >
+                {data?.description}
+              </Text>
+            </Stack>
+          </Stack>
         </GridItem>
       </Grid>
       <Divider variant="dashed" my={5} />
