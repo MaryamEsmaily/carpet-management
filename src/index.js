@@ -5,12 +5,23 @@ import "./i18n";
 import GlobalThemeProvider from "provider/GlobalThemeProvider";
 import App from "App";
 import { BrowserRouter } from "react-router-dom";
+import reactQueryConfig from "config/reactQueryConfig";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: reactQueryConfig,
+  },
+});
+
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <GlobalThemeProvider>{({ _dir }) => <App />}</GlobalThemeProvider>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <GlobalThemeProvider>{({ _dir }) => <App />}</GlobalThemeProvider>
+      </BrowserRouter>
+    </QueryClientProvider>
   </React.StrictMode>
 );
