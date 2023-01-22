@@ -79,18 +79,61 @@ const usePostProductDetails = (params) => {
     }
   );
 };
+//  ALL PRODUCTS
+const usePostAllProducts = (params) => {
+  return useQuery(
+    ["postAllProducts", params],
+    apiProductManagement.postAllProducts,
+    {
+      ...reactQueryConfig,
+      enabled: !!params,
+    }
+  );
+};
+
+const useDeleteProduct = () => {
+  const queryClient = useQueryClient();
+  return useMutation(apiProductManagement.deleteProduct, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("postAllProducts");
+    },
+  });
+};
+
+const usePutProductStatus = () => {
+  const queryClient = useQueryClient();
+  return useMutation(apiProductManagement.putProductStatus, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("postAllProducts");
+    },
+  });
+};
+
+const useGetAllColors = () => {
+  return useQuery(apiProductManagement.getAllColors);
+};
+
+const useGetAllSizes = () => {
+  return useQuery(apiProductManagement.getAllSizes);
+};
 
 export {
-  // color
+  // COLOR
   usePostProductColors,
   useDeleteProductColor,
   usePutProductColorStatus,
   usePostAddProductColor,
-  // size
+  // SIZE
   usePostProductSizes,
   useDeleteProductSize,
   usePutProductSizeStatus,
   usePostAddProductSize,
-  //  PRODUCT DETAILS
+  // PRODUCT DETAILS
   usePostProductDetails,
+  // ALL PRODUCTS
+  usePostAllProducts,
+  useDeleteProduct,
+  usePutProductStatus,
+  useGetAllColors,
+  useGetAllSizes,
 };

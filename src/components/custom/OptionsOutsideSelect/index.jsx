@@ -36,18 +36,18 @@ const style = ({ menuPortalBg }) => ({
 });
 
 const OptionsOutsideSelect = (props) => {
-  const { isMulti, value, onChange, placeholder } = props;
+  const { isMulti, value, name, placeholder, formik } = props;
   const menuPortalBg = useColorModeValue("#fff", "#202630");
 
-  const handleRemoveValue = (e) => {
-    if (!onChange) return;
-    const { name: buttonName } = e.currentTarget;
-    const removedValue = value.find((val) => val.value === buttonName);
+  const handleRemoveValue = (label) => {
+    const removedValue = formik.values?.[name].find(
+      (val) => val.label === label
+    );
     if (!removedValue) return;
-    onChange(
-      value.filter((val) => val.value !== buttonName),
-      // eslint-disable-next-line no-restricted-globals
-      { name, action: "remove-value", removedValue }
+    // onChange(
+    formik.setFieldValue(
+      name,
+      formik.values?.[name]?.filter((val) => val.label !== label)
     );
   };
 
@@ -67,6 +67,17 @@ const OptionsOutsideSelect = (props) => {
           },
         })}
         {...props}
+        onChange={(option) => {
+          formik.setFieldValue(
+            // eslint-disable-next-line no-restricted-globals
+            name,
+            option !== null
+              ? option.map((item) => {
+                  return { value: item.value, label: item.label };
+                })
+              : []
+          );
+        }}
         controlShouldRenderValue={!isMulti}
       />
       <Box
@@ -92,7 +103,7 @@ const OptionsOutsideSelect = (props) => {
               >
                 <Text>{val.label}</Text>
                 <Box
-                  onClick={handleRemoveValue}
+                  onClick={() => handleRemoveValue(val.label)}
                   name={val.value}
                   sx={{ cursor: "pointer" }}
                 >

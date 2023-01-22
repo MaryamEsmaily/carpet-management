@@ -10,9 +10,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 import BasketIcon from "components/icon/BasketIcon";
-import FilterProduct from "container/views/app/products/FilterProduct";
-import AllProducts from "container/views/app/products/AllProducts";
 import { Link } from "react-router-dom";
+import ProductsSection from "container/views/app/products/ProductsSection";
 
 function ProductsPage() {
   return (
@@ -44,8 +43,7 @@ function ProductsPage() {
           <Button>افـزودن محصول</Button>
         </Link>
       </Flex>
-      <FilterProduct />
-      <AllProducts />
+      <ProductsSection />
     </Box>
   );
 }

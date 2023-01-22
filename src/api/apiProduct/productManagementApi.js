@@ -44,7 +44,7 @@ const postProductSizes = async (params) => {
 
 const deleteProductSize = async (params) => {
   const { data } = await instance.delete(BASE_URL, {
-    data: { payload: params, opCode: 103 },
+    data: { payload: params, opCode: 106 },
   });
   return data;
 };
@@ -52,7 +52,7 @@ const deleteProductSize = async (params) => {
 const putProductSizeStatus = async (params) => {
   const { data } = await instance.put(BASE_URL, {
     payload: params,
-    opCode: 106,
+    opCode: 107,
   });
   return data;
 };
@@ -60,7 +60,7 @@ const putProductSizeStatus = async (params) => {
 const postAddProductSize = async (params) => {
   const { data } = await instance.post(BASE_URL, {
     payload: params,
-    opCode: 107,
+    opCode: 108,
   });
   return data?.Data;
 };
@@ -68,9 +68,41 @@ const postAddProductSize = async (params) => {
 const postProductDetails = async (params) => {
   const { data } = await instance.post(BASE_URL, {
     payload: params,
-    opCode: 105,
+    opCode: 109,
   });
   return data?.Data;
+};
+//  ALL PRODUCTS
+const postAllProducts = async (params) => {
+  const { data } = await instance.post(BASE_URL, {
+    payload: params,
+    opCode: 110,
+  });
+  return data?.Data;
+};
+const deleteProduct = async (params) => {
+  const { data } = await instance.delete(BASE_URL, {
+    data: { payload: params, opCode: 111 },
+  });
+  return data;
+};
+
+const putProductStatus = async (params) => {
+  const { data } = await instance.put(BASE_URL, {
+    payload: params,
+    opCode: 112,
+  });
+  return data;
+};
+
+const getAllColors = async () => {
+  const { data } = await instance.get(BASE_URL + "113");
+  return data;
+};
+
+const getAllSizes = async () => {
+  const { data } = await instance.get(BASE_URL + "114");
+  return data;
 };
 //
 export {
@@ -86,4 +118,10 @@ export {
   postAddProductSize,
   // PRODUCT DETAILS
   postProductDetails,
+  //  ALL PRODUCTS
+  postAllProducts,
+  deleteProduct,
+  putProductStatus,
+  getAllColors,
+  getAllSizes,
 };
