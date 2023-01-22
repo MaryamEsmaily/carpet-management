@@ -7,6 +7,8 @@ import App from "App";
 import { BrowserRouter } from "react-router-dom";
 import reactQueryConfig from "config/reactQueryConfig";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -20,6 +22,14 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+        <ToastContainer
+          position="bottom-left"
+          autoClose={6000}
+          closeOnClick
+          pauseOnHover
+          limit={5}
+          icon={false}
+        />
         <GlobalThemeProvider>{({ _dir }) => <App />}</GlobalThemeProvider>
       </BrowserRouter>
     </QueryClientProvider>
