@@ -50,15 +50,9 @@ const AllColors = ({ searchInput, status }) => {
   //   else if (searchInput) return matchSorter(list, searchInput, ["colorName"]);
   //   else return list.filter((item) => item.status === status);
   // }, [searchInput, status]);
-  // //
-  // const totalCount = productColors?.totalCount;
+  //
 
-  // // mock data.
-  // const data = React.useMemo(
-  //   () => postProductColorsData?.Data?.content ?? [],
-  //   []
-  // );
-
+  // MOCK DATA
   const data = React.useMemo(() => {
     const list = postProductColorsData?.Data?.content;
     if (!searchInput && status === "2") return list;

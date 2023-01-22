@@ -1,6 +1,7 @@
 import * as apiProductManagement from "api/apiProduct/productManagementApi";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+// COLOR
 const usePostProductColors = () => {
   return useMutation(apiProductManagement.postProductColors);
 };
@@ -23,18 +24,45 @@ const usePutProductColorStatus = () => {
   });
 };
 
+const usePostAddProductColor = () => {
+  return useMutation(apiProductManagement.postAddProductColor);
+};
+// SIZE
 const usePostProductSizes = () => {
   return useMutation(apiProductManagement.postProductSizes);
 };
 
-const usePostAddProductColor = () => {
-  return useMutation(apiProductManagement.postAddProductColor);
+const useDeleteProductSize = () => {
+  const queryClient = useQueryClient();
+  return useMutation(apiProductManagement.deleteProductSize, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("postProductSizes");
+    },
+  });
+};
+
+const usePutProductSizeStatus = () => {
+  const queryClient = useQueryClient();
+  return useMutation(apiProductManagement.putProductSizeStatus, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("postProductSizes");
+    },
+  });
+};
+
+const usePostAddProductSize = () => {
+  return useMutation(apiProductManagement.postAddProductSize);
 };
 
 export {
+  // color
   usePostProductColors,
   useDeleteProductColor,
-  usePostProductSizes,
   usePutProductColorStatus,
   usePostAddProductColor,
+  // size
+  usePostProductSizes,
+  useDeleteProductSize,
+  usePutProductSizeStatus,
+  usePostAddProductSize,
 };

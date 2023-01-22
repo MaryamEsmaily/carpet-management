@@ -10,10 +10,9 @@ import {
   Text,
 } from "@chakra-ui/react";
 import SizeIcon from "components/icon/SizeIcon";
-import FilterSize from "container/views/app/products/FilterSize";
-import AllSizes from "container/views/app/products/AllSizes";
 import useModal from "hook/useModal";
 import ModalAddSize from "components/modal/ModalAddSize";
+import SizeSection from "container/views/app/products/SizeSection";
 
 function SizesPage() {
   const { toggle, config } = useModal();
@@ -46,8 +45,7 @@ function SizesPage() {
         </Box>
         <Button onClick={toggle}>افـزودن سایـز</Button>
       </Flex>
-      <FilterSize />
-      <AllSizes />
+      <SizeSection />
     </>
   );
 }
