@@ -29,6 +29,7 @@ root.render(
           pauseOnHover
           limit={5}
           icon={false}
+          theme="colored"
         />
         <GlobalThemeProvider>{({ _dir }) => <App />}</GlobalThemeProvider>
       </BrowserRouter>
