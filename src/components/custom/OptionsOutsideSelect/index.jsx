@@ -7,14 +7,14 @@ const DropdownIndicator = () => {
   return <SearchIcon fill="none" boxSize={5} />;
 };
 
-const style = ({ menuPortalBg }) => ({
+const style = ({ menuPortalBg, InputBg }) => ({
   control: (base) => ({
     ...base,
     height: 50,
     minHeight: 50,
     borderRadius: "8px",
-    backgroundColor: "#353f50",
-    borderColor: "#353f50",
+    backgroundColor: InputBg,
+    borderColor: InputBg,
   }),
   indicatorSeparator: (base) => ({
     ...base,
@@ -38,6 +38,8 @@ const style = ({ menuPortalBg }) => ({
 const OptionsOutsideSelect = (props) => {
   const { isMulti, value, name, placeholder, formik } = props;
   const menuPortalBg = useColorModeValue("#fff", "#202630");
+  const InputBg = useColorModeValue("#F4F6F8", "#353f50");
+  const menuBg = useColorModeValue("#6a82dd6b", "#000");
 
   const handleRemoveValue = (label) => {
     const removedValue = formik.values?.[name].find(
@@ -52,18 +54,18 @@ const OptionsOutsideSelect = (props) => {
   };
 
   return (
-    <div>
+    <>
       <Select
         components={{ DropdownIndicator }}
         placeholder={placeholder}
         noOptionsMessage={() => "موردی وجود ندارد"}
         menuPortalTarget={document.body}
-        styles={style({ menuPortalBg })}
+        styles={style({ menuPortalBg, InputBg })}
         theme={(theme) => ({
           ...theme,
           colors: {
             ...theme.colors,
-            primary25: "#000",
+            primary25: menuBg,
           },
         })}
         {...props}
@@ -88,7 +90,7 @@ const OptionsOutsideSelect = (props) => {
         }}
       >
         {isMulti
-          ? value.map((val) => (
+          ? value?.map((val) => (
               <Stack
                 direction="row"
                 align="center"
@@ -101,7 +103,7 @@ const OptionsOutsideSelect = (props) => {
                 ml={1}
                 mt={2}
               >
-                <Text>{val.label}</Text>
+                <Text color="#fff">{val.label}</Text>
                 <Box
                   onClick={() => handleRemoveValue(val.label)}
                   name={val.value}
@@ -113,7 +115,7 @@ const OptionsOutsideSelect = (props) => {
             ))
           : null}
       </Box>
-    </div>
+    </>
   );
 };
 

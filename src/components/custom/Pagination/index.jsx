@@ -1,4 +1,13 @@
-import { Box, Divider, Flex, IconButton, Stack } from "@chakra-ui/react";
+import {
+  Box,
+  Divider,
+  Flex,
+  IconButton,
+  Stack,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
+import ArrowDownIcon from "components/icon/ArrowDownIcon";
 import LeftArrowIcon from "components/icon/LeftArrowIcon";
 import RightArrowIcon from "components/icon/RightArrowIcon";
 import React from "react";
@@ -9,6 +18,34 @@ const defaultPageNumbers = [
   { value: 16, label: "16" },
   { value: 32, label: "32" },
 ];
+
+const DropdownIndicator = () => {
+  return <ArrowDownIcon boxSize={3} />;
+};
+
+const style = ({ menuPortalBg, InputBg }) => ({
+  control: (base) => ({
+    ...base,
+    height: 40,
+    minHeight: 40,
+    borderRadius: "8px",
+    backgroundColor: "transparent",
+    borderColor: InputBg,
+  }),
+  indicatorSeparator: (base) => ({
+    ...base,
+    display: "none",
+  }),
+  indicatorsContainer: (base) => ({
+    ...base,
+    margin: "0 12px",
+  }),
+  menuPortal: (base) => ({ ...base, zIndex: "9999" }),
+  menu: (base) => ({
+    ...base,
+    backgroundColor: menuPortalBg,
+  }),
+});
 
 function Pagination({
   pageNumber,
@@ -21,8 +58,12 @@ function Pagination({
   //
   const pageCount = Math.ceil(totalCount / pageSize);
   //
+  const menuPortalBg = useColorModeValue("#fff", "#202630");
+  const InputBg = useColorModeValue("#718096", "#3A404B");
+  const menuBg = useColorModeValue("#6a82dd6b", "#000");
+
   return (
-    <Box>
+    <Box mb={5}>
       <Divider mt={4} mb={2} />
       <Flex justifyContent="space-between">
         <Stack direction="row" align="center" spacing={4}>
@@ -47,9 +88,31 @@ function Pagination({
           </Box>
         </Stack>
         <ReactSelect
+          components={{ DropdownIndicator }}
+          isSearchable={false}
           defaultValue={pageNumberOptions[0]}
           onChange={(e) => setPageSize(e?.value)}
           options={pageNumberOptions}
+          styles={style({ menuPortalBg, InputBg })}
+          theme={(theme) => ({
+            ...theme,
+            colors: {
+              ...theme.colors,
+              primary25: menuBg,
+            },
+          })}
+          getOptionLabel={({ label }) => (
+            <Stack
+              direction="row"
+              align="center"
+              justify="space-evenly"
+              spacing={1}
+              color="text-secondary"
+            >
+              <Text>تعداد در هر صفحه : </Text>
+              <Text>{label}</Text>
+            </Stack>
+          )}
         />
       </Flex>
     </Box>

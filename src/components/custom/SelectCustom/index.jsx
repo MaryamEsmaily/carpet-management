@@ -17,14 +17,14 @@ const MultiValueRemove = (props) => {
   );
 };
 
-const style = ({ menuPortalBg }) => ({
+const style = ({ menuPortalBg, InputBg, selectedColor }) => ({
   control: (base) => ({
     ...base,
     height: 50,
     minHeight: 50,
     borderRadius: "8px",
-    backgroundColor: "#2a2e37",
-    borderColor: "#2a2e37",
+    backgroundColor: InputBg,
+    borderColor: InputBg,
     color: "Red",
   }),
   indicatorSeparator: (base) => ({
@@ -48,7 +48,7 @@ const style = ({ menuPortalBg }) => ({
     ...base,
     padding: "0 4px",
     flexDirection: "row-reverse",
-    backgroundColor: "#454F5B",
+    backgroundColor: selectedColor,
     borderRadius: "1rem",
     color: "red !important",
   }),
@@ -62,6 +62,9 @@ const style = ({ menuPortalBg }) => ({
 const SelectCustom = (props) => {
   const { isMulti, placeholder = "", onChange, value, options } = props;
   const menuPortalBg = useColorModeValue("#fff", "#202630");
+  const InputBg = useColorModeValue("#F4F6F8", "#2a2e37");
+  const menuBg = useColorModeValue("#6a82dd6b", "#000");
+  const selectedColor = useColorModeValue("#0006", "#454F5B");
 
   return (
     <ReactSelect
@@ -69,12 +72,12 @@ const SelectCustom = (props) => {
       noOptionsMessage={() => "موردی وجود ندارد"}
       placeholder={placeholder}
       onChange={onChange}
-      styles={style({ menuPortalBg })}
+      styles={style({ menuPortalBg, InputBg, selectedColor })}
       theme={(theme) => ({
         ...theme,
         colors: {
           ...theme.colors,
-          primary25: "#000",
+          primary25: menuBg,
         },
       })}
       isMulti={!!isMulti}
