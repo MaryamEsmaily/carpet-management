@@ -1,10 +1,13 @@
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import {
   Avatar,
   Container,
   Grid,
   GridItem,
+  IconButton,
   Stack,
   Text,
+  useColorMode,
 } from "@chakra-ui/react";
 import CallIcon from "components/icon/CallIcon";
 import LogoIcon from "components/icon/LogoIcon";
@@ -14,6 +17,10 @@ import { memo } from "react";
 import { NavLink } from "react-router-dom";
 
 const AppLayout = (props) => {
+  //
+  const { colorMode, toggleColorMode } = useColorMode();
+  const isDark = colorMode === "dark";
+
   return (
     <>
       <Stack
@@ -57,7 +64,19 @@ const AppLayout = (props) => {
           </Stack>
         </Stack>
         <Stack direction="row" align="center" spacing={10}>
-          <SearchIcon fill="none" boxSize={5} />
+          <IconButton
+            onClick={toggleColorMode}
+            size="sm"
+            variant="unstyled"
+            icon={
+              !isDark ? (
+                <MoonIcon fontSize="20px" />
+              ) : (
+                <SunIcon fontSize="20px" />
+              )
+            }
+          />
+          <SearchIcon onClick={toggleColorMode} fill="none" boxSize={5} />
           <CallIcon fill="none" boxSize={5} />
           <Avatar
             size="sm"
