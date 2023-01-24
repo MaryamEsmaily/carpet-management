@@ -110,11 +110,20 @@ const usePutProductStatus = () => {
 };
 
 const useGetAllColors = () => {
-  return useQuery(apiProductManagement.getAllColors);
+  return useQuery(["getAllColors"], apiProductManagement.getAllColors);
 };
 
 const useGetAllSizes = () => {
-  return useQuery(apiProductManagement.getAllSizes);
+  return useQuery(["getAllSizes"], apiProductManagement.getAllSizes);
+};
+// ADD NEW PRODUCT
+const usePostAddProduct = (params) => {
+  const queryClient = useQueryClient();
+  return useMutation(apiProductManagement.postAddProduct, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("postAllProducts");
+    },
+  });
 };
 
 export {
@@ -136,4 +145,6 @@ export {
   usePutProductStatus,
   useGetAllColors,
   useGetAllSizes,
+  // ADD NEW PRODUCT
+  usePostAddProduct,
 };

@@ -96,13 +96,25 @@ const putProductStatus = async (params) => {
 };
 
 const getAllColors = async () => {
-  const { data } = await instance.get(BASE_URL + "113");
+  const { data } = await instance.post(BASE_URL, {
+    opCode: 113,
+  });
   return data;
 };
 
 const getAllSizes = async () => {
-  const { data } = await instance.get(BASE_URL + "114");
+  const { data } = await instance.post(BASE_URL, {
+    opCode: 114,
+  });
   return data;
+};
+// ADD NEW PRODUCT
+const postAddProduct = async (params) => {
+  const { data } = await instance.post(BASE_URL, {
+    payload: params,
+    opCode: 115,
+  });
+  return data?.Data;
 };
 //
 export {
@@ -124,4 +136,6 @@ export {
   putProductStatus,
   getAllColors,
   getAllSizes,
+  // ADD NEW PRODUCT
+  postAddProduct,
 };
