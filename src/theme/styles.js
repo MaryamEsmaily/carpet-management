@@ -1,13 +1,7 @@
 const styles = {
   global: {
-    body: {
-      bg: "black",
-    },
-    "#root": {
+    "html,body": {
       bg: "layout-deep",
-      borderRadius: "38px",
-      overflowX: "hidden",
-      height: "100vh",
     },
     ".js-focus-visible :focus:not([data-focus-visible-added])": {
       outline: "none",

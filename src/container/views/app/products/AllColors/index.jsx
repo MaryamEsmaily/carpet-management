@@ -118,6 +118,7 @@ const AllColors = ({ searchInput, status }) => {
                 align="center"
                 justifyContent="space-between"
                 fontSize={14}
+                spacing={5}
               >
                 <Button
                   variant="unstyled"
@@ -138,7 +139,7 @@ const AllColors = ({ searchInput, status }) => {
                   isChecked={color.status === "0"}
                   onClick={() => handleStatus(color.id)}
                 >
-                  غیـرفعـال
+                  <Text fontSize="sm">غیـرفعـال</Text>
                 </Radio>
               </Stack>
             </Stack>

@@ -97,85 +97,92 @@ function ProductDetails() {
           <ImageSlider images={data?.images} />
         </GridItem>
         <GridItem colSpan={7}>
-          <Popover placement="left-start">
-            <PopoverTrigger>
-              <Popover placement="left-start">
-                <PopoverTrigger>
-                  <Stack direction="row" justifyContent="space-between">
-                    <Text fontSize={24}>{data?.title}</Text>
-                    <IconButton
-                      icon={<MoreBorderedIcon fill="none" boxSize={5} />}
-                      variant="unstyled"
-                    />
-                  </Stack>
-                </PopoverTrigger>
-                <PopoverContent
-                  sx={{ width: "140px", borderRadius: "8px", p: 4 }}
-                >
-                  <PopoverArrow />
-                  <Stack spacing={4}>
-                    <Radio
-                      size="lg"
-                      isChecked={data?.status === "0"}
-                      onClick={() => handleStatus(data?.id)}
-                    >
-                      غیـرفعـال
-                    </Radio>
-                    <Stack
-                      cursor="pointer"
-                      direction="row"
-                      align="center"
-                      spacing={3}
-                    >
-                      <EditIcon boxSize={5} />
-                      <Text fontSize="16px">ویرایش</Text>
+          <Stack direction="row" justify="space-between" align="center">
+            <Text fontSize={24}>{data?.title}</Text>
+            <Popover placement="left-start">
+              <PopoverTrigger>
+                <Popover placement="left-start">
+                  <PopoverTrigger>
+                    <Stack direction="row" justifyContent="space-between">
+                      <IconButton
+                        icon={<MoreBorderedIcon fill="none" boxSize={5} />}
+                        variant="unstyled"
+                      />
                     </Stack>
-                    <Stack
-                      cursor="pointer"
-                      direction="row"
-                      align="center"
-                      spacing={3}
-                      onClick={() => handleDelete(data?.id)}
-                    >
-                      <DeleteIcon fill="none" color="red" boxSize={6} />
-                      <Text fontSize="16px">حذف</Text>
+                  </PopoverTrigger>
+                  <PopoverContent
+                    sx={{ width: "140px", borderRadius: "8px", p: 4 }}
+                  >
+                    <PopoverArrow />
+                    <Stack spacing={4}>
+                      <Radio
+                        size="lg"
+                        isChecked={data?.status === "0"}
+                        onClick={() => handleStatus(data?.id)}
+                      >
+                        <Text fontSize="md" mx={1}>
+                          غیـرفعـال
+                        </Text>
+                      </Radio>
+                      <Stack
+                        cursor="pointer"
+                        direction="row"
+                        align="center"
+                        spacing={3}
+                      >
+                        <EditIcon boxSize={5} />
+                        <Text>ویرایش</Text>
+                      </Stack>
+                      <Stack
+                        cursor="pointer"
+                        direction="row"
+                        align="center"
+                        spacing={3}
+                        onClick={() => handleDelete(data?.id)}
+                      >
+                        <DeleteIcon fill="none" color="red" boxSize={6} />
+                        <Text>حذف</Text>
+                      </Stack>
                     </Stack>
+                  </PopoverContent>
+                </Popover>
+              </PopoverTrigger>
+              <PopoverContent
+                sx={{ width: "140px", borderRadius: "8px", p: 4 }}
+              >
+                <PopoverArrow />
+                <Stack spacing={4}>
+                  <Radio
+                    size="lg"
+                    isChecked={data?.status === "0"}
+                    onClick={() => handleStatus(data?.id)}
+                  >
+                    غیـرفعـال
+                  </Radio>
+                  <Stack
+                    cursor="pointer"
+                    direction="row"
+                    align="center"
+                    spacing={3}
+                  >
+                    <EditIcon boxSize={5} />
+                    <Text>ویرایش</Text>
                   </Stack>
-                </PopoverContent>
-              </Popover>
-            </PopoverTrigger>
-            <PopoverContent sx={{ width: "140px", borderRadius: "8px", p: 4 }}>
-              <PopoverArrow />
-              <Stack spacing={4}>
-                <Radio
-                  size="lg"
-                  isChecked={data?.status === "0"}
-                  onClick={() => handleStatus(data?.id)}
-                >
-                  غیـرفعـال
-                </Radio>
-                <Stack
-                  cursor="pointer"
-                  direction="row"
-                  align="center"
-                  spacing={3}
-                >
-                  <EditIcon boxSize={5} />
-                  <Text fontSize="16px">ویرایش</Text>
+                  <Stack
+                    cursor="pointer"
+                    direction="row"
+                    align="center"
+                    spacing={3}
+                    onClick={() => handleDelete(data?.id)}
+                  >
+                    <DeleteIcon fill="none" color="red" boxSize={6} />
+                    <Text>حذف</Text>
+                  </Stack>
                 </Stack>
-                <Stack
-                  cursor="pointer"
-                  direction="row"
-                  align="center"
-                  spacing={3}
-                  onClick={() => handleDelete(data?.id)}
-                >
-                  <DeleteIcon fill="none" color="red" boxSize={6} />
-                  <Text fontSize="16px">حذف</Text>
-                </Stack>
-              </Stack>
-            </PopoverContent>
-          </Popover>
+              </PopoverContent>
+            </Popover>
+          </Stack>
+
           <Divider variant="dashed" my={5} />
           <Stack spacing={8} mt={8}>
             <Stack direction="row">

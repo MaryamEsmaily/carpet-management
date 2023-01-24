@@ -53,7 +53,7 @@ const ModalAddSize = ({ config }) => {
             انصراف
           </Button>
           <Button w="full" onClick={handleAddSize}>
-            ثبت اطلاعات
+            ثبت سایـز
           </Button>
         </Stack>
       </Stack>

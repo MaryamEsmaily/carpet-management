@@ -53,7 +53,7 @@ const ModalAddColor = ({ config }) => {
             انصراف
           </Button>
           <Button w="full" onClick={handleAddColor}>
-            ثبت اطلاعات
+            ثبت رنـگ
           </Button>
         </Stack>
       </Stack>

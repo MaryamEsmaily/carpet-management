@@ -122,6 +122,7 @@ function AllSizes({ searchInput, status }) {
                 align="center"
                 justifyContent="space-between"
                 fontSize={14}
+                spacing={5}
               >
                 <Button
                   variant="unstyled"
@@ -142,7 +143,7 @@ function AllSizes({ searchInput, status }) {
                   isChecked={item.status === "0"}
                   onClick={() => handleStatus(item.id)}
                 >
-                  غیـرفعـال
+                  <Text fontSize="sm">غیـرفعـال</Text>
                 </Radio>
               </Stack>
             </Stack>

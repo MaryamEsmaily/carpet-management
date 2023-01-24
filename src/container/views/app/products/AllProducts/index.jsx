@@ -116,7 +116,7 @@ function AllProducts({ filterValues, searchInput, status }) {
   };
 
   return (
-    <Box>
+    <Box fontSize="sm">
       <Grid mt={5} templateColumns="repeat(2,minmax(0,1fr))" gap={7}>
         {data?.map((product) => (
           <GridItem key={product.id} colSpan={{ base: 2, lg: 1 }}>
@@ -157,8 +157,10 @@ function AllProducts({ filterValues, searchInput, status }) {
                             isChecked={product.status === "0"}
                             onClick={() => handleStatus(product.id)}
                           >
-                            {/* غیـرفعـال */}
-                            {t("13")}
+                            <Text fontSize="md" mx={1}>
+                              {/* غیـرفعـال */}
+                              {t("13")}
+                            </Text>
                           </Radio>
                           <Stack
                             cursor="pointer"
@@ -167,7 +169,7 @@ function AllProducts({ filterValues, searchInput, status }) {
                             spacing={3}
                           >
                             <EditIcon boxSize={5} />
-                            <Text fontSize="16px">
+                            <Text>
                               {/* ویرایش */}
                               {t("20")}
                             </Text>
@@ -180,7 +182,7 @@ function AllProducts({ filterValues, searchInput, status }) {
                             onClick={() => handleDelete(product.id)}
                           >
                             <DeleteIcon fill="none" color="red" boxSize={6} />
-                            <Text fontSize="16px">
+                            <Text>
                               {/* حذف */}
                               {t("21")}
                             </Text>
@@ -197,7 +199,10 @@ function AllProducts({ filterValues, searchInput, status }) {
                         {t("22")}
                       </Text>
                       <Link to={`product-details/${product.id}`}>
-                        <Text _hover={{ textDecoration: "underline" }}>
+                        <Text
+                          _hover={{ textDecoration: "underline" }}
+                          noOfLines={1}
+                        >
                           {product.label}
                         </Text>
                       </Link>
