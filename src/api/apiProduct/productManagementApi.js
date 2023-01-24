@@ -3,7 +3,8 @@ import { BASE_URL_ADDRESS } from "constant/baseURL";
 const BASE_URL = BASE_URL_ADDRESS;
 
 // COLOR
-const postProductColors = async (params) => {
+const postProductColors = async ({ queryKey }) => {
+  const params = queryKey?.[1];
   const { data } = await instance.post(BASE_URL, {
     payload: params,
     opCode: 101,
@@ -34,7 +35,8 @@ const postAddProductColor = async (params) => {
   return data?.Data;
 };
 // SIZE
-const postProductSizes = async (params) => {
+const postProductSizes = async ({ queryKey }) => {
+  const params = queryKey?.[1];
   const { data } = await instance.post(BASE_URL, {
     payload: params,
     opCode: 105,
@@ -73,7 +75,8 @@ const postProductDetails = async (params) => {
   return data?.Data;
 };
 //  ALL PRODUCTS
-const postAllProducts = async (params) => {
+const postAllProducts = async ({ queryKey }) => {
+  const params = queryKey?.[1];
   const { data } = await instance.post(BASE_URL, {
     payload: params,
     opCode: 110,

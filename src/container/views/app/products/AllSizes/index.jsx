@@ -20,9 +20,8 @@ import {
 } from "hook/api/useProductManagementApi";
 import useToast from "hook/useToast";
 import React, { useState } from "react";
-import matchSorter from "utils/matchSorter";
 
-function AllSizes({ searchInput, status }) {
+function AllSizes({ filterSearch, status }) {
   //
   const toast = useToast();
   // for pagination
@@ -43,25 +42,20 @@ function AllSizes({ searchInput, status }) {
   //
   // API
   // const { data: productSizes, totalCount } = usePostProductSizes({
+  //   filterSearch: filterSearch || null,
+  //   status,
   //   pageSize,
   //   pageNumber,
   // });
 
-  // const data = React.useMemo(() => {
-  //   const list = productSizes?.content;
-  //   if (!searchInput && status === "2") return list;
-  //   else if (searchInput) return matchSorter(list, searchInput, ["size"]);
-  //   else return list.filter((item) => item.status === status);
-  // }, [searchInput, status]);
+  // const data = React.useMemo(
+  //   () => productSizes?.content,
+  //   [productSizes?.content]
+  // );
   //
 
   // MOCK DATA
-  const data = React.useMemo(() => {
-    const list = postProductSizesData?.Data?.content;
-    if (!searchInput && status === "2") return list;
-    else if (searchInput) return matchSorter(list, searchInput, ["size"]);
-    else return list.filter((item) => item.status === status);
-  }, [searchInput, status]);
+  const data = React.useMemo(() => postProductSizesData?.Data?.content, []);
 
   const totalCount = postProductSizesData?.Data?.totalCount;
   //

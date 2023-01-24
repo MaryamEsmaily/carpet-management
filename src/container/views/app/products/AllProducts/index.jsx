@@ -29,10 +29,9 @@ import {
 import useToast from "hook/useToast";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import matchSorter from "utils/matchSorter";
 import { useTranslation } from "react-i18next";
 
-function AllProducts({ filterValues, searchInput, status }) {
+function AllProducts({ filterValues, filterSearch, status }) {
   //
   const { t } = useTranslation();
   //
@@ -55,32 +54,20 @@ function AllProducts({ filterValues, searchInput, status }) {
   //   code: filterValues?.code || null,
   //   colors: filterValues?.colors || null,
   //   sizes: filterValues?.sizes || null,
+  //   filterSearch: filterSearch || null,
+  //   status,
   //   pageSize,
   //   pageNumber,
   // });
 
-  // const data = React.useMemo(() => {
-  //   const list = allProducts?.content;
-  //   if (!searchInput && status === "2") return list;
-  //   else if (searchInput) return matchSorter(list, searchInput, ["colorName"]);
-  //   else return list.filter((item) => item.status === status);
-  // }, [searchInput, status]);
+  // const data = React.useMemo(
+  //   () => allProducts?.content,
+  //   [allProducts?.content]
+  // );
   //
 
   // MOCK DATA
-  const data = React.useMemo(() => {
-    const list = postAllProductsData?.Data?.content;
-    if (!searchInput && status === "2") return list;
-    else if (searchInput)
-      return matchSorter(list, searchInput, [
-        "label",
-        "code",
-        "colors",
-        "sizes",
-        "status",
-      ]);
-    else return list.filter((item) => item.status === status);
-  }, [searchInput, status]);
+  const data = React.useMemo(() => postAllProductsData?.Data?.content, []);
 
   const totalCount = postAllProductsData?.Data?.totalCount;
   //

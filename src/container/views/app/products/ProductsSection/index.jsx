@@ -51,6 +51,7 @@ function ProductsSection() {
   const [searchInput, setSearchInput] = useState("");
   const [status, setStatus] = useState("2");
   const [filterValues, setFilterValues] = useState();
+  const [filterSearch, setFilterSearch] = useState("");
   //
   const { isOpen, onOpen, onClose } = useDisclosure();
   // API
@@ -58,6 +59,10 @@ function ProductsSection() {
   // const getAllSizes = useGetAllSizes();
   //
   const btnRef = useRef();
+  //
+  const handleSubmitSearch = () => {
+    setFilterSearch(searchInput);
+  };
   //
   const handleSubmit = (values) => {
     setFilterValues({
@@ -97,9 +102,12 @@ function ProductsSection() {
               right: 0,
               left: "unset",
             }}
-            pointerEvents="none"
           >
-            <SearchIcon fill="none" boxSize={5} />
+            <IconButton
+              onClick={handleSubmitSearch}
+              variant="unstyled"
+              icon={<SearchIcon fill="none" boxSize={5} />}
+            />
           </InputRightElement>
         </InputGroup>
 
@@ -248,8 +256,8 @@ function ProductsSection() {
       {/*  */}
       <AllProducts
         filterValues={filterValues}
-        searchInput={searchInput}
         status={status}
+        filterSearch={filterSearch}
       />
     </>
   );

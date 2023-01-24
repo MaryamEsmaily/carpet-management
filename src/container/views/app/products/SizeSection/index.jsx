@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  IconButton,
   Input,
   InputGroup,
   InputRightElement,
@@ -13,6 +14,12 @@ import AllSizes from "../AllSizes";
 function SizeSection() {
   const [searchInput, setSearchInput] = useState("");
   const [status, setStatus] = useState("2");
+  const [filterSearch, setFilterSearch] = useState("");
+  //
+  const handleSubmitSearch = () => {
+    setFilterSearch(searchInput);
+  };
+  //
 
   return (
     <>
@@ -38,9 +45,12 @@ function SizeSection() {
               right: 0,
               left: "unset",
             }}
-            pointerEvents="none"
           >
-            <SearchIcon fill="none" boxSize={5} />
+            <IconButton
+              onClick={handleSubmitSearch}
+              variant="unstyled"
+              icon={<SearchIcon fill="none" boxSize={5} />}
+            />
           </InputRightElement>
         </InputGroup>
         <RadioGroup onChange={setStatus} value={status}>
@@ -53,7 +63,7 @@ function SizeSection() {
           </Stack>
         </RadioGroup>
       </Stack>
-      <AllSizes searchInput={searchInput} status={status} />
+      <AllSizes status={status} filterSearch={filterSearch} />
     </>
   );
 }
