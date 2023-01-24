@@ -105,7 +105,9 @@ function Uploader({ multiple, onChange, name, value }) {
               <GridItem colSpan={1} key={file}>
                 <Image
                   borderRadius="lg"
+                  // API
                   // src={getFileSource(file)}
+                  // MOCK
                   src={file}
                   width="80px"
                   height="80px"
