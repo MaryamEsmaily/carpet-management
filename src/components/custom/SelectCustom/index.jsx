@@ -1,6 +1,5 @@
 import { Box, useColorModeValue } from "@chakra-ui/react";
 import RoundedCloseIcon from "components/icon/RoundedCloseIcon";
-import { isFunction } from "formik";
 import ReactSelect from "react-select";
 
 const MultiValueRemove = (props) => {
