@@ -26,8 +26,8 @@ function AddProductPage() {
         separator={<Box width={1} height={1} bg="text-primary" />}
       >
         <BreadcrumbItem>
-          <Box width={1} height={1} ml={2} bg="text-primary" />
-          <BreadcrumbLink href="#">داشبورد</BreadcrumbLink>
+          <Box width={1} height={1} mr={2} bg="text-primary" />
+          <BreadcrumbLink href="/app/products">داشبورد</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbItem>
           <BreadcrumbLink href="#">افزودن محصول</BreadcrumbLink>

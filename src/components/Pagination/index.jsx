@@ -67,7 +67,7 @@ function Pagination({
       <Divider mt={4} mb={2} />
       <Flex justifyContent="space-between">
         <Stack direction="row" align="center" spacing={4}>
-          <Box>
+          <Box dir="rtl">
             <IconButton
               icon={<RightArrowIcon />}
               variant="unstyled"
@@ -83,7 +83,7 @@ function Pagination({
               disabled={+pageNumber === pageCount}
             />
           </Box>
-          <Box>
+          <Box dir="rtl">
             {pageNumber ? +pageNumber : 0} از {pageCount ? pageCount : 0}
           </Box>
         </Stack>
