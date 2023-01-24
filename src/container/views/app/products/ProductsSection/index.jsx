@@ -20,6 +20,7 @@ import {
   FormControl,
   FormLabel,
   InputRightElement,
+  useTheme,
 } from "@chakra-ui/react";
 import FilterIcon from "components/icon/FilterIcon";
 import SearchIcon from "components/icon/SearchIcon";
@@ -42,6 +43,8 @@ const initialValues = {
 };
 
 function ProductsSection() {
+  //
+  const { direction } = useTheme();
   //
   const { t } = useTranslation();
   //
@@ -130,7 +133,7 @@ function ProductsSection() {
       {/*  */}
       <Drawer
         isOpen={isOpen}
-        placement="right"
+        placement={direction === "ltr" ? "left" : "right"}
         onClose={onClose}
         finalFocusRef={btnRef}
       >

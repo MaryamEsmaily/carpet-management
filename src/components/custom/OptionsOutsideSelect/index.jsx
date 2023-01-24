@@ -1,4 +1,10 @@
-import { Box, Stack, Text, useColorModeValue } from "@chakra-ui/react";
+import {
+  Box,
+  Stack,
+  Text,
+  useColorModeValue,
+  useTheme,
+} from "@chakra-ui/react";
 import RoundedCloseIcon from "components/icon/RoundedCloseIcon";
 import SearchIcon from "components/icon/SearchIcon";
 import Select from "react-select";
@@ -7,7 +13,7 @@ const DropdownIndicator = () => {
   return <SearchIcon fill="none" boxSize={5} />;
 };
 
-const style = ({ menuPortalBg, InputBg }) => ({
+const style = ({ menuPortalBg, InputBg, direction }) => ({
   control: (base) => ({
     ...base,
     height: 50,
@@ -24,7 +30,14 @@ const style = ({ menuPortalBg, InputBg }) => ({
     ...base,
     margin: "0 12px",
   }),
-  menuPortal: (base) => ({ ...base, zIndex: "9999" }),
+  menuPortal: (provided) => {
+    return {
+      ...provided,
+      [direction === "ltr" ? "left" : "right"]: provided.left,
+      [direction === "ltr" ? "right" : "left"]: "unset",
+      zIndex: 9999,
+    };
+  },
   menu: (base) => ({
     ...base,
     backgroundColor: menuPortalBg,
@@ -40,6 +53,9 @@ const OptionsOutsideSelect = (props) => {
   const menuPortalBg = useColorModeValue("#fff", "#202630");
   const InputBg = useColorModeValue("#F4F6F8", "#353f50");
   const menuBg = useColorModeValue("#6a82dd6b", "#000");
+  //
+  const { direction } = useTheme();
+  //
 
   const handleRemoveValue = (label) => {
     const removedValue = formik.values?.[name].find(
@@ -60,7 +76,7 @@ const OptionsOutsideSelect = (props) => {
         placeholder={placeholder}
         noOptionsMessage={() => "موردی وجود ندارد"}
         menuPortalTarget={document.body}
-        styles={style({ menuPortalBg, InputBg })}
+        styles={style({ menuPortalBg, InputBg, direction })}
         theme={(theme) => ({
           ...theme,
           colors: {
