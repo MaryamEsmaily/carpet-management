@@ -49,24 +49,23 @@ const style = ({ menuPortalBg, InputBg, direction }) => ({
 });
 
 const OptionsOutsideSelect = (props) => {
-  const { isMulti, value, name, placeholder, formik } = props;
+  const { isMulti, value, name, placeholder, onChange } = props;
   const menuPortalBg = useColorModeValue("#fff", "#202630");
   const InputBg = useColorModeValue("#edf2f7", "#353f50");
   const menuBg = useColorModeValue("#6a82dd6b", "#000");
   //
   const { direction } = useTheme();
   //
-
-  const handleRemoveValue = (label) => {
-    const removedValue = formik.values?.[name].find(
-      (val) => val.label === label
-    );
-    if (!removedValue) return;
-    // onChange(
-    formik.setFieldValue(
-      name,
-      formik.values?.[name]?.filter((val) => val.label !== label)
-    );
+  const handleRemoveValue = ({ label, targetValue }) => {
+    if (onChange)
+      onChange({
+        target: {
+          value: value.filter(
+            (item) => !(item.label === label && item.value === targetValue)
+          ),
+          name,
+        },
+      });
   };
 
   return (
@@ -86,15 +85,10 @@ const OptionsOutsideSelect = (props) => {
         })}
         {...props}
         onChange={(option) => {
-          formik.setFieldValue(
-            // eslint-disable-next-line no-restricted-globals
-            name,
-            option !== null
-              ? option.map((item) => {
-                  return { value: item.value, label: item.label };
-                })
-              : []
-          );
+          if (onChange)
+            onChange({
+              target: { value: option, name },
+            });
         }}
         controlShouldRenderValue={!isMulti}
       />
@@ -121,7 +115,12 @@ const OptionsOutsideSelect = (props) => {
               >
                 <Text color="#fff">{val.label}</Text>
                 <Box
-                  onClick={() => handleRemoveValue(val.label)}
+                  onClick={() =>
+                    handleRemoveValue({
+                      label: val.label,
+                      targetValue: val.value,
+                    })
+                  }
                   name={val.value}
                   sx={{ cursor: "pointer" }}
                 >

@@ -95,7 +95,6 @@ function AddProduct() {
           <FormControl mt={10} isRequired>
             <FormLabel fontWeight="bold">سایز بندی </FormLabel>
             <SelectCustom
-              formik={formik}
               {...formik.getFieldProps("sizes")}
               isMulti
               options={getAllSizes?.Data.content}
@@ -125,7 +124,6 @@ function AddProduct() {
           <FormControl mt={10} isRequired>
             <FormLabel fontWeight="bold">رنگ بندی </FormLabel>
             <SelectCustom
-              formik={formik}
               {...formik.getFieldProps("colors")}
               isMulti
               options={getAllColors?.Data.content}

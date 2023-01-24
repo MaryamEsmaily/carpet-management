@@ -59,7 +59,7 @@ const style = ({ menuPortalBg, InputBg, selectedColor }) => ({
 });
 
 const SelectCustom = (props) => {
-  const { isMulti, placeholder = "", formik, value, options, name } = props;
+  const { isMulti, placeholder = "", value, options, name, onChange } = props;
   const menuPortalBg = useColorModeValue("#fff", "#202630");
   const InputBg = useColorModeValue("#edf2f7", "#2a2e37");
   const menuBg = useColorModeValue("#6a82dd6b", "#000");
@@ -71,15 +71,10 @@ const SelectCustom = (props) => {
       noOptionsMessage={() => "موردی وجود ندارد"}
       placeholder={placeholder}
       onChange={(option) => {
-        formik.setFieldValue(
-          // eslint-disable-next-line no-restricted-globals
-          name,
-          option !== null
-            ? option.map((item) => {
-                return { value: item.value, label: item.label };
-              })
-            : []
-        );
+        if (onChange)
+          onChange({
+            target: { value: option, name },
+          });
       }}
       styles={style({ menuPortalBg, InputBg, selectedColor })}
       theme={(theme) => ({

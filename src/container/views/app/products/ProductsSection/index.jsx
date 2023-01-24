@@ -205,7 +205,6 @@ function ProductsSection() {
                   </Stack>
                 </FormLabel>
                 <OptionsOutsideSelect
-                  formik={formik}
                   //  براساس رنـگ :
                   placeholder={t("16")}
                   isMulti
@@ -225,7 +224,6 @@ function ProductsSection() {
                   </Stack>
                 </FormLabel>
                 <OptionsOutsideSelect
-                  formik={formik}
                   //  "بر اساس سایـز"
                   placeholder={t("17")}
                   isMulti
