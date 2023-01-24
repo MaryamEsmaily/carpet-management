@@ -119,7 +119,7 @@ function AllProducts({ filterValues, searchInput, status }) {
     <Box>
       <Grid mt={5} templateColumns="repeat(2,minmax(0,1fr))" gap={7}>
         {data?.map((product) => (
-          <GridItem key={product.id} colSpan={1}>
+          <GridItem key={product.id} colSpan={{ base: 2, lg: 1 }}>
             <Grid
               templateColumns="repeat(7,minmax(0,1fr))"
               direction="row"
@@ -128,16 +128,16 @@ function AllProducts({ filterValues, searchInput, status }) {
               p={4}
               gap={4}
             >
-              <GridItem colSpan={3}>
+              <GridItem colSpan={{ base: 7, xl: 3 }}>
                 <Image
                   src={product.image}
                   objectFit="cover"
-                  width="200px"
-                  height="200px"
+                  width="100%"
+                  h={200}
                   borderRadius={14}
                 />
               </GridItem>
-              <GridItem colSpan={4}>
+              <GridItem colSpan={{ base: 7, xl: 4 }}>
                 <Stack justifyContent="space-between">
                   <Box textAlign="end">
                     <Popover placement="left-start">
