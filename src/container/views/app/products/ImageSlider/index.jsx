@@ -44,6 +44,7 @@ const ImageSlider = ({ images }) => {
           {images?.map((img) => (
             <SwiperSlide key={img?.id}>
               <Image
+                cursor="pointer"
                 src={img.url}
                 width="80px"
                 height="80px"

@@ -125,7 +125,6 @@ function AllSizes({ searchInput, status }) {
               >
                 <Button
                   variant="unstyled"
-                  size="sm"
                   fontWeight="medium"
                   onClick={() => handleDelete(item.id)}
                 >

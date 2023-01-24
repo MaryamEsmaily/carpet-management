@@ -35,8 +35,8 @@ function SizeSection() {
           />
           <InputRightElement
             sx={{
-              left: 0,
-              right: "unset",
+              right: 0,
+              left: "unset",
             }}
             pointerEvents="none"
           >
