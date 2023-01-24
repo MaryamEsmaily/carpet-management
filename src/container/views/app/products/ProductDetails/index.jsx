@@ -27,7 +27,7 @@ import {
   useDeleteProduct,
   usePostProductDetails,
   usePutProductStatus,
-} from "hook/api/apiProduct/useProductManagementApi";
+} from "hook/api/useProductManagementApi";
 import { useParams } from "react-router-dom";
 import EditIcon from "components/icon/EditIcon";
 import DeleteIcon from "components/icon/DeleteIcon";

@@ -17,7 +17,7 @@ import {
   useDeleteProductSize,
   usePostProductSizes,
   usePutProductSizeStatus,
-} from "hook/api/apiProduct/useProductManagementApi";
+} from "hook/api/useProductManagementApi";
 import useToast from "hook/useToast";
 import React, { useState } from "react";
 import matchSorter from "utils/matchSorter";

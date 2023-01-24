@@ -30,7 +30,7 @@ import EraserIcon from "components/icon/EraserIcon";
 import OptionsOutsideSelect from "components/custom/OptionsOutsideSelect";
 import AllProducts from "../AllProducts";
 import { useFormik } from "formik";
-import { useGetAllColors } from "hook/api/apiProduct/useProductManagementApi";
+import { useGetAllColors } from "hook/api/useProductManagementApi";
 import { getAllColors } from "data/getAllColors";
 import { getAllSizes } from "data/getAllSizes";
 import { useTranslation } from "react-i18next";
