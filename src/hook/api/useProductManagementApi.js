@@ -125,6 +125,15 @@ const usePostAddProduct = (params) => {
     },
   });
 };
+// EDIT PRODUCT
+const usePutProduct = () => {
+  const queryClient = useQueryClient();
+  return useMutation(apiProductManagement.putProduct, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("postAllProducts");
+    },
+  });
+};
 
 export {
   // COLOR
@@ -147,4 +156,6 @@ export {
   useGetAllSizes,
   // ADD NEW PRODUCT
   usePostAddProduct,
+  // EDIT PRODUCT
+  usePutProduct,
 };

@@ -21,9 +21,9 @@ const ImageSlider = ({ images }) => {
         spaceBetween={8}
       >
         {images?.map((img) => (
-          <SwiperSlide key={img?.id}>
+          <SwiperSlide key={img}>
             <Image
-              src={img.url}
+              src={img}
               width="100%"
               height={400}
               objectFit="cover"
@@ -42,10 +42,10 @@ const ImageSlider = ({ images }) => {
           centeredSlidesBounds={true}
         >
           {images?.map((img) => (
-            <SwiperSlide key={img?.id}>
+            <SwiperSlide key={img}>
               <Image
                 cursor="pointer"
-                src={img.url}
+                src={img}
                 width="80px"
                 height="80px"
                 objectFit="cover"

@@ -12,8 +12,14 @@ export const postProductDetailsData = {
       id: 1,
       title: "فـرش دست بافـت کاشـان مدل سلطنتـی",
       code: "148893828",
-      colors: ["خاکستری", "طلایی"],
-      sizes: ["24", "12"],
+      colors: [
+        { label: "طلایی", value: 1 },
+        { label: "خاکستری", value: 2 },
+      ],
+      sizes: [
+        { label: "12", value: 1 },
+        { label: "24", value: 2 },
+      ],
       description:
         "با توجه به تاریخچه کهنی که در تولید فرش و قالی دستباف ایرانی وجود دارد در حال حاضر می‌توان گفت محصول بافته شده به دست هنرمندان ایرانی جزو بهترین و زیباترین نوع فرش در دنیا است که این امر از نظر کارشناسان بین‌المللی فرش تایید شده است .",
       status: "1",
@@ -21,28 +27,7 @@ export const postProductDetailsData = {
       createData: "۱۴۰۱/۱۲/۰۴",
       changeByAuthor: "امیـن علیـزاده",
       lastChangeDate: "۱۴۰۱/۱۲ /۲۹",
-      images: [
-        {
-          id: 1,
-          url: firstProduct,
-        },
-        {
-          id: 2,
-          url: secondProduct,
-        },
-        {
-          id: 3,
-          url: thirdProduct,
-        },
-        {
-          id: 4,
-          url: forthProduct,
-        },
-        {
-          id: 5,
-          url: secondProduct,
-        },
-      ],
+      images: [firstProduct, secondProduct, thirdProduct, forthProduct],
     },
   },
 };

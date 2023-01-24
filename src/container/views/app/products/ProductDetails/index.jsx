@@ -28,7 +28,7 @@ import {
   usePostProductDetails,
   usePutProductStatus,
 } from "hook/api/useProductManagementApi";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import EditIcon from "components/icon/EditIcon";
 import DeleteIcon from "components/icon/DeleteIcon";
 import useToast from "hook/useToast";
@@ -42,10 +42,10 @@ function ProductDetails() {
   //
   // API
   // const { id } = useParams();
-  // const { data } = usePostProductDetails({ id });
+  // const { data : productDetails } = usePostProductDetails({ id });
   //
   // const data = React.useMemo(() => {
-  // return data?.content;
+  // return productDetails?.content;
   // }, []);
   //
   // MOCK DATA
@@ -124,15 +124,17 @@ function ProductDetails() {
                           غیـرفعـال
                         </Text>
                       </Radio>
-                      <Stack
-                        cursor="pointer"
-                        direction="row"
-                        align="center"
-                        spacing={3}
-                      >
-                        <EditIcon boxSize={5} />
-                        <Text>ویرایش</Text>
-                      </Stack>
+                      <Link to={`/app/products/product-edit/${data?.id}`}>
+                        <Stack
+                          cursor="pointer"
+                          direction="row"
+                          align="center"
+                          spacing={3}
+                        >
+                          <EditIcon boxSize={5} />
+                          <Text>ویرایش</Text>
+                        </Stack>
+                      </Link>
                       <Stack
                         cursor="pointer"
                         direction="row"
@@ -202,8 +204,8 @@ function ProductDetails() {
                 </Text>
               </Stack>
               {data?.colors?.map((item, index) => (
-                <Text key={index}>
-                  {item}{" "}
+                <Text key={item.value}>
+                  {item.label}{" "}
                   <Text
                     as="span"
                     display={
@@ -223,8 +225,8 @@ function ProductDetails() {
                 </Text>
               </Stack>
               {data?.sizes?.map((item, index) => (
-                <Text key={index}>
-                  {item} متـری{" "}
+                <Text key={item.value}>
+                  {item.label} متـری{" "}
                   <Text
                     as="span"
                     display={

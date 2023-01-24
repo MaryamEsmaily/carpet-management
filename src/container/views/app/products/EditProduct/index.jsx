@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
   Box,
   Button,
@@ -15,8 +15,11 @@ import Uploader from "components/Uploader";
 import { useFormik } from "formik";
 import { getAllSizes } from "data/getAllSizes";
 import { getAllColors } from "data/getAllColors";
-import { useNavigate } from "react-router-dom";
-import { usePostAddProduct } from "hook/api/useProductManagementApi";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  usePostProductDetails,
+  usePutProduct,
+} from "hook/api/useProductManagementApi";
 import useToast from "hook/useToast";
 import filePreparation from "utils/filePreparation";
 //
@@ -24,6 +27,8 @@ import firstProduct from "assets/images/product-1.avif";
 import secondProduct from "assets/images/product-2.avif";
 import thirdProduct from "assets/images/product-3.avif";
 import forthProduct from "assets/images/product-4.avif";
+import getInitialValuesFormik from "utils/getInitialValuesFormik";
+import { postProductDetailsData } from "data/postProductDetailsData";
 //
 const initialValues = {
   title: "",
@@ -34,20 +39,41 @@ const initialValues = {
   images: [firstProduct, secondProduct, thirdProduct, forthProduct],
 };
 //
-function AddProduct() {
+function EditProduct() {
   //
   const navigate = useNavigate();
   //
   const toast = useToast();
   //
+  const putProduct = usePutProduct();
+  //
   // API
   // const getAllColors = useGetAllColors();
   // const getAllSizes = useGetAllSizes();
   //
-  const postAddProduct = usePostAddProduct();
+  // const { id } = useParams();
+  // const { data : productDetails} = usePostProductDetails({ id });
+  // const memoizedInitialValues = useMemo(
+  //   () =>
+  //     getInitialValuesFormik({
+  //       data: productDetails?.content,
+  //       initialValues,
+  //     }),
+  //   [productDetails?.content]
+  // );
+
+  // MOCK
+  const memoizedInitialValues = useMemo(
+    () =>
+      getInitialValuesFormik({
+        data: postProductDetailsData?.Data?.content,
+        initialValues,
+      }),
+    []
+  );
   //
   const handleSubmit = (values) => {
-    postAddProduct.mutate(
+    putProduct.mutate(
       {
         ...values,
         images: filePreparation(values?.images),
@@ -65,10 +91,11 @@ function AddProduct() {
       }
     );
   };
-  //
+
   const formik = useFormik({
     onSubmit: handleSubmit,
-    initialValues: initialValues,
+    initialValues: memoizedInitialValues,
+    enableReinitialize: true,
   });
 
   //
@@ -151,11 +178,11 @@ function AddProduct() {
           انصراف
         </Button>
         <Button w={140} type="submit">
-          ثبت اطلاعات
+          ویرایش اطلاعات
         </Button>
       </Stack>
     </Box>
   );
 }
 
-export default AddProduct;
+export default EditProduct;

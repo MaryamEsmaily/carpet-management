@@ -119,6 +119,14 @@ const postAddProduct = async (params) => {
   });
   return data?.Data;
 };
+// EDIT PRODUCT
+const putProduct = async (params) => {
+  const { data } = await instance.put(BASE_URL, {
+    payload: params,
+    opCode: 116,
+  });
+  return data;
+};
 //
 export {
   // color
@@ -141,4 +149,6 @@ export {
   getAllSizes,
   // ADD NEW PRODUCT
   postAddProduct,
+  // EDIT PRODUCT
+  putProduct,
 };

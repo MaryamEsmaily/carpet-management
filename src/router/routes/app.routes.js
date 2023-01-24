@@ -4,6 +4,7 @@ const ProductsPage = lazy(() => import("views/app/products"));
 const AddProductPage = lazy(() => import("views/app/products/AddProduct"));
 const ColorsPage = lazy(() => import("views/app/products/Colors"));
 const SizesPage = lazy(() => import("views/app/products/Sizes"));
+const EditProductPage = lazy(() => import("views/app/products/EditProduct"));
 const ProductDetailsPage = lazy(() =>
   import("views/app/products/ProductDetails")
 );
@@ -28,6 +29,10 @@ const appRoutes = [
   {
     path: "/app/products/sizes",
     element: SizesPage,
+  },
+  {
+    path: "/app/products/product-edit/:id",
+    element: EditProductPage,
   },
 ];
 

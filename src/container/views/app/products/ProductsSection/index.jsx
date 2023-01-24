@@ -68,7 +68,7 @@ function ProductsSection() {
     setFilterValues({
       ...values,
       colors: values.colors.map((color) => color.value),
-      sizes: values.sizes.map((color) => color.value),
+      sizes: values.sizes.map((size) => size.value),
     });
   };
   //

@@ -149,18 +149,20 @@ function AllProducts({ filterValues, filterSearch, status }) {
                               {t("13")}
                             </Text>
                           </Radio>
-                          <Stack
-                            cursor="pointer"
-                            direction="row"
-                            align="center"
-                            spacing={3}
-                          >
-                            <EditIcon boxSize={5} />
-                            <Text>
-                              {/* ویرایش */}
-                              {t("20")}
-                            </Text>
-                          </Stack>
+                          <Link to={`product-edit/${product.id}`}>
+                            <Stack
+                              cursor="pointer"
+                              direction="row"
+                              align="center"
+                              spacing={3}
+                            >
+                              <EditIcon boxSize={5} />
+                              <Text>
+                                {/* ویرایش */}
+                                {t("20")}
+                              </Text>
+                            </Stack>
+                          </Link>
                           <Stack
                             cursor="pointer"
                             direction="row"
