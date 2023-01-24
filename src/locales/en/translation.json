@@ -1,3 +1,20 @@
-{
-  "1":"First page"
+{  "1": "cartable",
+   "2": "Create a new order",
+   "3": "Management",
+   "4": "Order management",
+   "5": "Warehouse reporting",
+   "6": "Order reporting",
+   "7": "Products",
+   "8": "Dashboard",
+   "9": "Add product",
+   "10": "Search...",
+   "11": "All",
+   "12": "Active",
+   "13": "Inactive",
+   "14": "Filters",
+   "15": "Based on design code",
+   "16": "Based on color",
+   "17": "Based on size",
+   "18": "Remove filters",
+   "19": "Filter"
 }

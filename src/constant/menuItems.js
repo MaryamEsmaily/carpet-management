@@ -7,32 +7,38 @@ import ReportIcon from "components/icon/ReportIcon";
 
 export const menuItems = [
   {
-    label: "کارتابل",
+    // کارتابل
+    label: "1",
     icon: CartableIcon,
     path: "/",
   },
   {
-    label: "ایجـاد سفـارش جدیـد",
+    // "ایجـاد سفـارش جدیـد"
+    label: "2",
     icon: AddNewOrderIcon,
     path: "/",
   },
   {
-    label: "مدیریت",
+    // مدیریت
+    label: "3",
     icon: ManagementIcon,
     path: "/app/products",
   },
   {
-    label: "مدیریت سفارشات",
+    // "مدیریت سفارشات"
+    label: "4",
     icon: OrderManagementIcon,
     path: "/",
   },
   {
-    label: "گزارش گیـری انبـار",
+    // "گزارش گیـری انبـار"
+    label: "5",
     icon: ReportIcon,
     path: "/",
   },
   {
-    label: "گزارش گیـری سفـارشـات",
+    // "گزارش گیـری سفـارشـات"
+    label: "6",
     icon: OrderReportIcon,
     path: "/",
   },

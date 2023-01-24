@@ -5,7 +5,6 @@ import {
   IconButton,
   Input,
   InputGroup,
-  InputRightElement,
   Stack,
   Text,
   useDisclosure,
@@ -20,6 +19,7 @@ import {
   Radio,
   FormControl,
   FormLabel,
+  InputRightElement,
 } from "@chakra-ui/react";
 import FilterIcon from "components/icon/FilterIcon";
 import SearchIcon from "components/icon/SearchIcon";
@@ -33,6 +33,7 @@ import { useFormik } from "formik";
 import { useGetAllColors } from "hook/api/apiProduct/useProductManagementApi";
 import { getAllColors } from "data/getAllColors";
 import { getAllSizes } from "data/getAllSizes";
+import { useTranslation } from "react-i18next";
 
 const initialValues = {
   code: "",
@@ -41,6 +42,8 @@ const initialValues = {
 };
 
 function ProductsSection() {
+  //
+  const { t } = useTranslation();
   //
   const [searchInput, setSearchInput] = useState("");
   const [status, setStatus] = useState("2");
@@ -80,15 +83,16 @@ function ProductsSection() {
       >
         <InputGroup>
           <Input
-            placeholder="جستجو .."
+            // "جستجو .."
+            placeholder={t("10")}
             w="full"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />
           <InputRightElement
             sx={{
-              left: 0,
-              right: "unset",
+              right: 0,
+              left: "unset",
             }}
             pointerEvents="none"
           >
@@ -109,10 +113,17 @@ function ProductsSection() {
         <RadioGroup onChange={setStatus} value={status}>
           <Stack direction="row" spacing={8}>
             <Radio defaultChecked value="2">
-              همـه
+              {/* همـه */}
+              {t("11")}
             </Radio>
-            <Radio value="1">فعـال</Radio>
-            <Radio value="0">غیـرفعـال</Radio>
+            <Radio value="1">
+              {/* فعـال */}
+              {t("12")}
+            </Radio>
+            <Radio value="0">
+              {/*غ یـرفعـال*/}
+              {t("13")}
+            </Radio>
           </Stack>
         </RadioGroup>
       </Stack>
@@ -134,7 +145,10 @@ function ProductsSection() {
             >
               <Stack direction="row" spacing={2} alignItems="center">
                 <FilterIcon />
-                <Text>فیلتــر هــا</Text>
+                <Text>
+                  {/* فیلتــر هــا */}
+                  {t("14")}
+                </Text>
               </Stack>
               <IconButton
                 icon={
@@ -152,21 +166,23 @@ function ProductsSection() {
                   <Stack direction="row" spacing={2} align="center">
                     <AddNewOrderIcon fill="none" boxSize={4} />
                     <Text fontSize={14} fontWeight="bold">
-                      براساس کد طـرح :
+                      {/* براساس کد طـرح : */}
+                      {t("15")} :
                     </Text>
                   </Stack>
                 </FormLabel>
                 <InputGroup mt={3}>
                   <Input
                     _placeholder={{ color: "text-primary", fontSize: 16 }}
-                    placeholder="بر اساس کد طـرح"
+                    // "بر اساس کد طـرح"
+                    placeholder={t("15")}
                     variant="filled"
                     {...formik.getFieldProps("code")}
                   />
                   <InputRightElement
                     sx={{
-                      left: 0,
-                      right: "unset",
+                      right: 0,
+                      left: "unset",
                     }}
                     pointerEvents="none"
                   >
@@ -180,13 +196,15 @@ function ProductsSection() {
                   <Stack direction="row" spacing={2} align="center" mb={3}>
                     <ColorFilterIcon fill="none" boxSize={4} />
                     <Text fontSize={14} fontWeight="bold">
-                      براساس رنـگ :
+                      {/* براساس رنـگ */}
+                      {t("16")} :
                     </Text>
                   </Stack>
                 </FormLabel>
                 <OptionsOutsideSelect
                   formik={formik}
-                  placeholder="بر اساس رنـگ"
+                  //  براساس رنـگ :
+                  placeholder={t("16")}
                   isMulti
                   options={getAllColors?.Data.content}
                   {...formik.getFieldProps("colors")}
@@ -198,13 +216,15 @@ function ProductsSection() {
                   <Stack direction="row" spacing={2} align="center" mb={3}>
                     <EraserIcon fill="none" boxSize={4} />
                     <Text fontSize={14} fontWeight="bold">
-                      براساس سایـز :
+                      {/* براساس سایـز : */}
+                      {t("17")}
                     </Text>
                   </Stack>
                 </FormLabel>
                 <OptionsOutsideSelect
                   formik={formik}
-                  placeholder="بر اساس سایـز"
+                  //  "بر اساس سایـز"
+                  placeholder={t("17")}
                   isMulti
                   options={getAllSizes?.Data.content}
                   {...formik.getFieldProps("sizes")}
@@ -213,10 +233,12 @@ function ProductsSection() {
             </DrawerBody>
             <DrawerFooter gap={2}>
               <Button w="full" variant="outline" onClick={formik.resetForm}>
-                حـذف فیلتـر هـا
+                {/* حـذف فیلتـر هـا */}
+                {t("18")}
               </Button>
               <Button w="full" type="submit">
-                اعمـال فیلتـر هـا
+                {/* اعمـال فیلتـر هـا */}
+                {t("19")}
               </Button>
             </DrawerFooter>
           </DrawerContent>

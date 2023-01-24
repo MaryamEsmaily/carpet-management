@@ -12,8 +12,10 @@ import {
 import BasketIcon from "components/icon/BasketIcon";
 import { Link } from "react-router-dom";
 import ProductsSection from "container/views/app/products/ProductsSection";
+import { useTranslation } from "react-i18next";
 
 function ProductsPage() {
+  const { t } = useTranslation();
   return (
     <Box>
       <Flex justifyContent="space-between" alignItems="center">
@@ -21,7 +23,8 @@ function ProductsPage() {
           <Stack direction="row" alignItems="center" spacing={2}>
             <BasketIcon boxSize={5} />
             <Text fontWeight="bold" fontSize={20}>
-              محصولات
+              {/* محصولات */}
+              {t("7")}
             </Text>
           </Stack>
           <Breadcrumb
@@ -32,15 +35,24 @@ function ProductsPage() {
           >
             <BreadcrumbItem>
               <Box width={1} height={1} ml={2} bg="text-primary" />
-              <BreadcrumbLink href="#">داشبورد</BreadcrumbLink>
+              <BreadcrumbLink href="/">
+                {/* داشبورد */}
+                {t("8")}
+              </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbItem>
-              <BreadcrumbLink href="#">محصـولات</BreadcrumbLink>
+              <BreadcrumbLink>
+                {/* محصـولات */}
+                {t("7")}
+              </BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
         </Box>
         <Link to="add-product">
-          <Button>افـزودن محصول</Button>
+          <Button>
+            {/* افـزودن محصول */}
+            {t("8")}
+          </Button>
         </Link>
       </Flex>
       <ProductsSection />

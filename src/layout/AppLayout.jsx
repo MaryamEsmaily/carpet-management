@@ -26,7 +26,7 @@ const AppLayout = (props) => {
   const iconColor = useColorModeValue("#000", "#fff");
 
   // language stuff
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   useEffect(() => {
     document.dir = i18n.dir();
@@ -68,7 +68,7 @@ const AppLayout = (props) => {
                   <Stack direction="row" align="center" spacing={2}>
                     {Icon && <Icon fill="none" boxSize={5} />}
                     <Text fontWeight="bold" fontSize="sm">
-                      {menu.label}
+                      {t(menu.label)}
                     </Text>
                   </Stack>
                 </NavLink>
@@ -91,6 +91,7 @@ const AppLayout = (props) => {
           />
           <IconButton
             onClick={() => {
+              window.location.reload();
               if (currentLang === "fa") {
                 localStorage.setItem("locale", "en");
                 i18n.changeLanguage("en");
