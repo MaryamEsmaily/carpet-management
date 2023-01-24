@@ -62,7 +62,7 @@ const style = ({ menuPortalBg, InputBg, selectedColor }) => ({
 const SelectCustom = (props) => {
   const { isMulti, placeholder = "", onChange, value, options } = props;
   const menuPortalBg = useColorModeValue("#fff", "#202630");
-  const InputBg = useColorModeValue("#F4F6F8", "#2a2e37");
+  const InputBg = useColorModeValue("#edf2f7", "#2a2e37");
   const menuBg = useColorModeValue("#6a82dd6b", "#000");
   const selectedColor = useColorModeValue("#0006", "#454F5B");
 
