@@ -10,7 +10,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import sizeImage from "assets/images/size-image.png";
-import Pagination from "components/custom/Pagination";
+import Pagination from "components/Pagination";
 import DeleteIcon from "components/icon/DeleteIcon";
 import { postProductSizesData } from "data/postProductSizesData";
 import {

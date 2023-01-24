@@ -10,7 +10,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import colorImage from "assets/images/color-image.png";
-import Pagination from "components/custom/Pagination";
+import Pagination from "components/Pagination";
 import DeleteIcon from "components/icon/DeleteIcon";
 import { postProductColorsData } from "data/postProductColorsData";
 import {

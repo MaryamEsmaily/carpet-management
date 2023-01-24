@@ -12,7 +12,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import Pagination from "components/custom/Pagination";
+import Pagination from "components/Pagination";
 import AddNewOrderIcon from "components/icon/AddNewOrderIcon";
 import CardIcon from "components/icon/CardIcon";
 import ColorFilterIcon from "components/icon/ColorFilterIcon";
