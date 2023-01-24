@@ -1,9 +1,10 @@
 import * as React from "react";
 import Modal from "components/custom/Modal";
-import { Button, Image, Input, Stack, Text } from "@chakra-ui/react";
+import { Button, Image, Stack, Text } from "@chakra-ui/react";
 import addImage from "assets/images/add.png";
 import { usePostAddProductColor } from "hook/api/useProductManagementApi";
 import useToast from "hook/useToast";
+import Input from "components/custom/Input";
 
 const ModalAddColor = ({ config }) => {
   //

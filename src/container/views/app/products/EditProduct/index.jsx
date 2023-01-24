@@ -6,7 +6,6 @@ import {
   FormLabel,
   Grid,
   GridItem,
-  Input,
   Stack,
   Textarea,
 } from "@chakra-ui/react";
@@ -29,6 +28,7 @@ import thirdProduct from "assets/images/product-3.avif";
 import forthProduct from "assets/images/product-4.avif";
 import getInitialValuesFormik from "utils/getInitialValuesFormik";
 import { postProductDetailsData } from "data/postProductDetailsData";
+import Input from "components/custom/Input";
 //
 const initialValues = {
   title: "",

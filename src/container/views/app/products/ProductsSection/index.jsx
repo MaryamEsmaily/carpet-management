@@ -3,7 +3,6 @@ import {
   Button,
   Divider,
   IconButton,
-  Input,
   InputGroup,
   Stack,
   Text,
@@ -35,6 +34,7 @@ import { useGetAllColors } from "hook/api/useProductManagementApi";
 import { getAllColors } from "data/getAllColors";
 import { getAllSizes } from "data/getAllSizes";
 import { useTranslation } from "react-i18next";
+import Input from "components/custom/Input";
 
 const initialValues = {
   code: "",
@@ -96,7 +96,13 @@ function ProductsSection() {
             w="full"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
+            onKeyUp={(e) => {
+              if (e.key === "Enter") {
+                handleSubmitSearch();
+              }
+            }}
           />
+
           <InputRightElement
             sx={{
               right: 0,

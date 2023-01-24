@@ -6,7 +6,6 @@ import {
   FormLabel,
   Grid,
   GridItem,
-  Input,
   Stack,
   Textarea,
 } from "@chakra-ui/react";
@@ -24,6 +23,7 @@ import firstProduct from "assets/images/product-1.avif";
 import secondProduct from "assets/images/product-2.avif";
 import thirdProduct from "assets/images/product-3.avif";
 import forthProduct from "assets/images/product-4.avif";
+import Input from "components/custom/Input";
 //
 const initialValues = {
   title: "",

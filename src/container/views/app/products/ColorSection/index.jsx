@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   IconButton,
-  Input,
   InputGroup,
   InputRightElement,
   Radio,
@@ -10,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import SearchIcon from "components/icon/SearchIcon";
 import AllColors from "../AllColors";
+import Input from "components/custom/Input";
 
 function ColorSection() {
   const [searchInput, setSearchInput] = useState("");
@@ -38,6 +38,11 @@ function ColorSection() {
             w="full"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
+            onKeyUp={(e) => {
+              if (e.key === "Enter") {
+                handleSubmitSearch();
+              }
+            }}
           />
           <InputRightElement
             sx={{
