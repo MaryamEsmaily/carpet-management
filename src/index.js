@@ -9,6 +9,7 @@ import reactQueryConfig from "config/reactQueryConfig";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "styles/globals.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

@@ -1,11 +1,23 @@
 import { Box, Spinner } from "@chakra-ui/react";
 import AppLayout from "layout/AppLayout";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Routes, Route, Outlet } from "react-router-dom";
 import ProtectedRoute from "router/ProtectedRoute";
 import appRoutes from "router/routes/app.routes";
 
 const App = () => {
+  //
+  const { i18n } = useTranslation();
+  var lang = i18n.language;
+  useEffect(() => {
+    if (lang !== "fa") {
+      document.getElementsByTagName("body")[0].style.fontFamily = "Dejavu Sans";
+    } else {
+      document.getElementsByTagName("body")[0].style.fontFamily = "IRANSansX";
+    }
+  }, [lang]);
+  //
   return (
     <Routes>
       {/* for index route. usually is landing page or login */}
