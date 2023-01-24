@@ -30,8 +30,11 @@ import useToast from "hook/useToast";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import matchSorter from "utils/matchSorter";
+import { useTranslation } from "react-i18next";
 
 function AllProducts({ filterValues, searchInput, status }) {
+  //
+  const { t } = useTranslation();
   //
   const toast = useToast();
   // for pagination
@@ -154,7 +157,8 @@ function AllProducts({ filterValues, searchInput, status }) {
                             isChecked={product.status === "0"}
                             onClick={() => handleStatus(product.id)}
                           >
-                            غیـرفعـال
+                            {/* غیـرفعـال */}
+                            {t("13")}
                           </Radio>
                           <Stack
                             cursor="pointer"
@@ -163,7 +167,10 @@ function AllProducts({ filterValues, searchInput, status }) {
                             spacing={3}
                           >
                             <EditIcon boxSize={5} />
-                            <Text fontSize="16px">ویرایش</Text>
+                            <Text fontSize="16px">
+                              {/* ویرایش */}
+                              {t("20")}
+                            </Text>
                           </Stack>
                           <Stack
                             cursor="pointer"
@@ -173,7 +180,10 @@ function AllProducts({ filterValues, searchInput, status }) {
                             onClick={() => handleDelete(product.id)}
                           >
                             <DeleteIcon fill="none" color="red" boxSize={6} />
-                            <Text fontSize="16px">حذف</Text>
+                            <Text fontSize="16px">
+                              {/* حذف */}
+                              {t("21")}
+                            </Text>
                           </Stack>
                         </Stack>
                       </PopoverContent>
@@ -182,7 +192,10 @@ function AllProducts({ filterValues, searchInput, status }) {
                   <Stack spacing={4}>
                     <Stack direction="row" align="center" spacing={2}>
                       <CardIcon color="text-primary" boxSize={5} />
-                      <Text color="text-primary">نـام محصول :</Text>
+                      <Text color="text-primary">
+                        {/* نـام محصول : */}
+                        {t("22")}
+                      </Text>
                       <Link to={`product-details/${product.id}`}>
                         <Text _hover={{ textDecoration: "underline" }}>
                           {product.label}
@@ -195,12 +208,18 @@ function AllProducts({ filterValues, searchInput, status }) {
                         fill="none"
                         boxSize={5}
                       />
-                      <Text color="text-primary">کـد طـرح :</Text>
+                      <Text color="text-primary">
+                        {/* کـد طـرح : */}
+                        {t("23")}
+                      </Text>
                       <Text>{product.code}</Text>
                     </Stack>
                     <Stack direction="row" align="center" spacing={2}>
                       <ColorFilterIcon color="text-primary" boxSize={5} />
-                      <Text color="text-primary">رنـگ :</Text>
+                      <Text color="text-primary">
+                        {/* رنـگ : */}
+                        {t("24")}
+                      </Text>
                       {product?.colors?.map((item, index) => (
                         <Text key={index}>
                           {item}{" "}
@@ -223,7 +242,9 @@ function AllProducts({ filterValues, searchInput, status }) {
                       <Text color="text-primary">سایـز :</Text>
                       {product?.sizes?.map((item, index) => (
                         <Text key={index}>
-                          {item} متـری{" "}
+                          {item}
+                          {/* متـری */}
+                          {t("25")}
                           <Text
                             as="span"
                             display={

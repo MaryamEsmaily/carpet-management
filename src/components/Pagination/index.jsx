@@ -10,7 +10,9 @@ import {
 import ArrowDownIcon from "components/icon/ArrowDownIcon";
 import LeftArrowIcon from "components/icon/LeftArrowIcon";
 import RightArrowIcon from "components/icon/RightArrowIcon";
+import { t } from "i18next";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import ReactSelect from "react-select";
 //
 const defaultPageNumbers = [
@@ -57,6 +59,8 @@ function Pagination({
 }) {
   //
   const pageCount = Math.ceil(totalCount / pageSize);
+  //
+  const { t } = useTranslation();
   //
   const menuPortalBg = useColorModeValue("#fff", "#202630");
   const InputBg = useColorModeValue("#718096", "#3A404B");
@@ -109,7 +113,8 @@ function Pagination({
               spacing={1}
               color="text-secondary"
             >
-              <Text>تعداد در هر صفحه : </Text>
+              {/* تعداد در هر صفحه : */}
+              <Text>{t("26")}</Text>
               <Text>{label}</Text>
             </Stack>
           )}
