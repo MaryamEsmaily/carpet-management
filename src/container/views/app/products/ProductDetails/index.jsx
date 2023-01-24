@@ -42,11 +42,11 @@ function ProductDetails() {
   //
   // API
   // const { id } = useParams();
-  // const { data : productDetails } = usePostProductDetails({ id });
-  //
+  // const { data: productDetails } = usePostProductDetails({ id });
+  // //
   // const data = React.useMemo(() => {
-  // return productDetails?.content;
-  // }, []);
+  //   return productDetails?.content;
+  // }, [productDetails?.content]);
   //
   // MOCK DATA
   const data = React.useMemo(() => {

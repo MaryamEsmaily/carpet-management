@@ -7,7 +7,11 @@ const MultiValueRemove = (props) => {
     return null;
   }
   return (
-    <Box onClick={props.innerProps.onClick} sx={{ cursor: "pointer" }}>
+    <Box
+      onClick={props.innerProps.onClick}
+      display="flex"
+      sx={{ cursor: "pointer" }}
+    >
       <RoundedCloseIcon
         sx={{ cursor: "pointer" }}
         color="#717a82"
@@ -50,6 +54,7 @@ const style = ({ menuPortalBg, InputBg, selectedColor }) => ({
     backgroundColor: selectedColor,
     borderRadius: "1rem",
     color: "red !important",
+    alignItems: "center",
   }),
   multiValueLabel: (base) => ({
     ...base,

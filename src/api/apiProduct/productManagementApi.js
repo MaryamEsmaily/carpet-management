@@ -67,7 +67,8 @@ const postAddProductSize = async (params) => {
   return data?.Data;
 };
 //  PRODUCT DETAILS
-const postProductDetails = async (params) => {
+const postProductDetails = async ({ queryKey }) => {
+  const params = queryKey?.[1];
   const { data } = await instance.post(BASE_URL, {
     payload: params,
     opCode: 109,
