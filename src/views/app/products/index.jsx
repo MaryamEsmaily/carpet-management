@@ -34,14 +34,14 @@ function ProductsPage() {
             separator={<Box width={1} height={1} bg="text-primary" />}
           >
             <BreadcrumbItem>
-              <Box width={1} height={1} ml={2} bg="text-primary" />
+              <Box width={1} height={1} mr={2} bg="text-primary" />
               <BreadcrumbLink href="/">
                 {/* داشبورد */}
                 {t("8")}
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbItem>
-              <BreadcrumbLink>
+              <BreadcrumbLink isCurrentPage={true}>
                 {/* محصـولات */}
                 {t("7")}
               </BreadcrumbLink>
@@ -51,7 +51,7 @@ function ProductsPage() {
         <Link to="add-product">
           <Button>
             {/* افـزودن محصول */}
-            {t("8")}
+            {t("9")}
           </Button>
         </Link>
       </Flex>
