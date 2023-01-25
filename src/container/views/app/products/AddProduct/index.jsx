@@ -131,11 +131,7 @@ function AddProduct() {
           </FormControl>
           <FormControl mt={10} isRequired>
             <FormLabel fontWeight="bold">افزودن عکس </FormLabel>
-            <Uploader
-              multiple={true}
-              label="پیوست فایل"
-              {...formik.getFieldProps("images")}
-            />
+            <Uploader multiple={true} {...formik.getFieldProps("images")} />
           </FormControl>
         </GridItem>
       </Grid>
