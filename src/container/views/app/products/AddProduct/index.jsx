@@ -50,7 +50,7 @@ function AddProduct() {
     postAddProduct.mutate(
       {
         ...values,
-        images: filePreparation(values?.images),
+        images: values?.images.map((item) => item),
         colors: values.colors.map((color) => color.value),
         sizes: values.sizes.map((size) => size.value),
       },

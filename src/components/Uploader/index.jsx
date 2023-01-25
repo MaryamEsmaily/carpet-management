@@ -28,7 +28,7 @@ function Uploader({ multiple, onChange, name, value }) {
     });
     mutate(formData, {
       onSuccess: (res) => {
-        if (res.fileName)
+        if (res.url)
           onChange({
             target: {
               value: res.url,
@@ -50,10 +50,10 @@ function Uploader({ multiple, onChange, name, value }) {
     });
     mutate(formData, {
       onSuccess: (res) => {
-        if (res.fileName)
+        if (res.url)
           onChange({
             target: {
-              value: [...value, ...res.fileName],
+              value: [...value, ...res.url],
               name,
             },
           });
@@ -100,11 +100,11 @@ function Uploader({ multiple, onChange, name, value }) {
             ) : null}
           </Box>
           <Grid templateColumns="repeat(5,minmax(0,1fr))" gap={2} mt={4}>
-            {value.map((file) => (
-              <GridItem colSpan={1} key={file}>
+            {value.map((url) => (
+              <GridItem colSpan={1} key={url}>
                 <Image
                   borderRadius="lg"
-                  src={file}
+                  src={url}
                   width="80px"
                   height="80px"
                   objectFit="cover"
