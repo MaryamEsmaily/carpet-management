@@ -153,7 +153,7 @@ function ProductsSection() {
       >
         <DrawerOverlay />
         <Box h="full" as="form" onSubmit={formik.handleSubmit}>
-          <DrawerContent py={5} px={1} sx={{ borderRadius: "38px" }}>
+          <DrawerContent py={5} px={1}>
             <DrawerHeader
               display="flex"
               justifyContent="space-between"
