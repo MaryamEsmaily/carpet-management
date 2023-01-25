@@ -71,10 +71,11 @@ const AllColors = ({ filterSearch, status }) => {
       }
     );
   };
-  const handleStatus = (id) => {
+  const handleStatus = ({ id, status }) => {
     putProductColorStatus.mutate(
       {
         id,
+        status,
       },
       {
         onSuccess: (res) => {
@@ -131,7 +132,12 @@ const AllColors = ({ filterSearch, status }) => {
                 </Button>
                 <Radio
                   isChecked={color.status === "0"}
-                  onClick={() => handleStatus(color.id)}
+                  onClick={() =>
+                    handleStatus({
+                      id: color.id,
+                      status: color.status === "0" ? "1" : "0",
+                    })
+                  }
                 >
                   <Text fontSize="sm">غیـرفعـال</Text>
                 </Radio>

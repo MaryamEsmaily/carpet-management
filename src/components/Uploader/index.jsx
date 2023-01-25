@@ -11,7 +11,6 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import UploadIcon from "components/icon/UploadIcon";
-import getFileSource from "utils/getFileSource";
 //
 function Uploader({ multiple, onChange, name, value }) {
   //
@@ -32,7 +31,7 @@ function Uploader({ multiple, onChange, name, value }) {
         if (res.fileName)
           onChange({
             target: {
-              value: res.fileName,
+              value: res.url,
               name,
             },
           });
@@ -105,9 +104,6 @@ function Uploader({ multiple, onChange, name, value }) {
               <GridItem colSpan={1} key={file}>
                 <Image
                   borderRadius="lg"
-                  // API
-                  // src={getFileSource(file)}
-                  // MOCK
                   src={file}
                   width="80px"
                   height="80px"

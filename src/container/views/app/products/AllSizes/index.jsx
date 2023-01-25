@@ -31,7 +31,7 @@ function AllSizes({ filterSearch, status }) {
     { value: 45, label: "45" },
   ];
 
-  const [pageSize, setPageSize] = useState(8);
+  const [pageSize, setPageSize] = useState(pageNumberOptions?.[0].value);
   const [pageNumber, setPageNumber] = useState(1);
   //
   //
@@ -74,10 +74,11 @@ function AllSizes({ filterSearch, status }) {
       }
     );
   };
-  const handleStatus = (id) => {
+  const handleStatus = ({ id, status }) => {
     putProductSizeStatus.mutate(
       {
         id,
+        status,
       },
       {
         onSuccess: (res) => {
@@ -135,7 +136,12 @@ function AllSizes({ filterSearch, status }) {
                 </Button>
                 <Radio
                   isChecked={item.status === "0"}
-                  onClick={() => handleStatus(item.id)}
+                  onClick={() =>
+                    handleStatus({
+                      id: item?.id,
+                      status: item?.status === "0" ? "1" : "0",
+                    })
+                  }
                 >
                   <Text fontSize="sm">غیـرفعـال</Text>
                 </Radio>

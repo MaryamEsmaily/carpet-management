@@ -16,6 +16,8 @@ import { getAllSizes } from "data/getAllSizes";
 import { getAllColors } from "data/getAllColors";
 import { useNavigate, useParams } from "react-router-dom";
 import {
+  useGetAllColors,
+  useGetAllSizes,
   usePostProductDetails,
   usePutProduct,
 } from "hook/api/useProductManagementApi";

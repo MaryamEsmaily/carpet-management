@@ -68,10 +68,11 @@ function ProductDetails() {
       }
     );
   };
-  const handleStatus = (id) => {
+  const handleStatus = ({ id, status }) => {
     putProductStatus.mutate(
       {
         id,
+        status,
       },
       {
         onSuccess: (res) => {
@@ -101,53 +102,14 @@ function ProductDetails() {
             <Text fontSize={24}>{data?.title}</Text>
             <Popover placement="left-start">
               <PopoverTrigger>
-                <Popover placement="left-start">
-                  <PopoverTrigger>
-                    <Stack direction="row" justifyContent="space-between">
-                      <IconButton
-                        icon={<MoreBorderedIcon fill="none" boxSize={5} />}
-                        variant="unstyled"
-                      />
-                    </Stack>
-                  </PopoverTrigger>
-                  <PopoverContent
-                    sx={{ width: "140px", borderRadius: "8px", p: 4 }}
-                  >
-                    <PopoverArrow />
-                    <Stack spacing={4}>
-                      <Radio
-                        size="lg"
-                        isChecked={data?.status === "0"}
-                        onClick={() => handleStatus(data?.id)}
-                      >
-                        <Text fontSize="md" mx={1}>
-                          غیـرفعـال
-                        </Text>
-                      </Radio>
-                      <Link to={`/app/products/product-edit/${data?.id}`}>
-                        <Stack
-                          cursor="pointer"
-                          direction="row"
-                          align="center"
-                          spacing={3}
-                        >
-                          <EditIcon boxSize={5} />
-                          <Text>ویرایش</Text>
-                        </Stack>
-                      </Link>
-                      <Stack
-                        cursor="pointer"
-                        direction="row"
-                        align="center"
-                        spacing={3}
-                        onClick={() => handleDelete(data?.id)}
-                      >
-                        <DeleteIcon fill="none" color="red" boxSize={6} />
-                        <Text>حذف</Text>
-                      </Stack>
-                    </Stack>
-                  </PopoverContent>
-                </Popover>
+                <PopoverTrigger>
+                  <Stack direction="row" justifyContent="space-between">
+                    <IconButton
+                      icon={<MoreBorderedIcon fill="none" boxSize={5} />}
+                      variant="unstyled"
+                    />
+                  </Stack>
+                </PopoverTrigger>
               </PopoverTrigger>
               <PopoverContent
                 sx={{ width: "140px", borderRadius: "8px", p: 4 }}
@@ -157,7 +119,12 @@ function ProductDetails() {
                   <Radio
                     size="lg"
                     isChecked={data?.status === "0"}
-                    onClick={() => handleStatus(data?.id)}
+                    onClick={() =>
+                      handleStatus({
+                        id: data?.id,
+                        status: data?.status === "0" ? "1" : "0",
+                      })
+                    }
                   >
                     غیـرفعـال
                   </Radio>

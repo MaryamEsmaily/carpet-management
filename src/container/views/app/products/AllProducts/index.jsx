@@ -86,10 +86,11 @@ function AllProducts({ filterValues, filterSearch, status }) {
       }
     );
   };
-  const handleStatus = (id) => {
+  const handleStatus = ({ id, status }) => {
     putProductStatus.mutate(
       {
         id,
+        status,
       },
       {
         onSuccess: (res) => {
@@ -142,7 +143,12 @@ function AllProducts({ filterValues, filterSearch, status }) {
                           <Radio
                             size="lg"
                             isChecked={product.status === "0"}
-                            onClick={() => handleStatus(product.id)}
+                            onClick={() =>
+                              handleStatus({
+                                id: product?.id,
+                                status: product?.status === "0" ? "1" : "0",
+                              })
+                            }
                           >
                             <Text fontSize="md" mx={1}>
                               {/* غیـرفعـال */}
