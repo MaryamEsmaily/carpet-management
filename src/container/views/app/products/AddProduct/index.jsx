@@ -7,6 +7,7 @@ import {
   Grid,
   GridItem,
   Stack,
+  Text,
   Textarea,
 } from "@chakra-ui/react";
 import SelectCustom from "components/custom/SelectCustom";
@@ -14,10 +15,9 @@ import Uploader from "components/Uploader";
 import { useFormik } from "formik";
 import { getAllSizes } from "data/getAllSizes";
 import { getAllColors } from "data/getAllColors";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { usePostAddProduct } from "hook/api/useProductManagementApi";
 import useToast from "hook/useToast";
-import filePreparation from "utils/filePreparation";
 //
 import firstProduct from "assets/images/product-1.avif";
 import secondProduct from "assets/images/product-2.avif";
@@ -100,6 +100,17 @@ function AddProduct() {
               options={getAllSizes?.Data.content}
             />
           </FormControl>
+          <Link to={`/app/products/sizes`}>
+            <Text
+              mt={1}
+              color="blue.400"
+              fontSize="sm"
+              _hover={{ textDecoration: "underline" }}
+              noOfLines={1}
+            >
+              مدیریت سایزها
+            </Text>
+          </Link>
           <FormControl mt={10}>
             <FormLabel fontWeight="bold">توضیحـات</FormLabel>
             <Textarea
@@ -129,6 +140,17 @@ function AddProduct() {
               options={getAllColors?.Data.content}
             />
           </FormControl>
+          <Link to={`/app/products/colors`}>
+            <Text
+              mt={1}
+              color="blue.400"
+              fontSize="sm"
+              _hover={{ textDecoration: "underline" }}
+              noOfLines={1}
+            >
+              مدیریت رنگ ها
+            </Text>
+          </Link>
           <FormControl mt={10} isRequired>
             <FormLabel fontWeight="bold">افزودن عکس </FormLabel>
             <Uploader multiple={true} {...formik.getFieldProps("images")} />

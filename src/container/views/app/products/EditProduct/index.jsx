@@ -22,7 +22,6 @@ import {
   usePutProduct,
 } from "hook/api/useProductManagementApi";
 import useToast from "hook/useToast";
-import filePreparation from "utils/filePreparation";
 //
 import firstProduct from "assets/images/product-1.avif";
 import secondProduct from "assets/images/product-2.avif";
@@ -78,7 +77,7 @@ function EditProduct() {
     putProduct.mutate(
       {
         ...values,
-        images: filePreparation(values?.images),
+        images: values?.images.map((item) => item),
         colors: values.colors.map((color) => color.value),
         sizes: values.sizes.map((size) => size.value),
       },
