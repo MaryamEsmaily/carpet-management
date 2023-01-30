@@ -10,7 +10,6 @@ import {
 import ArrowDownIcon from "components/icon/ArrowDownIcon";
 import LeftArrowIcon from "components/icon/LeftArrowIcon";
 import RightArrowIcon from "components/icon/RightArrowIcon";
-import { t } from "i18next";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import ReactSelect from "react-select";
