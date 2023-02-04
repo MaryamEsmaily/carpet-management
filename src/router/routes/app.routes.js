@@ -1,5 +1,5 @@
 import { lazy } from "react";
-// routes
+// products
 const ProductsPage = lazy(() => import("views/app/products"));
 const AddProductPage = lazy(() => import("views/app/products/AddProduct"));
 const ColorsPage = lazy(() => import("views/app/products/Colors"));
@@ -12,7 +12,9 @@ const ProductDetailsPage = lazy(() =>
 const BuyersPage = lazy(() => import("views/app/buyers"));
 const AddBuyerPage = lazy(() => import("views/app/buyers/AddBuyer"));
 const EditBuyerPage = lazy(() => import("views/app/buyers/EditBuyer"));
-//
+// employees
+const EmployeesPage = lazy(() => import("views/app/employees"));
+
 const appRoutes = [
   {
     path: "/app/products",
@@ -49,6 +51,10 @@ const appRoutes = [
   {
     path: "/app/buyers/buyer-edit/:id",
     element: EditBuyerPage,
+  },
+  {
+    path: "/app/employees",
+    element: EmployeesPage,
   },
 ];
 
