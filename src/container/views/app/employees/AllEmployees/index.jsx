@@ -115,6 +115,8 @@ function AllEmployees({ filterSearch, status }) {
             >
               <GridItem colSpan={{ base: 7, xl: 3 }}>
                 <Image
+                  border="2px solid"
+                  borderColor="#f2f2f24a"
                   src={employee.image}
                   objectFit="cover"
                   width="100%"
