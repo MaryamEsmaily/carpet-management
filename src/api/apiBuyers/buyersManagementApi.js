@@ -34,4 +34,28 @@ const postAddBuyer = async (params) => {
   return data?.Data;
 };
 
-export { postAllBuyers, deleteBuyer, putBuyerStatus, postAddBuyer };
+const putBuyer = async (params) => {
+  const { data } = await instance.put(BASE_URL, {
+    payload: params,
+    opCode: 124,
+  });
+  return data;
+};
+
+const postBuyerDetails = async ({ queryKey }) => {
+  const params = queryKey?.[1];
+  const { data } = await instance.post(BASE_URL, {
+    payload: params,
+    opCode: 125,
+  });
+  return data?.Data;
+};
+
+export {
+  postAllBuyers,
+  deleteBuyer,
+  putBuyerStatus,
+  postAddBuyer,
+  putBuyer,
+  postBuyerDetails,
+};

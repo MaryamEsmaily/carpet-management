@@ -11,6 +11,7 @@ const ProductDetailsPage = lazy(() =>
 // buyers
 const BuyersPage = lazy(() => import("views/app/buyers"));
 const AddBuyerPage = lazy(() => import("views/app/buyers/AddBuyer"));
+const EditBuyerPage = lazy(() => import("views/app/buyers/EditBuyer"));
 //
 const appRoutes = [
   {
@@ -44,6 +45,10 @@ const appRoutes = [
   {
     path: "/app/buyers/add-buyer",
     element: AddBuyerPage,
+  },
+  {
+    path: "/app/buyers/buyer-edit/:id",
+    element: EditBuyerPage,
   },
 ];
 

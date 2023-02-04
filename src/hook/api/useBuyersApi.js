@@ -36,4 +36,27 @@ const usePostAddBuyer = (params) => {
   });
 };
 
-export { usePostAllBuyers, useDeleteBuyer, usePutBuyerStatus, usePostAddBuyer };
+const usePutBuyer = () => {
+  const queryClient = useQueryClient();
+  return useMutation(apiBuyers.putBuyer, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("postAllBuyers");
+    },
+  });
+};
+
+const usePostBuyerDetails = (params) => {
+  return useQuery(["postBuyerDetails", params], apiBuyers.postBuyerDetails, {
+    ...reactQueryConfig,
+    enabled: !!params,
+  });
+};
+
+export {
+  usePostAllBuyers,
+  useDeleteBuyer,
+  usePutBuyerStatus,
+  usePostAddBuyer,
+  usePutBuyer,
+  usePostBuyerDetails,
+};
