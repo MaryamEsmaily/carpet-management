@@ -6,8 +6,7 @@ export const postBuyers = {
     content: [
       {
         id: 1,
-        name: "محمـد امیـن ",
-        lastName: "علیـزاده",
+        fullName: "محمـد امیـن علیـزاده",
         email: "Amin_Alizadeh01@gmail.com",
         mobileNumber: "۰۹۰۳۹۸۴۷۳۰۱",
         address: "مشهد - احمد آباد ",
@@ -15,8 +14,7 @@ export const postBuyers = {
       },
       {
         id: 2,
-        name: "محمـد امیـن ",
-        lastName: "علیـزاده",
+        fullName: "محمـد امیـن علیـزاده",
         email: "Amin_Alizadeh01@gmail.com",
         mobileNumber: "۰۹۰۳۹۸۴۷۳۰۱",
         address: "مشهد - احمد آباد ",
@@ -24,8 +22,7 @@ export const postBuyers = {
       },
       {
         id: 3,
-        name: "محمـد امیـن ",
-        lastName: "علیـزاده",
+        fullName: "محمـد امیـن علیـزاده",
         email: "Amin_Alizadeh01@gmail.com",
         mobileNumber: "۰۹۰۳۹۸۴۷۳۰۱",
         address: "مشهد - احمد آباد ",
@@ -33,8 +30,7 @@ export const postBuyers = {
       },
       {
         id: 4,
-        name: "محمـد امیـن ",
-        lastName: "علیـزاده",
+        fullName: "محمـد امیـن علیـزاده",
         email: "Amin_Alizadeh01@gmail.com",
         mobileNumber: "۰۹۰۳۹۸۴۷۳۰۱",
         address: "مشهد - احمد آباد ",
@@ -42,8 +38,7 @@ export const postBuyers = {
       },
       {
         id: 5,
-        name: "محمـد امیـن ",
-        lastName: "علیـزاده",
+        fullName: "محمـد امیـن علیـزاده",
         email: "Amin_Alizadeh01@gmail.com",
         mobileNumber: "۰۹۰۳۹۸۴۷۳۰۱",
         address: "مشهد - احمد آباد ",
@@ -51,8 +46,7 @@ export const postBuyers = {
       },
       {
         id: 6,
-        name: "محمـد امیـن ",
-        lastName: "علیـزاده",
+        fullName: "محمـد امیـن علیـزاده",
         email: "Amin_Alizadeh01@gmail.com",
         mobileNumber: "۰۹۰۳۹۸۴۷۳۰۱",
         address: "مشهد - احمد آباد ",
@@ -60,8 +54,7 @@ export const postBuyers = {
       },
       {
         id: 7,
-        name: "محمـد امیـن ",
-        lastName: "علیـزاده",
+        fullName: "محمـد امیـن علیـزاده",
         email: "Amin_Alizadeh01@gmail.com",
         mobileNumber: "۰۹۰۳۹۸۴۷۳۰۱",
         address: "مشهد - احمد آباد ",
@@ -69,8 +62,7 @@ export const postBuyers = {
       },
       {
         id: 8,
-        name: "محمـد امیـن ",
-        lastName: "علیـزاده",
+        fullName: "محمـد امیـن علیـزاده",
         email: "Amin_Alizadeh01@gmail.com",
         mobileNumber: "۰۹۰۳۹۸۴۷۳۰۱",
         address: "مشهد - احمد آباد ",

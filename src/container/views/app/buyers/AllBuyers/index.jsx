@@ -124,7 +124,7 @@ function AllBuyers({ filterSearch, status }) {
                       _hover={{ textDecoration: "underline" }}
                       noOfLines={1}
                     >
-                      {buyer.name} {buyer.lastName}
+                      {buyer.fullName}
                     </Text>
                   </Stack>
                   <Stack direction="row" align="center" spacing={2}>

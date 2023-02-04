@@ -27,4 +27,13 @@ const usePutBuyerStatus = () => {
   });
 };
 
-export { usePostAllBuyers, useDeleteBuyer, usePutBuyerStatus };
+const usePostAddBuyer = (params) => {
+  const queryClient = useQueryClient();
+  return useMutation(apiBuyers.postAddBuyer, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("postAllBuyers");
+    },
+  });
+};
+
+export { usePostAllBuyers, useDeleteBuyer, usePutBuyerStatus, usePostAddBuyer };
