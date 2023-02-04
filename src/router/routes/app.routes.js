@@ -8,6 +8,8 @@ const EditProductPage = lazy(() => import("views/app/products/EditProduct"));
 const ProductDetailsPage = lazy(() =>
   import("views/app/products/ProductDetails")
 );
+// buyers
+const BuyersPage = lazy(() => import("views/app/buyers"));
 //
 const appRoutes = [
   {
@@ -33,6 +35,10 @@ const appRoutes = [
   {
     path: "/app/products/product-edit/:id",
     element: EditProductPage,
+  },
+  {
+    path: "/app/buyers",
+    element: BuyersPage,
   },
 ];
 
