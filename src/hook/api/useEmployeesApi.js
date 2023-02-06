@@ -56,6 +56,13 @@ const usePostEmployeeDetails = (params) => {
   );
 };
 
+const usePostNewPassword = (params) => {
+  return useQuery(["postNewPassword", params], apiEmployees.postNewPassword, {
+    ...reactQueryConfig,
+    enabled: !!params,
+  });
+};
+
 export {
   usePostAllEmployees,
   useDeleteEmployee,
@@ -63,4 +70,5 @@ export {
   usePostAddEmployee,
   usePutEmployee,
   usePostEmployeeDetails,
+  usePostNewPassword,
 };

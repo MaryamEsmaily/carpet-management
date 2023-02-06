@@ -51,6 +51,15 @@ const postEmployeeDetails = async ({ queryKey }) => {
   return data?.Data;
 };
 
+const postNewPassword = async ({ queryKey }) => {
+  const params = queryKey?.[1];
+  const { data } = await instance.post(BASE_URL, {
+    payload: params,
+    opCode: 126,
+  });
+  return data?.Data;
+};
+
 export {
   postAllEmployees,
   deleteEmployee,
@@ -58,4 +67,5 @@ export {
   postAddEmployee,
   putEmployee,
   postEmployeeDetails,
+  postNewPassword,
 };
