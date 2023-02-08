@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
   Box,
   Button,
@@ -11,29 +11,55 @@ import {
 } from "@chakra-ui/react";
 import SelectCustom from "components/custom/SelectCustom";
 import { useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useToast from "hook/useToast";
+import getInitialValuesFormik from "utils/getInitialValuesFormik";
 import Input from "components/custom/Input";
-import { usePostAddBuyer } from "hook/api/useBuyersApi";
+import { postBuyerDetailsData } from "data/postBuyerDetailsData";
+import { usePutStore } from "hook/api/useStoresApi";
 //
 const initialValues = {
   fullName: "",
+  title: "",
   email: "",
   description: "",
   mobileNumbers: [],
   address: "",
 };
 //
-function AddBuyer() {
+function EditStore() {
   //
   const navigate = useNavigate();
   //
   const toast = useToast();
   //
-  const postAddBuyer = usePostAddBuyer();
+  const putStore = usePutStore();
+  //
+  // API
+  //
+  // const { id } = useParams();
+  // const { data: storeDetails } = usePostStoreDetails({ id });
+  // const memoizedInitialValues = useMemo(
+  //   () =>
+  //     getInitialValuesFormik({
+  //       data: storeDetails?.content,
+  //       initialValues,
+  //     }),
+  //   [storeDetails?.content]
+  // );
+
+  // MOCK
+  const memoizedInitialValues = useMemo(
+    () =>
+      getInitialValuesFormik({
+        data: postBuyerDetailsData?.Data?.content,
+        initialValues,
+      }),
+    []
+  );
   //
   const handleSubmit = (values) => {
-    postAddBuyer.mutate(
+    putStore.mutate(
       {
         ...values,
         mobileNumbers: values.mobileNumbers.map((size) => size.value),
@@ -49,10 +75,11 @@ function AddBuyer() {
       }
     );
   };
-  //
+
   const formik = useFormik({
     onSubmit: handleSubmit,
-    initialValues: initialValues,
+    initialValues: memoizedInitialValues,
+    enableReinitialize: true,
   });
 
   //
@@ -68,45 +95,49 @@ function AddBuyer() {
       <Grid templateColumns="repeat(2,minmax(0,1fr))" gap={10}>
         <GridItem colSpan={{ base: 2, lg: 1 }}>
           <FormControl isRequired>
-            <FormLabel fontWeight="bold">نام و نام خانوادگـی </FormLabel>
+            <FormLabel fontWeight="bold">نـام </FormLabel>
             <Input
               variant="filled"
               _placeholder={{ color: "text-primary" }}
-              placeholder="نام و نام خانوادگـی"
-              {...formik.getFieldProps("fullName")}
-            />
-          </FormControl>
-          <FormControl mt={10}>
-            <FormLabel fontWeight="bold">پست الکترونیـک</FormLabel>
-            <Input
-              variant="filled"
-              _placeholder={{ color: "text-primary" }}
-              placeholder="پست الکترونیـک"
-              {...formik.getFieldProps("email")}
-            />
-          </FormControl>
-          <FormControl mt={10}>
-            <FormLabel fontWeight="bold">توضیحـات</FormLabel>
-            <Textarea
-              h="170px"
-              variant="filled"
-              _placeholder={{ color: "text-primary" }}
-              placeholder="توضیحـات بیشتر ..."
-              {...formik.getFieldProps("description")}
+              placeholder="نام"
+              {...formik.getFieldProps("title")}
             />
           </FormControl>
         </GridItem>
         <GridItem colSpan={{ base: 2, lg: 1 }}>
           <FormControl isRequired>
-            <FormLabel fontWeight="bold">شماره همـراه</FormLabel>
+            <FormLabel fontWeight="bold">نـوع انبـار </FormLabel>
             <SelectCustom
-              {...formik.getFieldProps("mobileNumbers")}
+              {...formik.getFieldProps("storeType")}
               isMulti
               // options={getAllColors?.Data.content}
             />
           </FormControl>
-          <FormControl mt={10} isRequired>
-            <FormLabel fontWeight="bold">آدرس </FormLabel>
+        </GridItem>
+        <GridItem colSpan={{ base: 2, lg: 1 }}>
+          <FormControl isRequired>
+            <FormLabel fontWeight="bold">انباردار </FormLabel>
+            <Input
+              variant="filled"
+              _placeholder={{ color: "text-primary" }}
+              placeholder="انباردار"
+              {...formik.getFieldProps("fullName")}
+            />
+          </FormControl>
+        </GridItem>
+        <GridItem colSpan={{ base: 2, lg: 1 }}>
+          <FormControl isRequired>
+            <FormLabel fontWeight="bold">شماره تلفـن</FormLabel>
+            <SelectCustom
+              {...formik.getFieldProps("mobileNumber")}
+              isMulti
+              // options={getAllColors?.Data.content}
+            />
+          </FormControl>
+        </GridItem>
+        <GridItem colSpan={{ base: 2, lg: 1 }}>
+          <FormControl isRequired>
+            <FormLabel fontWeight="bold">آدرس</FormLabel>
             <Textarea
               h="170px"
               variant="filled"
@@ -122,7 +153,7 @@ function AddBuyer() {
           w={140}
           variant="outline"
           onClick={() => {
-            navigate("/app/buyers");
+            navigate("/app/stores");
             formik.resetForm();
           }}
         >
@@ -136,4 +167,4 @@ function AddBuyer() {
   );
 }
 
-export default AddBuyer;
+export default EditStore;

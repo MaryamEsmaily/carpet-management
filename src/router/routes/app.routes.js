@@ -18,6 +18,10 @@ const AddEmployeePage = lazy(() => import("views/app/employees/AddEmployee"));
 const EmployeeDetailsPage = lazy(() =>
   import("views/app/employees/EmployeeDetails")
 );
+// store
+const StorePage = lazy(() => import("views/app/store"));
+const AddStorePage = lazy(() => import("views/app/store/AddStore"));
+const EditStorePage = lazy(() => import("views/app/store/EditStore"));
 
 const appRoutes = [
   {
@@ -67,6 +71,18 @@ const appRoutes = [
   {
     path: "/app/employees/add-employee",
     element: AddEmployeePage,
+  },
+  {
+    path: "/app/stores",
+    element: StorePage,
+  },
+  {
+    path: "/app/stores/add-store",
+    element: AddStorePage,
+  },
+  {
+    path: "/app/stores/store-edit/:id",
+    element: EditStorePage,
   },
 ];
 
