@@ -6,18 +6,16 @@ import {
   GridItem,
   IconButton,
   Stack,
-  Text,
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
 import CallIcon from "components/icon/CallIcon";
 import LogoIcon from "components/icon/LogoIcon";
 import SearchIcon from "components/icon/SearchIcon";
-import TranslateIcon from "components/icon/TranslateIcon";
 import { menuItems } from "constant/menuItems";
-import { memo, useEffect } from "react";
+import NavigationBar from "container/layout/NavigationBar";
+import { memo } from "react";
 import { useTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
 
 const AppLayout = (props) => {
   // theme stuff
@@ -26,7 +24,7 @@ const AppLayout = (props) => {
   const iconColor = useColorModeValue("#000", "#fff");
 
   // language stuff
-  const { i18n, t } = useTranslation();
+  // const { i18n } = useTranslation();
 
   // useEffect(() => {
   //   document.dir = i18n.dir();
@@ -45,7 +43,6 @@ const AppLayout = (props) => {
         bgColor="layout-over"
         align="center"
         px={10}
-        height="70px"
         mb={4}
       >
         <Stack
@@ -61,19 +58,7 @@ const AppLayout = (props) => {
             align="center"
             spacing={5}
           >
-            {menuItems?.map((menu) => {
-              const Icon = menu.icon;
-              return (
-                <NavLink key={menu.label} to={menu.path}>
-                  <Stack direction="row" align="center" spacing={2}>
-                    {Icon && <Icon fill="none" boxSize={5} />}
-                    <Text fontWeight="bold" fontSize="small">
-                      {t(menu.label)}
-                    </Text>
-                  </Stack>
-                </NavLink>
-              );
-            })}
+            <NavigationBar menu={menuItems} />
           </Stack>
         </Stack>
         <Stack direction="row" align="center" spacing={10}>
