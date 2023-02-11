@@ -3,7 +3,7 @@ import React from "react";
 
 function DeleteIcon(props) {
   return (
-    <Icon viewBox="0 0 20 20" {...props}>
+    <Icon viewBox="0 0 20 20" fill="none" {...props}>
       <path
         d="M17.5 4.98368C14.725 4.70868 11.9333 4.56702 9.15 4.56702C7.5 4.56702 5.85 4.65035 4.2 4.81702L2.5 4.98368"
         stroke="currentColor"

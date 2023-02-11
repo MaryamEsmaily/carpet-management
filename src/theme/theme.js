@@ -18,6 +18,7 @@ const theme = (direction) =>
           "layout-deep": { default: "#F4F6F8", _dark: "#171A1F" },
           "layout-over": { default: "white", _dark: "#20252F" },
           layout: { default: "white", _dark: "#2F3440" },
+          "layout-main": { default: "#edf2f7", _dark: "#ffffff0a" },
           "text-primary": { default: "#8992A1", _dark: "" },
           "text-secondary": { default: "#000", _dark: "#fff" },
         },

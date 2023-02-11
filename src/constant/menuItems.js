@@ -16,7 +16,7 @@ export const menuItems = [
     // "ایجـاد سفـارش جدیـد"
     label: "2",
     icon: AddNewOrderIcon,
-    path: "/",
+    path: "/app/add-new-order",
   },
   {
     // مدیریت
