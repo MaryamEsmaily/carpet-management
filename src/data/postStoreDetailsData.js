@@ -5,9 +5,9 @@ export const postBuyerDetailsData = {
   Data: {
     content: {
       id: 1,
-      fullName: "محمـد امیـن علیـزاده",
+      fullName: "مـریـم اسماعیـلی",
       title: "انبـار یـک",
-      mobileNumber: "۰۹۰۳۹۸۴۷۳۰۱",
+      mobileNumber: "09379882902",
       address: "مشهد - احمد آباد ",
       status: "1",
     },

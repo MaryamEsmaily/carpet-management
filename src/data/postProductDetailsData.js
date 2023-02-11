@@ -25,7 +25,7 @@ export const postProductDetailsData = {
       status: "1",
       author: "امیـر عرب",
       createData: "۱۴۰۱/۱۲/۰۴",
-      changeByAuthor: "امیـن علیـزاده",
+      changeByAuthor: "مـریـم اسماعیـلی",
       lastChangeDate: "۱۴۰۱/۱۲ /۲۹",
       images: [firstProduct, secondProduct, thirdProduct, forthProduct],
     },

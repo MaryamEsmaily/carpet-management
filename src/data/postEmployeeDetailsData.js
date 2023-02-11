@@ -7,8 +7,8 @@ export const postEmployeeDetailsData = {
   Data: {
     content: {
       id: 1,
-      fullName: "محمـد امیــن علیــزاده",
-      mobileNumber: "۰۹۰۳۹۸۴۷۳۰۱",
+      fullName: "مـریـم اسماعیـلی",
+      mobileNumber: "09379882902",
       userName: "E0VID0C",
       image: firstEmployee,
       birthDate: "۱۳۷۸/۱۲/۰۸",

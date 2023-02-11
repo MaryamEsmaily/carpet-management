@@ -8,8 +8,8 @@ export const postAllEmployeesData = {
     content: [
       {
         id: 1,
-        fullName: "امیـر حسیـن عرب",
-        mobileNumber: "۰۹۰۳۹۸۴۷۳۰۱",
+        fullName: "مـریـم اسماعیـلی",
+        mobileNumber: "09379882902",
         userName: "E0VID0C",
         image: firstEmployee,
         role: "انبـاردار",
@@ -17,8 +17,8 @@ export const postAllEmployeesData = {
       },
       {
         id: 2,
-        fullName: "امیـر حسیـن عرب",
-        mobileNumber: "۰۹۰۳۹۸۴۷۳۰۱",
+        fullName: "مـریـم اسماعیـلی",
+        mobileNumber: "09379882902",
         userName: "E0VID0C",
         image: firstEmployee,
         role: "انبـاردار",
@@ -26,8 +26,8 @@ export const postAllEmployeesData = {
       },
       {
         id: 3,
-        fullName: "امیـر حسیـن عرب",
-        mobileNumber: "۰۹۰۳۹۸۴۷۳۰۱",
+        fullName: "مـریـم اسماعیـلی",
+        mobileNumber: "09379882902",
         userName: "E0VID0C",
         image: firstEmployee,
         role: "انبـاردار",
@@ -35,8 +35,8 @@ export const postAllEmployeesData = {
       },
       {
         id: 4,
-        fullName: "امیـر حسیـن عرب",
-        mobileNumber: "۰۹۰۳۹۸۴۷۳۰۱",
+        fullName: "مـریـم اسماعیـلی",
+        mobileNumber: "09379882902",
         userName: "E0VID0C",
         image: firstEmployee,
         role: "انبـاردار",
@@ -44,8 +44,8 @@ export const postAllEmployeesData = {
       },
       {
         id: 5,
-        fullName: "امیـر حسیـن عرب",
-        mobileNumber: "۰۹۰۳۹۸۴۷۳۰۱",
+        fullName: "مـریـم اسماعیـلی",
+        mobileNumber: "09379882902",
         userName: "E0VID0C",
         image: firstEmployee,
         role: "انبـاردار",
@@ -53,8 +53,8 @@ export const postAllEmployeesData = {
       },
       {
         id: 6,
-        fullName: "امیـر حسیـن عرب",
-        mobileNumber: "۰۹۰۳۹۸۴۷۳۰۱",
+        fullName: "مـریـم اسماعیـلی",
+        mobileNumber: "09379882902",
         userName: "E0VID0C",
         image: firstEmployee,
         role: "انبـاردار",
@@ -62,8 +62,8 @@ export const postAllEmployeesData = {
       },
       {
         id: 7,
-        fullName: "امیـر حسیـن عرب",
-        mobileNumber: "۰۹۰۳۹۸۴۷۳۰۱",
+        fullName: "مـریـم اسماعیـلی",
+        mobileNumber: "09379882902",
         userName: "E0VID0C",
         image: firstEmployee,
         role: "انبـاردار",
@@ -71,8 +71,8 @@ export const postAllEmployeesData = {
       },
       {
         id: 8,
-        fullName: "امیـر حسیـن عرب",
-        mobileNumber: "۰۹۰۳۹۸۴۷۳۰۱",
+        fullName: "مـریـم اسماعیـلی",
+        mobileNumber: "09379882902",
         userName: "E0VID0C",
         image: firstEmployee,
         role: "انبـاردار",
