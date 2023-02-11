@@ -6,14 +6,13 @@ import ManagementIcon from "components/icon/ManagementIcon";
 import OrderManagementIcon from "components/icon/OrderManagementIcon";
 import OrderReportIcon from "components/icon/OrderReportIcon";
 import ReportIcon from "components/icon/ReportIcon";
-import UserIcon from "components/icon/UserIcon";
 
 export const menuItems = [
   {
     // کارتابل
     label: "1",
     icon: CartableIcon,
-    path: "/",
+    path: "/app/cartable",
   },
   {
     // "ایجـاد سفـارش جدیـد"
@@ -56,18 +55,18 @@ export const menuItems = [
     // "مدیریت سفارشات"
     label: "4",
     icon: OrderManagementIcon,
-    path: "/",
+    path: "/app/orders",
   },
   {
     // "گزارش گیـری انبـار"
     label: "5",
     icon: ReportIcon,
-    path: "/",
+    path: "/app/store-report",
   },
   {
     // "گزارش گیـری سفـارشـات"
     label: "6",
     icon: OrderReportIcon,
-    path: "/",
+    path: "/app/order-report",
   },
 ];

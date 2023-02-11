@@ -10,12 +10,12 @@ const NavigationBar = ({ menu }) => {
   const renderMainItem = (data) => {
     return (
       <Box
+        key={data?.label}
         pos="relative"
         height="70px"
         as="li"
         display="flex"
         alignItems="center"
-        key={data?.key}
         borderRadius="16px"
         transition="ease-in-out 110ms"
         _hover={{
@@ -86,7 +86,7 @@ const NavigationBar = ({ menu }) => {
         <NavLink key={data.label} to={data.children ? "" : data?.path}>
           <Box
             as="li"
-            key={data?.key}
+            key={data?.label}
             position="relative"
             borderRadius="16px"
             _hover={{

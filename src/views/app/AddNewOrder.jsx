@@ -30,7 +30,7 @@ const initialValues = {
   image: [],
 };
 
-function AddNewOrder() {
+function AddNewOrderPage() {
   //
   const navigate = useNavigate();
   //
@@ -126,4 +126,4 @@ function AddNewOrder() {
   );
 }
 
-export default AddNewOrder;
+export default AddNewOrderPage;
