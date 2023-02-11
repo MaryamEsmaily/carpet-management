@@ -3,7 +3,7 @@ import React from "react";
 
 function EraserIcon(props) {
   return (
-    <Icon viewBox="0 0 28 28" {...props}>
+    <Icon viewBox="0 0 28 28" fill="none" {...props}>
       <path
         d="M18.7998 20.7L16.8998 22.61C16.3798 23.13 15.5198 23.13 14.9798 22.61L13.3998 21.02C12.8798 20.49 12.8798 19.64 13.3998 19.1L15.3098 17.21L18.7998 20.7Z"
         fill="currentColor"

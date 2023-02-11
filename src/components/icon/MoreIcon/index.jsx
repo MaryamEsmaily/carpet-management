@@ -3,7 +3,7 @@ import React from "react";
 
 function MoreIcon(props) {
   return (
-    <Icon viewBox="0 0 24 24" {...props}>
+    <Icon viewBox="0 0 24 24" fill="none" {...props}>
       <path
         d="M10 19C10 20.1 10.9 21 12 21C13.1 21 14 20.1 14 19C14 17.9 13.1 17 12 17C10.9 17 10 17.9 10 19Z"
         stroke="white"

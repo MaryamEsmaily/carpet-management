@@ -3,7 +3,7 @@ import React from "react";
 
 function CalenderIcon(props) {
   return (
-    <Icon viewBox="0 0 24 24" {...props}>
+    <Icon viewBox="0 0 24 24" fill="none" {...props}>
       <path
         d="M8.29001 6.29C7.87001 6.29 7.54001 5.95 7.54001 5.54V2.75C7.54001 2.34 7.87001 2 8.29001 2C8.71001 2 9.04001 2.34 9.04001 2.75V5.53C9.04001 5.95 8.71001 6.29 8.29001 6.29Z"
         fill="#8992A1"

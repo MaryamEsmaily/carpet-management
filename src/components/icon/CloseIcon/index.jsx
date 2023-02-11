@@ -3,7 +3,7 @@ import React from "react";
 
 function CloseIcon(props) {
   return (
-    <Icon viewBox="0 0 28 28" {...props}>
+    <Icon viewBox="0 0 28 28" fill="none" {...props}>
       <path
         d="M10.6984 17.3018L17.3017 10.6985"
         stroke="currentColor"

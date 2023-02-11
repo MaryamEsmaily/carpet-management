@@ -3,7 +3,7 @@ import React from "react";
 
 function OrderManagementIcon(props) {
   return (
-    <Icon viewBox="0 0 24 24" {...props}>
+    <Icon viewBox="0 0 24 24" fill="none" {...props}>
       <g clipPath="url(#clip0_256_6363)">
         <path
           d="M8.80994 2L5.18994 5.63"

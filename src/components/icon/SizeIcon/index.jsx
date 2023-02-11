@@ -3,7 +3,7 @@ import React from "react";
 
 function SizeIcon(props) {
   return (
-    <Icon viewBox="0 0 28 28" {...props}>
+    <Icon viewBox="0 0 28 28" fill="none" {...props}>
       <path
         d="M18.19 4H14.75V10V10.75V15.75H24V10.75V10V9.81C24 6.17 21.83 4 18.19 4Z"
         fill="currentColor"

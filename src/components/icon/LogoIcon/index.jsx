@@ -3,7 +3,7 @@ import React from "react";
 
 function LogoIcon(props) {
   return (
-    <Icon viewBox="0 0 46 45" {...props}>
+    <Icon viewBox="0 0 46 45" fill="none" {...props}>
       <g filter="url(#filter0_d_256_6386)">
         <path
           fillRule="evenodd"

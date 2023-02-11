@@ -3,7 +3,7 @@ import React from "react";
 
 function AddNewOrderIcon(props) {
   return (
-    <Icon viewBox="0 0 24 24" {...props}>
+    <Icon viewBox="0 0 24 24" fill="none" {...props}>
       <g clipPath="url(#clip0_256_6349)">
         <path
           d="M22 10V15C22 20 20 22 15 22H9C4 22 2 20 2 15V9C2 4 4 2 9 2H14"

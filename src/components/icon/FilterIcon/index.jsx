@@ -3,7 +3,7 @@ import React from "react";
 
 function FilterIcon(props) {
   return (
-    <Icon viewBox="0 0 24 24" {...props}>
+    <Icon viewBox="0 0 24 24" fill="none" {...props}>
       <path
         d="M3 7H21"
         stroke="currentColor"
