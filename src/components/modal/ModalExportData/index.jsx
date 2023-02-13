@@ -1,6 +1,7 @@
 import * as React from "react";
 import Modal from "components/custom/Modal";
 import {
+  Box,
   Button,
   Divider,
   Radio,
@@ -17,12 +18,14 @@ const ModalExportData = ({ config }) => {
   //
   return (
     <Modal config={config}>
-      <Stack justify="center" spacing={6} as="form">
-        <Stack direction="row" align="center">
-          <ExportIcon boxSize={5} />
-          <Text fontWeight="bold">خروجـی</Text>
-        </Stack>
-        <Divider />
+      <Stack justify="center" spacing={8} as="form">
+        <Box>
+          <Stack direction="row" align="center">
+            <ExportIcon boxSize={5} />
+            <Text fontWeight="bold">خروجـی</Text>
+          </Stack>
+          <Divider mt={4} />
+        </Box>
         <RadioGroup>
           <Stack direction="row" justifyContent="space-around">
             <Radio defaultChecked value="2">
