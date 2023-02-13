@@ -18,39 +18,47 @@ import {
   FormLabel,
   InputRightElement,
   useTheme,
+  Checkbox,
+  CheckboxGroup,
+  SimpleGrid,
 } from "@chakra-ui/react";
 import SearchIcon from "components/icon/SearchIcon";
 import { useTranslation } from "react-i18next";
 import Input from "components/custom/Input";
-import AllStoreReports from "../AllStoreReports";
+import AllOrders from "../AllOrders";
 import FilterIcon from "components/icon/FilterIcon";
 import { useFormik } from "formik";
 import CloseIcon from "components/icon/CloseIcon";
 import ColorFilterIcon from "components/icon/ColorFilterIcon";
 import OptionsOutsideSelect from "components/custom/OptionsOutsideSelect";
 import EraserIcon from "components/icon/EraserIcon";
-import StoreIcon from "components/icon/StoreIcon";
 import { getAllColors } from "data/getAllColors";
 import { getAllSizes } from "data/getAllSizes";
-import ExportIcon from "components/icon/ExportIcon";
-import useModal from "hook/useModal";
-import ModalExportData from "components/modal/ModalExportData";
+import CalenderIcon from "components/icon/CalenderIcon";
+import SelectCustom from "components/custom/SelectCustom";
 import CrownIcon from "components/icon/CrownIcon";
+import UsersIcon from "components/icon/UsersIcon";
+import ClockIcon from "components/icon/ClockIcon";
+import OrderReportIcon from "components/icon/OrderReportIcon";
+import ReportIcon from "components/icon/ReportIcon";
 
 const initialValues = {
+  fullName: "",
   store: "",
   code: "",
-  colors: [],
+  startDate: "",
+  endDate: "",
   sizes: [],
+  colors: [],
+  orderStatus: [],
+  orderTotalStatus: [],
 };
 
-function StoreReportsSection() {
+function OrdersSection() {
   //
   const { direction } = useTheme();
   //
   const { t } = useTranslation();
-  //
-  const { toggle, config } = useModal();
   //
   const [searchInput, setSearchInput] = useState("");
   const [filterValues, setFilterValues] = useState();
@@ -72,6 +80,8 @@ function StoreReportsSection() {
       ...values,
       colors: values.colors.map((color) => color.value),
       sizes: values.sizes.map((size) => size.value),
+      orderStatus: values.sizes.map((size) => size.value),
+      orderTotalStatus: values.sizes.map((size) => size.value),
     });
   };
   //
@@ -82,7 +92,6 @@ function StoreReportsSection() {
   //
   return (
     <>
-      <ModalExportData config={config} />
       <Stack
         borderRadius={14}
         direction="row"
@@ -127,11 +136,6 @@ function StoreReportsSection() {
           variant="outline"
           colorScheme="gray"
         />
-        <IconButton
-          width="60px"
-          icon={<ExportIcon boxSize={5} />}
-          onClick={toggle}
-        />
       </Stack>
       {/*  */}
       <Drawer
@@ -166,21 +170,24 @@ function StoreReportsSection() {
 
               <Divider mt={2} />
             </DrawerHeader>
-            <DrawerBody>
+            <DrawerBody py={5}>
               <FormControl>
                 <FormLabel>
                   <Stack direction="row" spacing={2} align="center">
-                    <StoreIcon boxSize={4} />
+                    <UsersIcon boxSize={4} />
                     <Text fontSize={14} fontWeight="bold">
-                      براساس انبـار :
+                      براساس متعامـل :
                     </Text>
                   </Stack>
                 </FormLabel>
-                <OptionsOutsideSelect
-                  placeholder="براساس انبـار "
-                  {...formik.getFieldProps("store")}
+                <SelectCustom
+                  isMulti
+                  placeholder="براساس متعامـل"
+                  {...formik.getFieldProps("fullName")}
+                  // options={getAllColors?.Data.content}
                 />
               </FormControl>
+
               <FormControl mt={10}>
                 <FormLabel>
                   <Stack direction="row" spacing={2} align="center">
@@ -210,7 +217,6 @@ function StoreReportsSection() {
                   </InputRightElement>
                 </InputGroup>
               </FormControl>
-
               <FormControl mt={10}>
                 <FormLabel>
                   <Stack direction="row" spacing={2} align="center" mb={3}>
@@ -229,7 +235,6 @@ function StoreReportsSection() {
                   {...formik.getFieldProps("colors")}
                 />
               </FormControl>
-
               <FormControl mt={10}>
                 <FormLabel>
                   <Stack direction="row" spacing={2} align="center" mb={3}>
@@ -248,6 +253,87 @@ function StoreReportsSection() {
                   {...formik.getFieldProps("sizes")}
                 />
               </FormControl>
+              <FormControl mt={10}>
+                <FormLabel>
+                  <Stack direction="row" spacing={2} align="center">
+                    <ClockIcon boxSize={4} />
+                    <Text fontSize={14} fontWeight="bold">
+                      براساس بازه زمانـی :
+                    </Text>
+                  </Stack>
+                </FormLabel>
+                <Stack direction="row" spacing={4} mt={3}>
+                  <InputGroup>
+                    <Input
+                      _placeholder={{ color: "text-primary", fontSize: 16 }}
+                      placeholder="از تاریخ"
+                      variant="filled"
+                      {...formik.getFieldProps("startDate")}
+                    />
+                    <InputRightElement
+                      sx={{
+                        right: 0,
+                        left: "unset",
+                      }}
+                      pointerEvents="none"
+                    >
+                      <CalenderIcon boxSize={5} />
+                    </InputRightElement>
+                  </InputGroup>
+                  <InputGroup>
+                    <Input
+                      _placeholder={{ color: "text-primary", fontSize: 16 }}
+                      placeholder="تا تاریخ"
+                      variant="filled"
+                      {...formik.getFieldProps("endDate")}
+                    />
+                    <InputRightElement
+                      sx={{
+                        right: 0,
+                        left: "unset",
+                      }}
+                      pointerEvents="none"
+                    >
+                      <CalenderIcon boxSize={5} />
+                    </InputRightElement>
+                  </InputGroup>
+                </Stack>
+              </FormControl>
+              <FormControl mt={10}>
+                <FormLabel>
+                  <Stack direction="row" spacing={2} align="center">
+                    <OrderReportIcon boxSize={4} />
+                    <Text fontSize={14} fontWeight="bold">
+                      براساس وضعیت سفارش :
+                    </Text>
+                  </Stack>
+                </FormLabel>
+                <CheckboxGroup>
+                  <SimpleGrid columns={2} spacing={3} mt={5}>
+                    <Checkbox value="1">در حال ارسال</Checkbox>
+                    <Checkbox value="2">در حال بافت</Checkbox>
+                    <Checkbox value="3">ارسال شده</Checkbox>
+                    <Checkbox value="4">در انبار</Checkbox>
+                    <Checkbox value="5">در حال آهار</Checkbox>
+                  </SimpleGrid>
+                </CheckboxGroup>
+              </FormControl>
+              <FormControl mt={10}>
+                <FormLabel>
+                  <Stack direction="row" spacing={2} align="center">
+                    <ReportIcon boxSize={4} />
+                    <Text fontSize={14} fontWeight="bold">
+                      براساس وضعیت کلی سفارش :
+                    </Text>
+                  </Stack>
+                </FormLabel>
+                <CheckboxGroup>
+                  <SimpleGrid columns={2} spacing={3} mt={5}>
+                    <Checkbox value="1">تکمیل شده</Checkbox>
+                    <Checkbox value="2">در حال تکمیل</Checkbox>
+                  </SimpleGrid>
+                </CheckboxGroup>
+              </FormControl>
             </DrawerBody>
             <DrawerFooter gap={2}>
               <Button w="full" variant="outline" onClick={formik.resetForm}>
@@ -263,12 +349,9 @@ function StoreReportsSection() {
         </Box>
       </Drawer>
       {/*  */}
-      <AllStoreReports
-        filterValues={filterValues}
-        filterSearch={filterSearch}
-      />
+      <AllOrders filterValues={filterValues} filterSearch={filterSearch} />
     </>
   );
 }
 
-export default StoreReportsSection;
+export default OrdersSection;

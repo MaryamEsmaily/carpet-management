@@ -1,4 +1,4 @@
-import { Box, useColorModeValue } from "@chakra-ui/react";
+import { Box, useColorModeValue, useTheme } from "@chakra-ui/react";
 import RoundedCloseIcon from "components/icon/RoundedCloseIcon";
 import ReactSelect from "react-select";
 
@@ -21,7 +21,7 @@ const MultiValueRemove = (props) => {
   );
 };
 
-const style = ({ menuPortalBg, InputBg, selectedColor }) => ({
+const style = ({ menuPortalBg, InputBg, selectedColor, direction }) => ({
   control: (base) => ({
     ...base,
     height: 50,
@@ -29,6 +29,8 @@ const style = ({ menuPortalBg, InputBg, selectedColor }) => ({
     borderRadius: "8px",
     backgroundColor: InputBg,
     borderColor: InputBg,
+    width: "100%",
+    overflowX: "auto",
   }),
   indicatorSeparator: (base) => ({
     ...base,
@@ -38,7 +40,14 @@ const style = ({ menuPortalBg, InputBg, selectedColor }) => ({
     ...base,
     display: "none",
   }),
-  menuPortal: (base) => ({ ...base, zIndex: "9999" }),
+  menuPortal: (provided) => {
+    return {
+      ...provided,
+      [direction === "ltr" ? "left" : "right"]: provided.left,
+      [direction === "ltr" ? "right" : "left"]: "unset",
+      zIndex: 9999,
+    };
+  },
   menu: (base) => ({
     ...base,
     backgroundColor: menuPortalBg,
@@ -64,24 +73,21 @@ const style = ({ menuPortalBg, InputBg, selectedColor }) => ({
 });
 
 const SelectCustom = (props) => {
-  const { isMulti, placeholder = "", value, options, name, onChange } = props;
-  const menuPortalBg = useColorModeValue("#fff", "#202630");
+  const { isMulti, placeholder = "", name, onChange } = props;
+  const menuPortalBg = useColorModeValue("#fff", "#2a2e37");
   const InputBg = useColorModeValue("#edf2f7", "#2a2e37");
   const menuBg = useColorModeValue("#6a82dd6b", "#000");
   const selectedColor = useColorModeValue("#0006", "#454F5B");
-
+  //
+  const { direction } = useTheme();
+  //
   return (
     <ReactSelect
       components={{ MultiValueRemove }}
-      noOptionsMessage={() => "موردی وجود ندارد"}
       placeholder={placeholder}
-      onChange={(option) => {
-        if (onChange)
-          onChange({
-            target: { value: option, name },
-          });
-      }}
-      styles={style({ menuPortalBg, InputBg, selectedColor })}
+      menuPortalTarget={document.body}
+      noOptionsMessage={() => "موردی وجود ندارد"}
+      styles={style({ menuPortalBg, InputBg, selectedColor, direction })}
       theme={(theme) => ({
         ...theme,
         colors: {
@@ -89,10 +95,14 @@ const SelectCustom = (props) => {
           primary25: menuBg,
         },
       })}
-      isMulti={!!isMulti}
-      options={options}
-      value={value}
-      name={name}
+      {...props}
+      onChange={(option) => {
+        if (onChange)
+          onChange({
+            target: { value: option, name },
+          });
+      }}
+      isMulti={isMulti}
     />
   );
 };

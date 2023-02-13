@@ -50,8 +50,8 @@ const style = ({ menuPortalBg, InputBg, direction }) => ({
 
 const OptionsOutsideSelect = (props) => {
   const { isMulti, value, name, placeholder, onChange } = props;
-  const menuPortalBg = useColorModeValue("#fff", "#202630");
-  const InputBg = useColorModeValue("#edf2f7", "#353f50");
+  const menuPortalBg = useColorModeValue("#fff", "#2a2e37");
+  const InputBg = useColorModeValue("#edf2f7", "#2a2e37");
   const menuBg = useColorModeValue("#6a82dd6b", "#000");
   //
   const { direction } = useTheme();

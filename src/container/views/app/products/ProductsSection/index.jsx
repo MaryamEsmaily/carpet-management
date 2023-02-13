@@ -153,31 +153,31 @@ function ProductsSection() {
       >
         <DrawerOverlay />
         <Box h="full" as="form" onSubmit={formik.handleSubmit}>
-          <DrawerContent py={5} px={1}>
-            <DrawerHeader
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-              fontSize={16}
-            >
-              <Stack direction="row" spacing={2} alignItems="center">
-                <FilterIcon />
-                <Text>
-                  {/* فیلتــر هــا */}
-                  {t("14")}
-                </Text>
+          <DrawerContent bg="layout-over" py={5} px={1}>
+            <DrawerHeader>
+              <Stack
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center"
+                fontSize={16}
+              >
+                <Stack direction="row" spacing={2} alignItems="center">
+                  <FilterIcon />
+                  <Text>
+                    {/* فیلتــر هــا */}
+                    {t("14")}
+                  </Text>
+                </Stack>
+                <IconButton
+                  icon={<CloseIcon color="text-secondary" boxSize={5} />}
+                  variant="unstyled"
+                  onClick={onClose}
+                />
               </Stack>
-              <IconButton
-                icon={
-                  <CloseIcon fill="none" color="text-secondary" boxSize={5} />
-                }
-                variant="unstyled"
-                onClick={onClose}
-              />
+
+              <Divider mt={2} />
             </DrawerHeader>
             <DrawerBody>
-              <Divider mb={6} mt={2} />
-
               <FormControl>
                 <FormLabel>
                   <Stack direction="row" spacing={2} align="center">
