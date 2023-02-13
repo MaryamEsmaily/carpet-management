@@ -1,6 +1,5 @@
 import {
   Box,
-  Divider,
   Grid,
   GridItem,
   IconButton,
@@ -31,16 +30,10 @@ import AddNewOrderIcon from "components/icon/AddNewOrderIcon";
 import CalenderIcon from "components/icon/CalenderIcon";
 import LampIcon from "components/icon/LampIcon";
 import LayerIcon from "components/icon/LayerIcon";
-import TruckIcon from "components/icon/TruckIcon";
-import StoreIcon from "components/icon/StoreIcon";
-import SimpleReportIcon from "components/icon/SimpleReportIcon";
-import ChartIcon from "components/icon/ChartIcon";
 
 function AllOrders({ filterSearch, filterValue }) {
   //
   const { t } = useTranslation();
-
-  const [collapse, setCollapse] = useState("");
   //
   const toast = useToast();
   // for pagination
@@ -127,12 +120,7 @@ function AllOrders({ filterSearch, filterValue }) {
                 <Stack
                   direction={{ base: "column", xl: "row" }}
                   justify="space-between"
-                  id={index}
-                  onClick={() => {
-                    setCollapse({ id: order.id, show: !collapse.show });
-                  }}
                   spacing={7}
-                  cursor="pointer"
                 >
                   <Stack direction="row" align="center" spacing={2}>
                     <AddNewOrderIcon
@@ -222,35 +210,6 @@ function AllOrders({ filterSearch, filterValue }) {
                   </PopoverContent>
                 </Popover>
               </Stack>
-              <Box
-                display={
-                  collapse.id === order.id && collapse.show ? "block" : "none"
-                }
-              >
-                <Divider variant="dashed" my={6} />
-                <Stack direction="row" justifyContent="center" spacing={6}>
-                  <Stack direction="row" align="center" spacing={2}>
-                    <TruckIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">در حال ارسال :</Text>
-                    <Text>{order.send}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={2}>
-                    <StoreIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">در انبـار :</Text>
-                    <Text>{order.inStore}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={2}>
-                    <SimpleReportIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">در حال بافت :</Text>
-                    <Text>{order.preparation}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={2}>
-                    <ChartIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">در حـال آهـار :</Text>
-                    <Text>{order.inProgress}</Text>
-                  </Stack>
-                </Stack>
-              </Box>
             </Stack>
           </GridItem>
         ))}
