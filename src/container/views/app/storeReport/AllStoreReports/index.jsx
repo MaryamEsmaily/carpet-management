@@ -20,19 +20,20 @@ import useToast from "hook/useToast";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import UserIcon from "components/icon/UserIcon";
-import LocationIcon from "components/icon/LocationIcon";
-import PhoneIcon from "components/icon/PhoneIcon";
-import { postStores } from "data/postStores";
-import StoreIcon from "components/icon/StoreIcon";
-import StarIcon from "components/icon/StarIcon";
 import {
-  useDeleteStore,
-  usePostAllStores,
-  usePutStoreStatus,
-} from "hook/api/useStoresApi";
+  useDeleteStoreReport,
+  usePostAllStoreReport,
+  usePutStoreReportStatus,
+} from "hook/api/useStoreReportApi";
+import LayerIcon from "components/icon/LayerIcon";
+import StoreIcon from "components/icon/StoreIcon";
+import ReportIcon from "components/icon/ReportIcon";
+import ColorIcon from "components/icon/ColorIcon";
+import EraserIcon from "components/icon/EraserIcon";
+import CircleIcon from "components/icon/CircleIcon";
+import { postStoreReport } from "data/postStoreReport";
 
-function AllStores({ filterSearch, status }) {
+function AllStoreReports({ filterSearch }) {
   //
   const { t } = useTranslation();
   //
@@ -47,27 +48,26 @@ function AllStores({ filterSearch, status }) {
   const [pageSize, setPageSize] = useState(pageNumberOptions?.[0].value);
   const [pageNumber, setPageNumber] = useState(1);
   //
-  const deleteStore = useDeleteStore();
-  const putStoreStatus = usePutStoreStatus();
+  const deleteStoreReport = useDeleteStoreReport();
+  const putStoreReportStatus = usePutStoreReportStatus();
   //
   // API
-  // const { data: allStores, totalCount } = usePostAllStores({
+  // const { data: allStoreReport, totalCount } = usePostAllStoreReport({
   //   filterSearch: filterSearch || null,
-  //   status,
   //   pageSize,
   //   pageNumber,
   // });
 
-  // const data = React.useMemo(() => allStores?.content, [allStores?.content]);
+  // const data = React.useMemo(() => allStoreReport?.content, [allStoreReport?.content]);
   //
 
   // MOCK DATA
-  const data = React.useMemo(() => postStores?.Data?.content, []);
+  const data = React.useMemo(() => postStoreReport?.Data?.content, []);
 
-  const totalCount = postStores?.Data?.totalCount;
+  const totalCount = postStoreReport?.Data?.totalCount;
   //
   const handleDelete = (id) => {
-    deleteStore.mutate(
+    deleteStoreReport.mutate(
       {
         id,
       },
@@ -82,7 +82,7 @@ function AllStores({ filterSearch, status }) {
     );
   };
   const handleStatus = ({ id, status }) => {
-    putStoreStatus.mutate(
+    putStoreReportStatus.mutate(
       {
         id,
         status,
@@ -107,34 +107,63 @@ function AllStores({ filterSearch, status }) {
               borderRadius={14}
               bg={index % 2 === 0 ? "layout" : "layout-over"}
               p={6}
-              columns={{ base: 1, lg: 3 }}
+              columns={{ base: 1, lg: 4 }}
               spacing={6}
               position="relative"
             >
               <Stack direction="row" align="center" spacing={2}>
                 <StoreIcon color="text-primary" boxSize={5} />
                 <Text color="text-primary">نـام :</Text>
-                <Text>{store.title}</Text>
+                <Text noOfLines={1}>{store.storeName}</Text>
               </Stack>
               <Stack direction="row" align="center" spacing={2}>
-                <StarIcon color="text-primary" boxSize={5} />
-                <Text color="text-primary">نوع انبـار :</Text>
-                <Text>{store.storeType}</Text>
+                <ReportIcon color="text-primary" boxSize={5} />
+                <Text color="text-primary">کد طـرح :</Text>
+                <Text>{store.code}</Text>
               </Stack>
               <Stack direction="row" align="center" spacing={2}>
-                <UserIcon color="text-primary" fill="none" boxSize={5} />
-                <Text color="text-primary">انبـاردار :</Text>
-                <Text>{store.fullName}</Text>
+                <ColorIcon color="text-primary" boxSize={5} />
+                <Text color="text-primary">نـام رنـگ :</Text>
+                {store?.colors?.map((item, index) => (
+                  <Text key={index}>
+                    {item}{" "}
+                    <Text
+                      as="span"
+                      display={
+                        index === store?.colors?.length - 1 ? "none" : "unset"
+                      }
+                    >
+                      -
+                    </Text>
+                  </Text>
+                ))}
               </Stack>
               <Stack direction="row" align="center" spacing={2}>
-                <PhoneIcon color="text-primary" boxSize={5} />
-                <Text color="text-primary">شمـاره تلفـن :</Text>
-                <Text>{store.mobileNumber}</Text>
+                <EraserIcon color="text-primary" boxSize={5} />
+                <Text color="text-primary">نـام سایـز :</Text>
+                {store?.sizes?.map((item, index) => (
+                  <Text key={index}>
+                    {item}{" "}
+                    <Text
+                      as="span"
+                      display={
+                        index === store?.sizes?.length - 1 ? "none" : "unset"
+                      }
+                    >
+                      -
+                    </Text>
+                  </Text>
+                ))}
               </Stack>
               <Stack direction="row" align="center" spacing={2}>
-                <LocationIcon color="text-primary" fill="none" boxSize={5} />
-                <Text color="text-primary">آدرس :</Text>
-                <Text>{store.address}</Text>
+                <LayerIcon color="text-primary" boxSize={5} />
+                <Text color="text-primary">تعـداد درجه یـک :</Text>
+                <Text>{store.countNumOne}</Text>
+              </Stack>
+              <Stack direction="row" align="center" spacing={2}>
+                <CircleIcon color="text-primary" boxSize={5} />
+                <Text color="text-primary">تعـداد درجـه دار :</Text>
+                <Text>{store.count}</Text>
               </Stack>
               <Popover placement="left-start">
                 <PopoverTrigger>
@@ -187,7 +216,7 @@ function AllStores({ filterSearch, status }) {
                       spacing={3}
                       onClick={() => handleDelete(store.id)}
                     >
-                      <DeleteIcon fill="none" color="red" boxSize={6} />
+                      <DeleteIcon color="red" boxSize={6} />
                       <Text>
                         {/* حذف */}
                         {t("21")}
@@ -212,4 +241,4 @@ function AllStores({ filterSearch, status }) {
   );
 }
 
-export default AllStores;
+export default AllStoreReports;

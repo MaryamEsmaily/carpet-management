@@ -140,7 +140,7 @@ function AllBuyers({ filterSearch, status }) {
                   <IconButton
                     position="absolute"
                     top={3}
-                    right={2}
+                    right={3}
                     icon={<MoreIcon boxSize={4} />}
                     variant="unstyled"
                   />

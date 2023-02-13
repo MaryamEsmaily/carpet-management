@@ -26,6 +26,8 @@ const EditStorePage = lazy(() => import("views/app/store/EditStore"));
 const AddNewOrderPage = lazy(() => import("views/app/AddNewOrder"));
 // Cartable
 const CartablePage = lazy(() => import("views/app/Cartable"));
+// StoreReport
+const StoreReportPage = lazy(() => import("views/app/StoreReport"));
 
 const appRoutes = [
   {
@@ -95,6 +97,10 @@ const appRoutes = [
   {
     path: "/app/cartable",
     element: CartablePage,
+  },
+  {
+    path: "/app/store-report",
+    element: StoreReportPage,
   },
 ];
 

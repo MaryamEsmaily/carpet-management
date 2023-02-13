@@ -3,7 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import reactQueryConfig from "config/reactQueryConfig";
 
 const usePostAllCartable = (params) => {
-  return useQuery(["postAllCartables", params], apiCartable.postAllCartable, {
+  return useQuery(["postAllCartable", params], apiCartable.postAllCartable, {
     ...reactQueryConfig,
     enabled: !!params,
   });

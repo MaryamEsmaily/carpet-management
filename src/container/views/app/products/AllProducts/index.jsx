@@ -235,7 +235,6 @@ function AllProducts({ filterValues, filterSearch, status }) {
                           </Text>
                         </Text>
                       ))}
-                      <Text>{product.color}</Text>
                     </Stack>
                     <Stack direction="row" align="center" spacing={2}>
                       <EraserIcon color="text-primary" boxSize={5} />
