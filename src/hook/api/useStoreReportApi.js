@@ -22,7 +22,7 @@ const useDeleteStoreReport = () => {
   });
 };
 
-const usePutStoreStatus = () => {
+const usePutStoreReportStatus = () => {
   const queryClient = useQueryClient();
   return useMutation(apiStoreReport.putStoreReportStatus, {
     onSuccess: () => {
@@ -31,4 +31,4 @@ const usePutStoreStatus = () => {
   });
 };
 
-export { usePostAllStoreReport, useDeleteStoreReport, usePutStoreStatus };
+export { usePostAllStoreReport, useDeleteStoreReport, usePutStoreReportStatus };

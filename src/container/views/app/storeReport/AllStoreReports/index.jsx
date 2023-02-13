@@ -14,11 +14,9 @@ import {
 } from "@chakra-ui/react";
 import Pagination from "components/Pagination";
 import DeleteIcon from "components/icon/DeleteIcon";
-import EditIcon from "components/icon/EditIcon";
 import MoreIcon from "components/icon/MoreIcon";
 import useToast from "hook/useToast";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
   useDeleteStoreReport,
@@ -195,20 +193,6 @@ function AllStoreReports({ filterSearch }) {
                         {t("13")}
                       </Text>
                     </Radio>
-                    <Link to={`store-edit/${store.id}`}>
-                      <Stack
-                        cursor="pointer"
-                        direction="row"
-                        align="center"
-                        spacing={3}
-                      >
-                        <EditIcon boxSize={5} />
-                        <Text>
-                          {/* ویرایش */}
-                          {t("20")}
-                        </Text>
-                      </Stack>
-                    </Link>
                     <Stack
                       cursor="pointer"
                       direction="row"
