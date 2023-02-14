@@ -7,6 +7,7 @@ const Input = (props) => {
   return (
     <ChakraInput
       ref={inputRef}
+      placeholder=" "
       {...props}
       onKeyDown={(e) => {
         if (e.key === "Escape") {

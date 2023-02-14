@@ -6,6 +6,7 @@ import fonts from "theme/foundations/fonts";
 import fontSizes from "theme/foundations/fontSizes";
 // components
 import Button from "theme/components/Button";
+import Form from "theme/components/Form";
 import Input from "theme/components/Input";
 
 const theme = (direction) =>
@@ -28,6 +29,7 @@ const theme = (direction) =>
       fontSizes,
       components: {
         Button,
+        Form,
         Input,
       },
     },

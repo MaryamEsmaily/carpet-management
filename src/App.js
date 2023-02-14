@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { Routes, Route, Outlet } from "react-router-dom";
 import ProtectedRoute from "router/ProtectedRoute";
 import appRoutes from "router/routes/app.routes";
+import Login from "views/Login";
 
 const App = () => {
   //
@@ -21,7 +22,7 @@ const App = () => {
   return (
     <Routes>
       {/* for index route. usually is landing page or login */}
-      <Route index element={<div>ورود</div>} />
+      <Route index element={<Login />} />
       {/* for protected routes */}
       <Route
         element={
