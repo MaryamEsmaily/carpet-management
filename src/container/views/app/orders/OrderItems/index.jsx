@@ -119,32 +119,35 @@ function OrderItems({ filterSearch }) {
               py={4}
               bg={index % 2 === 0 ? "layout" : "layout-over"}
             >
-              <Stack
-                onClick={() => {
-                  setCollapse({ id: OrderItem.id, show: !collapse.show });
-                }}
-                direction={{ base: "column", xl: "row" }}
-                justify="space-between"
-                cursor="pointer"
-              >
-                <Stack direction="row" align="center" spacing={2}>
-                  <AddNewOrderIcon
-                    color="text-primary"
-                    fill="none"
-                    boxSize={5}
-                  />
-                  <Text color="text-primary">کـد طـرح :</Text>
-                  <Text>{OrderItem.code}</Text>
-                </Stack>
-                <Stack direction="row" align="center" spacing={2}>
-                  <ColorIcon color="text-primary" boxSize={5} />
-                  <Text color="text-primary">نـام رنـگ :</Text>
-                  <Text>{OrderItem.color}</Text>
-                </Stack>
-                <Stack direction="row" align="center" spacing={2}>
-                  <EraserIcon color="text-primary" boxSize={5} />
-                  <Text color="text-primary">نـام سایـز :</Text>
-                  <Text>{OrderItem.size}</Text>
+              <Stack direction="row" spacing={40}>
+                <Stack
+                  flexGrow={1}
+                  onClick={() => {
+                    setCollapse({ id: OrderItem.id, show: !collapse.show });
+                  }}
+                  direction={{ base: "column", xl: "row" }}
+                  justify="space-between"
+                  cursor="pointer"
+                >
+                  <Stack direction="row" align="center" spacing={2}>
+                    <AddNewOrderIcon
+                      color="text-primary"
+                      fill="none"
+                      boxSize={5}
+                    />
+                    <Text color="text-primary">کـد طـرح :</Text>
+                    <Text>{OrderItem.code}</Text>
+                  </Stack>
+                  <Stack direction="row" align="center" spacing={2}>
+                    <ColorIcon color="text-primary" boxSize={5} />
+                    <Text color="text-primary">نـام رنـگ :</Text>
+                    <Text>{OrderItem.color}</Text>
+                  </Stack>
+                  <Stack direction="row" align="center" spacing={2}>
+                    <EraserIcon color="text-primary" boxSize={5} />
+                    <Text color="text-primary">نـام سایـز :</Text>
+                    <Text>{OrderItem.size}</Text>
+                  </Stack>
                 </Stack>
                 <Popover placement="left-start">
                   <PopoverTrigger>
