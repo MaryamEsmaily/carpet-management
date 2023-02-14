@@ -26,4 +26,45 @@ const putOrdersStatus = async (params) => {
   return data;
 };
 
-export { postAllOrders, deleteOrders, putOrdersStatus };
+const postOrderDetails = async ({ queryKey }) => {
+  const params = queryKey?.[1];
+  const { data } = await instance.post(BASE_URL, {
+    payload: params,
+    opCode: 120,
+  });
+  return data?.Data;
+};
+
+const postOrderItems = async ({ queryKey }) => {
+  const params = queryKey?.[1];
+  const { data } = await instance.post(BASE_URL, {
+    payload: params,
+    opCode: 120,
+  });
+  return data?.Data;
+};
+
+const deleteOrderItem = async (params) => {
+  const { data } = await instance.delete(BASE_URL, {
+    data: { payload: params, opCode: 121 },
+  });
+  return data;
+};
+
+const putOrderItemStatus = async (params) => {
+  const { data } = await instance.put(BASE_URL, {
+    payload: params,
+    opCode: 122,
+  });
+  return data;
+};
+
+export {
+  postAllOrders,
+  deleteOrders,
+  putOrdersStatus,
+  postOrderDetails,
+  postOrderItems,
+  deleteOrderItem,
+  putOrderItemStatus,
+};

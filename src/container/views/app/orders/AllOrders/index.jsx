@@ -129,7 +129,14 @@ function AllOrders({ filterSearch, filterValue }) {
                       boxSize={5}
                     />
                     <Text color="text-primary">کـد سفارش :</Text>
-                    <Text>{order.orderCode}</Text>
+                    <Link to={`order-details/${order.id}`}>
+                      <Text
+                        cursor="pointer"
+                        _hover={{ textDecoration: "underline" }}
+                      >
+                        {order.orderCode}
+                      </Text>
+                    </Link>
                   </Stack>
                   <Stack direction="row" align="center" spacing={2}>
                     <LampIcon color="text-primary" boxSize={5} />
@@ -152,6 +159,7 @@ function AllOrders({ filterSearch, filterValue }) {
                     <Text>{order.availableCount}</Text>
                   </Stack>
                 </Stack>
+
                 <Popover placement="left-start">
                   <PopoverTrigger>
                     <IconButton

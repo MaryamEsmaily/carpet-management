@@ -12,9 +12,10 @@ import {
 import CallIcon from "components/icon/CallIcon";
 import LogoIcon from "components/icon/LogoIcon";
 import SearchIcon from "components/icon/SearchIcon";
+import TranslateIcon from "components/icon/TranslateIcon";
 import { menuItems } from "constant/menuItems";
 import NavigationBar from "container/layout/NavigationBar";
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 const AppLayout = (props) => {
@@ -24,13 +25,13 @@ const AppLayout = (props) => {
   const iconColor = useColorModeValue("#000", "#fff");
 
   // language stuff
-  // const { i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
-  // useEffect(() => {
-  //   document.dir = i18n.dir();
-  // }, [i18n, i18n.language]);
+  useEffect(() => {
+    document.dir = i18n.dir();
+  }, [i18n, i18n.language]);
 
-  // const currentLang = i18n.language;
+  const currentLang = i18n.language;
   //
   return (
     <>
@@ -74,7 +75,7 @@ const AppLayout = (props) => {
               )
             }
           />
-          {/* <IconButton
+          <IconButton
             onClick={() => {
               window.location.reload();
               if (currentLang === "fa") {
@@ -88,7 +89,7 @@ const AppLayout = (props) => {
             size="sm"
             variant="unstyled"
             icon={<TranslateIcon color={iconColor} boxSize={5} />}
-          /> */}
+          />
           <SearchIcon fill="none" boxSize={5} />
           <CallIcon fill="none" boxSize={5} />
           <Avatar

@@ -27,4 +27,44 @@ const usePutOrdersStatus = () => {
   });
 };
 
-export { usePostAllOrders, useDeleteOrders, usePutOrdersStatus };
+const usePostOrderDetails = (params) => {
+  return useQuery(["postOrderDetails", params], apiOrders.postOrderDetails, {
+    ...reactQueryConfig,
+    enabled: !!params,
+  });
+};
+
+const usePostOrderItems = (params) => {
+  return useQuery(["postOrderItems", params], apiOrders.postOrderItems, {
+    ...reactQueryConfig,
+    enabled: !!params,
+  });
+};
+
+const useDeleteOrderItem = () => {
+  const queryClient = useQueryClient();
+  return useMutation(apiOrders.deleteOrderItem, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("postOrderItems");
+    },
+  });
+};
+
+const usePutOrderItemStatus = () => {
+  const queryClient = useQueryClient();
+  return useMutation(apiOrders.putOrderItemStatus, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("postOrderItems");
+    },
+  });
+};
+
+export {
+  usePostAllOrders,
+  useDeleteOrders,
+  usePutOrdersStatus,
+  usePostOrderDetails,
+  usePostOrderItems,
+  useDeleteOrderItem,
+  usePutOrderItemStatus,
+};

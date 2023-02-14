@@ -1,7 +1,6 @@
 import {
   Box,
   Divider,
-  Flex,
   Grid,
   GridItem,
   IconButton,
@@ -19,25 +18,24 @@ import EditIcon from "components/icon/EditIcon";
 import MoreIcon from "components/icon/MoreIcon";
 import useToast from "hook/useToast";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import UserIcon from "components/icon/UserIcon";
-import { postCartable } from "data/postCartable";
 import {
-  useDeleteCartable,
-  usePostAllCartable,
-  usePutCartableStatus,
-} from "hook/api/useCartableApi";
+  useDeleteOrderItem,
+  usePostOrderItems,
+  usePutOrderItemStatus,
+} from "hook/api/useOrdersApi";
 import AddNewOrderIcon from "components/icon/AddNewOrderIcon";
-import CalenderIcon from "components/icon/CalenderIcon";
-import LampIcon from "components/icon/LampIcon";
-import LayerIcon from "components/icon/LayerIcon";
 import TruckIcon from "components/icon/TruckIcon";
 import StoreIcon from "components/icon/StoreIcon";
 import SimpleReportIcon from "components/icon/SimpleReportIcon";
 import ChartIcon from "components/icon/ChartIcon";
+import ReportIcon from "components/icon/ReportIcon";
+import ColorIcon from "components/icon/ColorIcon";
+import EraserIcon from "components/icon/EraserIcon";
+import { postOrderItems } from "data/postOrderItems";
 
-function AllCartable({ filterSearch }) {
+function OrderItems({ filterSearch }) {
   //
   const { t } = useTranslation();
 
@@ -54,26 +52,28 @@ function AllCartable({ filterSearch }) {
   const [pageSize, setPageSize] = useState(pageNumberOptions?.[0].value);
   const [pageNumber, setPageNumber] = useState(1);
   //
-  const deleteCartable = useDeleteCartable();
-  const putCartableStatus = usePutCartableStatus();
+  const deleteOrderItem = useDeleteOrderItem();
+  const putOrderItemStatus = usePutOrderItemStatus();
   //
+
   // API
-  // const { data: allCartable, totalCount } = usePostAllCartable({
-  //   filterSearch: filterSearch || null,
+  // const { id } = useParams();
+  // const { data: OrderItems, totalCount } = usePostOrderItems({
+  //   id,
   //   pageSize,
   //   pageNumber,
   // });
 
-  // const data = React.useMemo(() => allCartable?.content, [allCartable?.content]);
+  // const data = React.useMemo(() => OrderItems?.content, [OrderItems?.content]);
   //
 
   // MOCK DATA
-  const data = React.useMemo(() => postCartable?.Data?.content, []);
+  const data = React.useMemo(() => postOrderItems?.Data?.content, []);
 
-  const totalCount = postCartable?.Data?.totalCount;
+  const totalCount = postOrderItems?.Data?.totalCount;
   //
   const handleDelete = (id) => {
-    deleteCartable.mutate(
+    deleteOrderItem.mutate(
       {
         id,
       },
@@ -88,7 +88,7 @@ function AllCartable({ filterSearch }) {
     );
   };
   const handleStatus = ({ id, status }) => {
-    putCartableStatus.mutate(
+    putOrderItemStatus.mutate(
       {
         id,
         status,
@@ -106,54 +106,45 @@ function AllCartable({ filterSearch }) {
   //
   return (
     <Box fontSize="sm">
+      <Stack direction="row" align="center">
+        <ReportIcon boxSize={5} />
+        <Text fontWeight="bold">آیتـم هـا</Text>
+      </Stack>
       <Grid mt={5} templateColumns="repeat(1,minmax(0,1fr))" gap={7}>
-        {data?.map((cartable, index) => (
-          <GridItem key={cartable.id} colSpan={1}>
+        {data?.map((OrderItem, index) => (
+          <GridItem key={OrderItem.id} colSpan={1}>
             <Stack
               borderRadius={14}
-              bg={index % 2 === 0 ? "layout" : "layout-over"}
               px={10}
               py={4}
+              bg={index % 2 === 0 ? "layout" : "layout-over"}
             >
-              <Flex justify="space-between">
-                <Stack
-                  flexGrow={1}
-                  onClick={() => {
-                    setCollapse({ id: cartable.id, show: !collapse.show });
-                  }}
-                  direction={{ base: "column", xl: "row" }}
-                  justify="space-evenly"
-                  cursor="pointer"
-                >
-                  <Stack direction="row" align="center" spacing={2}>
-                    <AddNewOrderIcon
-                      color="text-primary"
-                      fill="none"
-                      boxSize={5}
-                    />
-                    <Text color="text-primary">کـد سفارش :</Text>
-                    <Text>{cartable.orderCode}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={2}>
-                    <LampIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">توسط :</Text>
-                    <Text>{cartable.author}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={2}>
-                    <UserIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">نام متعامل :</Text>
-                    <Text>{cartable.fullName}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={2}>
-                    <CalenderIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">تاریـخ ایجاد :</Text>
-                    <Text>{cartable.date}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={2}>
-                    <LayerIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">آیتم های موجود :</Text>
-                    <Text>{cartable.availableCount}</Text>
-                  </Stack>
+              <Stack
+                onClick={() => {
+                  setCollapse({ id: OrderItem.id, show: !collapse.show });
+                }}
+                direction={{ base: "column", xl: "row" }}
+                justify="space-between"
+                cursor="pointer"
+              >
+                <Stack direction="row" align="center" spacing={2}>
+                  <AddNewOrderIcon
+                    color="text-primary"
+                    fill="none"
+                    boxSize={5}
+                  />
+                  <Text color="text-primary">کـد طـرح :</Text>
+                  <Text>{OrderItem.code}</Text>
+                </Stack>
+                <Stack direction="row" align="center" spacing={2}>
+                  <ColorIcon color="text-primary" boxSize={5} />
+                  <Text color="text-primary">نـام رنـگ :</Text>
+                  <Text>{OrderItem.color}</Text>
+                </Stack>
+                <Stack direction="row" align="center" spacing={2}>
+                  <EraserIcon color="text-primary" boxSize={5} />
+                  <Text color="text-primary">نـام سایـز :</Text>
+                  <Text>{OrderItem.size}</Text>
                 </Stack>
                 <Popover placement="left-start">
                   <PopoverTrigger>
@@ -169,11 +160,11 @@ function AllCartable({ filterSearch }) {
                     <Stack spacing={4}>
                       <Radio
                         size="lg"
-                        isChecked={cartable.status === "0"}
+                        isChecked={OrderItem.status === "0"}
                         onClick={() =>
                           handleStatus({
-                            id: cartable?.id,
-                            status: cartable?.status === "0" ? "1" : "0",
+                            id: OrderItem?.id,
+                            status: OrderItem?.status === "0" ? "1" : "0",
                           })
                         }
                       >
@@ -182,7 +173,7 @@ function AllCartable({ filterSearch }) {
                           {t("13")}
                         </Text>
                       </Radio>
-                      <Link to={`Cartable-edit/${cartable.id}`}>
+                      <Link to={`OrderItem-edit/${OrderItem.id}`}>
                         <Stack
                           cursor="pointer"
                           direction="row"
@@ -201,7 +192,7 @@ function AllCartable({ filterSearch }) {
                         direction="row"
                         align="center"
                         spacing={3}
-                        onClick={() => handleDelete(cartable.id)}
+                        onClick={() => handleDelete(OrderItem.id)}
                       >
                         <DeleteIcon color="red" boxSize={6} />
                         <Text>
@@ -212,12 +203,11 @@ function AllCartable({ filterSearch }) {
                     </Stack>
                   </PopoverContent>
                 </Popover>
-              </Flex>
-
+              </Stack>
               <Stack
                 spacing={6}
                 display={
-                  collapse.id === cartable.id && collapse.show
+                  collapse.id === OrderItem.id && collapse.show
                     ? "block"
                     : "none"
                 }
@@ -228,22 +218,22 @@ function AllCartable({ filterSearch }) {
                   <Stack direction="row" align="center" spacing={2}>
                     <TruckIcon color="text-primary" boxSize={5} />
                     <Text color="text-primary">در حال ارسال :</Text>
-                    <Text>{cartable.send}</Text>
+                    <Text>{OrderItem.send}</Text>
                   </Stack>
                   <Stack direction="row" align="center" spacing={2}>
                     <StoreIcon color="text-primary" boxSize={5} />
                     <Text color="text-primary">در انبـار :</Text>
-                    <Text>{cartable.inStore}</Text>
+                    <Text>{OrderItem.inStore}</Text>
                   </Stack>
                   <Stack direction="row" align="center" spacing={2}>
                     <SimpleReportIcon color="text-primary" boxSize={5} />
                     <Text color="text-primary">در حال بافت :</Text>
-                    <Text>{cartable.preparation}</Text>
+                    <Text>{OrderItem.preparation}</Text>
                   </Stack>
                   <Stack direction="row" align="center" spacing={2}>
                     <ChartIcon color="text-primary" boxSize={5} />
                     <Text color="text-primary">در حـال آهـار :</Text>
-                    <Text>{cartable.inProgress}</Text>
+                    <Text>{OrderItem.inProgress}</Text>
                   </Stack>
                 </Stack>
               </Stack>
@@ -263,4 +253,4 @@ function AllCartable({ filterSearch }) {
   );
 }
 
-export default AllCartable;
+export default OrderItems;
