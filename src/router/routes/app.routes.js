@@ -31,6 +31,8 @@ const StoreReportPage = lazy(() => import("views/app/StoreReport"));
 // Orders
 const OrdersPage = lazy(() => import("views/app/orders"));
 const OrderDetailsPage = lazy(() => import("views/app/orders/OrderDetails"));
+// OrderReport
+const OrderReportPage = lazy(() => import("views/app/OrderReport"));
 
 const appRoutes = [
   {
@@ -112,6 +114,10 @@ const appRoutes = [
   {
     path: "/app/orders/order-details/:id",
     element: OrderDetailsPage,
+  },
+  {
+    path: "/app/order-report",
+    element: OrderReportPage,
   },
 ];
 
