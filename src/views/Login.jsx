@@ -57,7 +57,7 @@ function Login() {
   //
   return (
     <Grid templateColumns="repeat(4,minmax(0,1fr))" h="100vh" p={6}>
-      <GridItem colSpan={1}>
+      <GridItem colSpan={1} display={{ base: "none", lg: "unset" }}>
         <Flex
           justify="center"
           align="center"
@@ -68,7 +68,7 @@ function Login() {
           <Image src={logoImg} width="200px" height="200px" objectFit="cover" />
         </Flex>
       </GridItem>
-      <GridItem colSpan={3}>
+      <GridItem colSpan={{ base: 5, lg: 3 }}>
         <Stack justify="center" align="center" h="100%">
           <Box width="100%" maxW="400px">
             <Text fontSize={24} fontWeight="bold">
