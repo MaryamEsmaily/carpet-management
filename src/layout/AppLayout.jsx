@@ -25,13 +25,13 @@ const AppLayout = (props) => {
   const iconColor = useColorModeValue("#000", "#fff");
 
   // language stuff
-  const { i18n } = useTranslation();
+  // const { i18n } = useTranslation();
 
-  useEffect(() => {
-    document.dir = i18n.dir();
-  }, [i18n, i18n.language]);
+  // useEffect(() => {
+  //   document.dir = i18n.dir();
+  // }, [i18n, i18n.language]);
 
-  const currentLang = i18n.language;
+  // const currentLang = i18n.language;
   //
   return (
     <>
@@ -75,7 +75,7 @@ const AppLayout = (props) => {
               )
             }
           />
-          <IconButton
+          {/* <IconButton
             onClick={() => {
               window.location.reload();
               if (currentLang === "fa") {
@@ -89,7 +89,7 @@ const AppLayout = (props) => {
             size="sm"
             variant="unstyled"
             icon={<TranslateIcon color={iconColor} boxSize={5} />}
-          />
+          /> */}
           <SearchIcon fill="none" boxSize={5} />
           <CallIcon fill="none" boxSize={5} />
           <Avatar

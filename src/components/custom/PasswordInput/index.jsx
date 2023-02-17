@@ -10,8 +10,13 @@ function PasswordInput(props) {
   //
   return (
     <InputGroup>
-      <Input type={show ? "text" : "password"} {...props} />
-      <InputLeftElement>
+      <Input pr={12} type={show ? "text" : "password"} {...props} />
+      <InputLeftElement
+        sx={{
+          right: 0,
+          left: "unset",
+        }}
+      >
         <IconButton
           icon={
             !show ? (
