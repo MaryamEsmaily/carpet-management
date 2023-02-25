@@ -32,6 +32,7 @@ const StoreReportPage = lazy(() => import("views/app/StoreReport"));
 const OrdersPage = lazy(() => import("views/app/orders"));
 const OrderDetailsPage = lazy(() => import("views/app/orders/OrderDetails"));
 const OrderHistoryPage = lazy(() => import("views/app/orders/OrderHistory"));
+const EditOrderPage = lazy(() => import("views/app/orders/EditOrder"));
 // OrderReport
 const OrderReportPage = lazy(() => import("views/app/OrderReport"));
 
@@ -119,6 +120,10 @@ const appRoutes = [
   {
     path: "/app/orders/order-history/:id",
     element: OrderHistoryPage,
+  },
+  {
+    path: "/app/orders/order-edit/:id",
+    element: EditOrderPage,
   },
   {
     path: "/app/order-report",

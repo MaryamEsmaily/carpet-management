@@ -68,6 +68,24 @@ const postOrderHistory = async ({ queryKey }) => {
   return data?.Data;
 };
 
+const postEditOrder = async ({ queryKey }) => {
+  const params = queryKey?.[1];
+  const { data } = await instance.post(BASE_URL, {
+    payload: params,
+    opCode: 120,
+  });
+  return data?.Data;
+};
+
+const postOrderStatus = async ({ queryKey }) => {
+  const params = queryKey?.[1];
+  const { data } = await instance.post(BASE_URL, {
+    payload: params,
+    opCode: 120,
+  });
+  return data?.Data;
+};
+
 export {
   postAllOrders,
   deleteOrders,
@@ -77,4 +95,6 @@ export {
   deleteOrderItem,
   putOrderItemStatus,
   postOrderHistory,
+  postEditOrder,
+  postOrderStatus,
 };

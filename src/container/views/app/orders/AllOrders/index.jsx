@@ -30,6 +30,7 @@ import AddNewOrderIcon from "components/icon/AddNewOrderIcon";
 import CalenderIcon from "components/icon/CalenderIcon";
 import LampIcon from "components/icon/LampIcon";
 import LayerIcon from "components/icon/LayerIcon";
+import HistoryIcon from "components/icon/HistoryIcon";
 
 function AllOrders({ filterSearch, filterValue }) {
   //
@@ -168,7 +169,7 @@ function AllOrders({ filterSearch, filterValue }) {
                     />
                   </PopoverTrigger>
                   <PopoverContent
-                    sx={{ width: "140px", borderRadius: "8px", p: 4 }}
+                    sx={{ width: "fit-content", borderRadius: "8px", p: 4 }}
                   >
                     <PopoverArrow />
                     <Stack spacing={4}>
@@ -214,6 +215,17 @@ function AllOrders({ filterSearch, filterValue }) {
                           {t("21")}
                         </Text>
                       </Stack>
+                      <Link to={`order-history/${order.id}`}>
+                        <Stack
+                          cursor="pointer"
+                          direction="row"
+                          align="center"
+                          spacing={3}
+                        >
+                          <HistoryIcon boxSize={5} />
+                          <Text>تاریخچه تغییرات</Text>
+                        </Stack>
+                      </Link>
                     </Stack>
                   </PopoverContent>
                 </Popover>
