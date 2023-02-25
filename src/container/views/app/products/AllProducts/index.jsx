@@ -108,85 +108,85 @@ function AllProducts({ filterValues, filterSearch, status }) {
       <Grid mt={5} templateColumns="repeat(2,minmax(0,1fr))" gap={7}>
         {data?.map((product) => (
           <GridItem key={product.id} colSpan={{ base: 2, lg: 1 }}>
-            <Link to={`product-details/${product.id}`}>
-              <Grid
-                templateColumns="repeat(7,minmax(0,1fr))"
-                direction="row"
-                borderRadius={14}
-                bg="layout"
-                p={4}
-                gap={4}
-              >
-                <GridItem colSpan={{ base: 7, xl: 3 }}>
-                  <Image
-                    src={product.image}
-                    objectFit="cover"
-                    width="100%"
-                    h={200}
-                    borderRadius={14}
-                  />
-                </GridItem>
-                <GridItem colSpan={{ base: 7, xl: 4 }}>
-                  <Stack justifyContent="space-between">
-                    <Box textAlign="end">
-                      <Popover placement="left-start">
-                        <PopoverTrigger>
-                          <IconButton
-                            icon={<MoreIcon boxSize={5} />}
-                            variant="unstyled"
-                          />
-                        </PopoverTrigger>
-                        <PopoverContent
-                          sx={{ width: "140px", borderRadius: "8px", p: 4 }}
-                        >
-                          <PopoverArrow />
-                          <Stack spacing={4}>
-                            <Radio
-                              size="lg"
-                              isChecked={product.status === "0"}
-                              onClick={() =>
-                                handleStatus({
-                                  id: product?.id,
-                                  status: product?.status === "0" ? "1" : "0",
-                                })
-                              }
-                            >
-                              <Text fontSize="md" mx={1}>
-                                {/* غیـرفعـال */}
-                                {t("13")}
-                              </Text>
-                            </Radio>
-                            <Link to={`product-edit/${product.id}`}>
-                              <Stack
-                                cursor="pointer"
-                                direction="row"
-                                align="center"
-                                spacing={3}
-                              >
-                                <EditIcon boxSize={5} />
-                                <Text>
-                                  {/* ویرایش */}
-                                  {t("20")}
-                                </Text>
-                              </Stack>
-                            </Link>
+            <Grid
+              templateColumns="repeat(7,minmax(0,1fr))"
+              direction="row"
+              borderRadius={14}
+              bg="layout"
+              p={4}
+              gap={4}
+            >
+              <GridItem colSpan={{ base: 7, xl: 3 }}>
+                <Image
+                  src={product.image}
+                  objectFit="cover"
+                  width="100%"
+                  h={200}
+                  borderRadius={14}
+                />
+              </GridItem>
+              <GridItem colSpan={{ base: 7, xl: 4 }}>
+                <Stack justifyContent="space-between">
+                  <Box textAlign="end">
+                    <Popover placement="left-start">
+                      <PopoverTrigger>
+                        <IconButton
+                          icon={<MoreIcon boxSize={5} />}
+                          variant="unstyled"
+                        />
+                      </PopoverTrigger>
+                      <PopoverContent
+                        sx={{ width: "140px", borderRadius: "8px", p: 4 }}
+                      >
+                        <PopoverArrow />
+                        <Stack spacing={4}>
+                          <Radio
+                            size="lg"
+                            isChecked={product.status === "0"}
+                            onClick={() =>
+                              handleStatus({
+                                id: product?.id,
+                                status: product?.status === "0" ? "1" : "0",
+                              })
+                            }
+                          >
+                            <Text fontSize="md" mx={1}>
+                              {/* غیـرفعـال */}
+                              {t("13")}
+                            </Text>
+                          </Radio>
+                          <Link to={`product-edit/${product.id}`}>
                             <Stack
                               cursor="pointer"
                               direction="row"
                               align="center"
                               spacing={3}
-                              onClick={() => handleDelete(product.id)}
                             >
-                              <DeleteIcon fill="none" color="red" boxSize={6} />
+                              <EditIcon boxSize={5} />
                               <Text>
-                                {/* حذف */}
-                                {t("21")}
+                                {/* ویرایش */}
+                                {t("20")}
                               </Text>
                             </Stack>
+                          </Link>
+                          <Stack
+                            cursor="pointer"
+                            direction="row"
+                            align="center"
+                            spacing={3}
+                            onClick={() => handleDelete(product.id)}
+                          >
+                            <DeleteIcon fill="none" color="red" boxSize={6} />
+                            <Text>
+                              {/* حذف */}
+                              {t("21")}
+                            </Text>
                           </Stack>
-                        </PopoverContent>
-                      </Popover>
-                    </Box>
+                        </Stack>
+                      </PopoverContent>
+                    </Popover>
+                  </Box>
+                  <Link to={`product-details/${product.id}`}>
                     <Stack spacing={4}>
                       <Stack direction="row" align="center" spacing={2}>
                         <CardIcon color="text-primary" boxSize={5} />
@@ -252,10 +252,10 @@ function AllProducts({ filterValues, filterSearch, status }) {
                         ))}
                       </Stack>
                     </Stack>
-                  </Stack>
-                </GridItem>
-              </Grid>
-            </Link>
+                  </Link>
+                </Stack>
+              </GridItem>
+            </Grid>
           </GridItem>
         ))}
       </Grid>
