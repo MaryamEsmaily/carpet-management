@@ -1,18 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Divider,
-  FormControl,
-  FormLabel,
-  Grid,
-  GridItem,
-  Radio,
-  RadioGroup,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
-import Input from "components/custom/Input";
-import BuyerIcon from "components/icon/BuyerIcon";
+import { Box, Divider, Stack, Text } from "@chakra-ui/react";
 import TruckIcon from "components/icon/TruckIcon";
 import StoreIcon from "components/icon/StoreIcon";
 import SimpleReportIcon from "components/icon/SimpleReportIcon";
