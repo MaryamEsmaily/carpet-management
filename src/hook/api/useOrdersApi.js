@@ -59,6 +59,13 @@ const usePutOrderItemStatus = () => {
   });
 };
 
+const usePostOrderHistory = (params) => {
+  return useQuery(["postOrderHistory", params], apiOrders.postOrderHistory, {
+    ...reactQueryConfig,
+    enabled: !!params,
+  });
+};
+
 export {
   usePostAllOrders,
   useDeleteOrders,
@@ -67,4 +74,5 @@ export {
   usePostOrderItems,
   useDeleteOrderItem,
   usePutOrderItemStatus,
+  usePostOrderHistory,
 };
