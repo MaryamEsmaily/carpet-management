@@ -9,12 +9,12 @@ import {
   Stack,
   Textarea,
 } from "@chakra-ui/react";
-import SelectCustom from "components/custom/SelectCustom";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import useToast from "hook/useToast";
 import Input from "components/custom/Input";
 import { usePostAddBuyer } from "hook/api/useBuyersApi";
+import InputSelectList from "components/custom/InputSelectList";
 //
 const initialValues = {
   fullName: "",
@@ -33,28 +33,21 @@ function AddBuyer() {
   const postAddBuyer = usePostAddBuyer();
   //
   const handleSubmit = (values) => {
-    postAddBuyer.mutate(
-      {
-        ...values,
-        mobileNumbers: values.mobileNumbers.map((size) => size.value),
+    postAddBuyer.mutate(values, {
+      onSuccess: (res) => {
+        toast.success({ res });
+        formik.resetForm();
       },
-      {
-        onSuccess: (res) => {
-          toast.success({ res });
-          formik.resetForm();
-        },
-        onError: (err) => {
-          toast.error({ err });
-        },
-      }
-    );
+      onError: (err) => {
+        toast.error({ err });
+      },
+    });
   };
   //
   const formik = useFormik({
     onSubmit: handleSubmit,
     initialValues: initialValues,
   });
-
   //
   return (
     <Box
@@ -99,11 +92,7 @@ function AddBuyer() {
         <GridItem colSpan={{ base: 2, lg: 1 }}>
           <FormControl isRequired>
             <FormLabel fontWeight="bold">شماره همـراه</FormLabel>
-            <SelectCustom
-              {...formik.getFieldProps("mobileNumbers")}
-              isMulti
-              // options={getAllColors?.Data.content}
-            />
+            <InputSelectList {...formik.getFieldProps("mobileNumbers")} />
           </FormControl>
           <FormControl mt={10} isRequired>
             <FormLabel fontWeight="bold">آدرس </FormLabel>
