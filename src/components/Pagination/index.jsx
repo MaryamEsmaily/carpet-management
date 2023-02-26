@@ -66,7 +66,7 @@ function Pagination({
   const menuBg = useColorModeValue("#6a82dd6b", "#000");
 
   return (
-    <Box mb={5}>
+    <Box mb={120}>
       <Divider mt={4} mb={2} />
       <Flex justifyContent="space-between">
         <Stack direction="row" align="center" spacing={4}>

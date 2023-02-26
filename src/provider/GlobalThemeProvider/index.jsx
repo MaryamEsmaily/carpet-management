@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import {
   globalThemeDispatchCtx,
   globalThemeStateCtx,
@@ -16,7 +16,14 @@ function GlobalThemeProvider({ children }) {
     { locale: "en", dir: "ltr" },
   ];
   //
-  const locale = localStorage.getItem("locale");
+  const locale = localStorage.getItem("locale") ?? "fa";
+
+  useEffect(() => {
+    if (!localStorage.getItem("locale")) {
+      localStorage.setItem("locale", "fa");
+      window.location.reload();
+    }
+  }, []);
   //
   const [state, dispatch] = useReducer(
     globalThemeReducer,
