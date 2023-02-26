@@ -117,49 +117,44 @@ function AllOrders({ filterSearch, filterValue }) {
               p={6}
               spacing={10}
             >
-              <Stack direction={"row"} justify="space-between">
-                <Stack
-                  direction={{ base: "column", xl: "row" }}
-                  justify="space-between"
-                  spacing={7}
-                >
-                  <Stack direction="row" align="center" spacing={2}>
-                    <AddNewOrderIcon
-                      color="text-primary"
-                      fill="none"
-                      boxSize={5}
-                    />
-                    <Text color="text-primary">کـد سفارش :</Text>
-                    <Link to={`order-details/${order.id}`}>
-                      <Text
-                        cursor="pointer"
-                        _hover={{ textDecoration: "underline" }}
-                      >
-                        {order.orderCode}
-                      </Text>
-                    </Link>
+              <Stack direction={"row"} align="center" justify="space-between">
+                <Link to={`order-details/${order.id}`}>
+                  <Stack
+                    direction={{ base: "column", xl: "row" }}
+                    justify="space-between"
+                    spacing={7}
+                  >
+                    <Stack direction="row" align="center" spacing={2}>
+                      <AddNewOrderIcon
+                        color="text-primary"
+                        fill="none"
+                        boxSize={5}
+                      />
+                      <Text color="text-primary">کـد سفارش :</Text>
+                      <Text cursor="pointer">{order.orderCode}</Text>
+                    </Stack>
+                    <Stack direction="row" align="center" spacing={2}>
+                      <LampIcon color="text-primary" boxSize={5} />
+                      <Text color="text-primary">توسط :</Text>
+                      <Text>{order.author}</Text>
+                    </Stack>
+                    <Stack direction="row" align="center" spacing={2}>
+                      <UserIcon color="text-primary" boxSize={5} />
+                      <Text color="text-primary">نام متعامل :</Text>
+                      <Text>{order.fullName}</Text>
+                    </Stack>
+                    <Stack direction="row" align="center" spacing={2}>
+                      <CalenderIcon color="text-primary" boxSize={5} />
+                      <Text color="text-primary">تاریـخ ایجاد :</Text>
+                      <Text>{order.date}</Text>
+                    </Stack>
+                    <Stack direction="row" align="center" spacing={2}>
+                      <LayerIcon color="text-primary" boxSize={5} />
+                      <Text color="text-primary">آیتم های موجود :</Text>
+                      <Text>{order.availableCount}</Text>
+                    </Stack>
                   </Stack>
-                  <Stack direction="row" align="center" spacing={2}>
-                    <LampIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">توسط :</Text>
-                    <Text>{order.author}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={2}>
-                    <UserIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">نام متعامل :</Text>
-                    <Text>{order.fullName}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={2}>
-                    <CalenderIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">تاریـخ ایجاد :</Text>
-                    <Text>{order.date}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={2}>
-                    <LayerIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">آیتم های موجود :</Text>
-                    <Text>{order.availableCount}</Text>
-                  </Stack>
-                </Stack>
+                </Link>
 
                 <Popover placement="left-start">
                   <PopoverTrigger>
@@ -196,10 +191,7 @@ function AllOrders({ filterSearch, filterValue }) {
                           spacing={3}
                         >
                           <EditIcon boxSize={5} />
-                          <Text>
-                            {/* ویرایش */}
-                            {t("20")}
-                          </Text>
+                          <Text>ایجاد تغییر</Text>
                         </Stack>
                       </Link>
                       <Stack

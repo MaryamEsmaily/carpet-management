@@ -116,9 +116,7 @@ function AllBuyers({ filterSearch, status }) {
               <Stack direction="row" align="center" spacing={2}>
                 <UserIcon color="text-primary" boxSize={5} />
                 <Text color="text-primary">نـام و نـام خـانوادگی :</Text>
-                <Text _hover={{ textDecoration: "underline" }} noOfLines={1}>
-                  {buyer.fullName}
-                </Text>
+                <Text noOfLines={1}>{buyer.fullName}</Text>
               </Stack>
               <Stack direction="row" align="center" spacing={2}>
                 <PhoneIcon color="text-primary" boxSize={5} />

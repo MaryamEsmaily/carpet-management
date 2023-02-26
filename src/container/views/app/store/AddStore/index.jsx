@@ -15,13 +15,14 @@ import { useNavigate } from "react-router-dom";
 import useToast from "hook/useToast";
 import Input from "components/custom/Input";
 import { usePostAddBuyer } from "hook/api/useBuyersApi";
+import InputSelectList from "components/custom/InputSelectList";
 //
 const initialValues = {
   title: "",
   fullName: "",
   address: "",
   storeType: [],
-  mobileNumber: "",
+  mobileNumbers: [],
 };
 //
 function AddStore() {
@@ -101,11 +102,7 @@ function AddStore() {
         <GridItem colSpan={{ base: 2, lg: 1 }}>
           <FormControl isRequired>
             <FormLabel fontWeight="bold">شماره تلفـن</FormLabel>
-            <SelectCustom
-              {...formik.getFieldProps("mobileNumber")}
-              isMulti
-              // options={getAllColors?.Data.content}
-            />
+            <InputSelectList {...formik.getFieldProps("mobileNumbers")} />
           </FormControl>
         </GridItem>
         <GridItem colSpan={{ base: 2, lg: 1 }}>

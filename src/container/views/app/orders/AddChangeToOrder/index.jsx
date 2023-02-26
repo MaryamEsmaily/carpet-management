@@ -1,29 +1,17 @@
 import React from "react";
-import {
-  Box,
-  Button,
-  Divider,
-  FormControl,
-  FormLabel,
-  Grid,
-  GridItem,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
-import Input from "components/custom/Input";
-import StoreIcon from "components/icon/StoreIcon";
+import { Box, Button, Divider, Stack, Text } from "@chakra-ui/react";
 import EditIcon from "components/icon/EditIcon";
-import SelectCustom from "components/custom/SelectCustom";
 import { useNavigate } from "react-router-dom";
 import { usePostEditOrder } from "hook/api/useOrdersApi";
 import { useFormik } from "formik";
 import useToast from "hook/useToast";
+import uuid from "react-uuid";
+import ChangeDetails from "../ChangeDetails";
 //
 const initialValues = {
-  fromStatus: "",
-  toStatus: "",
-  count: "",
-  description: "",
+  changes: [
+    { id: 1, fromStatus: "", toStatus: "", count: "", description: "" },
+  ],
 };
 //
 function AddChangeToOrder() {
@@ -33,6 +21,19 @@ function AddChangeToOrder() {
   const toast = useToast();
   //
   const postEditOrder = usePostEditOrder();
+  //
+  const handleAddNewChange = () => {
+    formik.setFieldValue("changes", [
+      ...formik.values.changes,
+      {
+        id: uuid(),
+        fromStatus: "",
+        toStatus: "",
+        count: "",
+        description: "",
+      },
+    ]);
+  };
   //
   const handleSubmit = (values) => {
     postEditOrder.mutate(values, {
@@ -59,69 +60,12 @@ function AddChangeToOrder() {
           <Text fontWeight="bold">ایجــاد تغییـر</Text>
         </Stack>
         <Divider my={8} />
-        <Box>
-          <Grid
-            templateColumns="repeat(14,minmax(0,1fr))"
-            alignItems="end"
-            gap={5}
-          >
-            <GridItem colSpan={{ base: 14, md: 7, xl: 3 }}>
-              <FormControl>
-                <FormLabel fontSize="sm" fontWeight="bold">
-                  از وضعیـت
-                </FormLabel>
-                <SelectCustom
-                  {...formik.getFieldProps("fromStatus")}
-                  isMulti
-                  // options={getAllColors?.Data.content}
-                />
-              </FormControl>
-            </GridItem>
-            <GridItem colSpan={{ base: 14, md: 7, xl: 3 }}>
-              <FormControl>
-                <FormLabel fontSize="sm" fontWeight="bold">
-                  بـه وضعیـت
-                </FormLabel>
-                <SelectCustom
-                  {...formik.getFieldProps("toStatus")}
-                  isMulti
-                  // options={getAllColors?.Data.content}
-                />
-              </FormControl>
-            </GridItem>
-            <GridItem colSpan={{ base: 14, md: 7, xl: 2 }}>
-              <FormControl>
-                <FormLabel fontSize="sm" fontWeight="bold">
-                  تعداد
-                </FormLabel>
-                <Input variant="filled" {...formik.getFieldProps("count")} />
-              </FormControl>
-            </GridItem>
-            <GridItem colSpan={{ base: 14, md: 7, xl: 6 }}>
-              <FormControl>
-                <FormLabel fontSize="sm" fontWeight="bold">
-                  توضیحـات
-                </FormLabel>
-                <Input
-                  variant="filled"
-                  {...formik.getFieldProps("description")}
-                />
-              </FormControl>
-            </GridItem>
-          </Grid>
-          <Stack direction="row" alignItems="center" mt={4}>
-            <Stack direction="row" alignItems="center">
-              <StoreIcon boxSize={5} color="text-primary" />
-              <Text fontSize="sm" color="text-primary">
-                موجودی فعلی :
-              </Text>
-            </Stack>
-            <Text>۱۲ عـدد</Text>
-          </Stack>
-        </Box>
+        {formik.values.changes?.map((_, index) => (
+          <ChangeDetails index={index} formik={formik} />
+        ))}
         <Divider variant="dashed" my={8} />
         <Box textAlign="end">
-          <Button>ایجـاد تغییـر جدیـد</Button>
+          <Button onClick={handleAddNewChange}>ایجـاد تغییـر جدیـد</Button>
         </Box>
       </Box>
       <Stack direction="row" spacing={2} mt={6} w="full" justify="end">

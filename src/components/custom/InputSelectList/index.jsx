@@ -47,6 +47,7 @@ function InputSelectList({ name, onChange, value }) {
       ))}
 
       <Input
+        isRequired={false}
         type="number"
         sx={{
           all: "unset",

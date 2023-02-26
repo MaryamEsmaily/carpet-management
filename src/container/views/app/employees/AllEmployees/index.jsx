@@ -195,41 +195,36 @@ function AllEmployees({ filterSearch, status }) {
                         </PopoverContent>
                       </Popover>
                     </Box>
-                    <Stack spacing={4}>
-                      <Stack direction="row" align="center" spacing={2}>
-                        <UserIcon color="text-primary" boxSize={5} />
-                        <Text color="text-primary">
-                          نـام و نـام خـانوادگی :
-                        </Text>
-                        <Link to={`employee-details/${employee.id}`}>
-                          <Text
-                            _hover={{ textDecoration: "underline" }}
-                            noOfLines={1}
-                          >
-                            {employee.fullName}
+                    <Link to={`employee-details/${employee.id}`}>
+                      <Stack spacing={4}>
+                        <Stack direction="row" align="center" spacing={2}>
+                          <UserIcon color="text-primary" boxSize={5} />
+                          <Text color="text-primary">
+                            نـام و نـام خـانوادگی :
                           </Text>
-                        </Link>
+                          <Text noOfLines={1}>{employee.fullName}</Text>
+                        </Stack>
+                        <Stack direction="row" align="center" spacing={2}>
+                          <PhoneIcon
+                            color="text-primary"
+                            fill="none"
+                            boxSize={5}
+                          />
+                          <Text color="text-primary">شمـاره همـراه :</Text>
+                          <Text>{employee.mobileNumber}</Text>
+                        </Stack>
+                        <Stack direction="row" align="center" spacing={2}>
+                          <UserNameIcon color="text-primary" boxSize={5} />
+                          <Text color="text-primary">نـام کـاربری :</Text>
+                          <Text>{employee.userName}</Text>
+                        </Stack>
+                        <Stack direction="row" align="center" spacing={2}>
+                          <RoleIcon color="text-primary" boxSize={5} />
+                          <Text color="text-primary">نقش :</Text>
+                          <Text>{employee.role}</Text>
+                        </Stack>
                       </Stack>
-                      <Stack direction="row" align="center" spacing={2}>
-                        <PhoneIcon
-                          color="text-primary"
-                          fill="none"
-                          boxSize={5}
-                        />
-                        <Text color="text-primary">شمـاره همـراه :</Text>
-                        <Text>{employee.mobileNumber}</Text>
-                      </Stack>
-                      <Stack direction="row" align="center" spacing={2}>
-                        <UserNameIcon color="text-primary" boxSize={5} />
-                        <Text color="text-primary">نـام کـاربری :</Text>
-                        <Text>{employee.userName}</Text>
-                      </Stack>
-                      <Stack direction="row" align="center" spacing={2}>
-                        <RoleIcon color="text-primary" boxSize={5} />
-                        <Text color="text-primary">نقش :</Text>
-                        <Text>{employee.role}</Text>
-                      </Stack>
-                    </Stack>
+                    </Link>
                   </Stack>
                 </GridItem>
               </Grid>

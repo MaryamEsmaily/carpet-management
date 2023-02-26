@@ -68,8 +68,7 @@ const postOrderHistory = async ({ queryKey }) => {
   return data?.Data;
 };
 
-const postEditOrder = async ({ queryKey }) => {
-  const params = queryKey?.[1];
+const postEditOrder = async (params) => {
   const { data } = await instance.post(BASE_URL, {
     payload: params,
     opCode: 120,

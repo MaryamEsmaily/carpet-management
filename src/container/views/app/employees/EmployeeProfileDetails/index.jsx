@@ -12,6 +12,7 @@ import {
 import Uploader from "components/Uploader";
 import Input from "components/custom/Input";
 import AccountIcon from "components/icon/AccountIcon";
+import InputSelectList from "components/custom/InputSelectList";
 //
 function EmployeeProfileDetails({ formik }) {
   return (
@@ -64,12 +65,7 @@ function EmployeeProfileDetails({ formik }) {
         <GridItem colSpan={1}>
           <FormControl isRequired>
             <FormLabel fontWeight="bold"> شماره همـراه </FormLabel>
-            <Input
-              variant="filled"
-              _placeholder={{ color: "text-primary" }}
-              placeholder=" شماره همـراه "
-              {...formik.getFieldProps("mobileNumbers")}
-            />
+            <InputSelectList {...formik.getFieldProps("mobileNumbers")} />
           </FormControl>
           <FormControl mt={10}>
             <FormLabel fontWeight="bold">تاریخ تولـد </FormLabel>
