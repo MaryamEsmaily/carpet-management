@@ -18,11 +18,6 @@ import { getAllColors } from "data/getAllColors";
 import { Link, useNavigate } from "react-router-dom";
 import { usePostAddProduct } from "hook/api/useProductManagementApi";
 import useToast from "hook/useToast";
-//
-import firstProduct from "assets/images/product-1.avif";
-import secondProduct from "assets/images/product-2.avif";
-import thirdProduct from "assets/images/product-3.avif";
-import forthProduct from "assets/images/product-4.avif";
 import Input from "components/custom/Input";
 //
 const initialValues = {
@@ -31,7 +26,7 @@ const initialValues = {
   description: "",
   code: "",
   colors: [],
-  images: [firstProduct, secondProduct, thirdProduct, forthProduct],
+  images: [],
 };
 //
 function AddProduct() {

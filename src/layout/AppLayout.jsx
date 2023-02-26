@@ -17,6 +17,7 @@ import { menuItems } from "constant/menuItems";
 import NavigationBar from "container/layout/NavigationBar";
 import { memo, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const AppLayout = (props) => {
   // theme stuff
@@ -52,7 +53,9 @@ const AppLayout = (props) => {
           align="center"
           spacing={10}
         >
-          <LogoIcon boxSize={10} />
+          <Link to="/cartable">
+            <LogoIcon boxSize={10} />
+          </Link>
           <Stack
             direction="row"
             justifyContent="space-between"

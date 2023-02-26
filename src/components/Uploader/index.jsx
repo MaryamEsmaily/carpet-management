@@ -99,7 +99,12 @@ function Uploader({ multiple, onChange, name, value }) {
               </>
             ) : null}
           </Box>
-          <Grid templateColumns="repeat(5,minmax(0,1fr))" gap={2} mt={4}>
+          <Grid
+            templateColumns="repeat(5,minmax(0,1fr))"
+            gap={2}
+            mt={4}
+            width="fit-content"
+          >
             {value.map((url) => (
               <GridItem colSpan={1} key={url}>
                 <Image
