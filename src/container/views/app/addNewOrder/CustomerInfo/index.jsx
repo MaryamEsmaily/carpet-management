@@ -47,7 +47,7 @@ function CustomerInfo({ formik }) {
               variant="filled"
               _placeholder={{ color: "text-primary" }}
               placeholder="انتخاب سفـارش توسط"
-              {...formik.getFieldProps("userName")}
+              {...formik.getFieldProps("customerName")}
             />
           </FormControl>
         </GridItem>
@@ -60,7 +60,7 @@ function CustomerInfo({ formik }) {
               variant="filled"
               _placeholder={{ color: "text-primary" }}
               placeholder="تاریخ سفـارش"
-              {...formik.getFieldProps("email")}
+              {...formik.getFieldProps("orderDate")}
             />
           </FormControl>
         </GridItem>

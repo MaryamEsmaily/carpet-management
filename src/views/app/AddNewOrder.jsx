@@ -20,14 +20,20 @@ import CustomerInfo from "container/views/app/addNewOrder/CustomerInfo";
 import ProductsInfo from "container/views/app/addNewOrder/ProductsInfo";
 
 const initialValues = {
-  fullName: "",
-  userName: "",
-  email: "",
-  address: "",
-  mobileNumbers: [],
-  birthDate: "",
-  phoneNumber: "",
-  image: [],
+  author: "",
+  customerName: "",
+  orderDate: "",
+  description: "",
+  products: [
+    {
+      id: 1,
+      code: "",
+      sizes: [],
+      colors: [],
+      isGraded: "",
+      count: "",
+    },
+  ],
 };
 
 function AddNewOrderPage() {
@@ -38,22 +44,15 @@ function AddNewOrderPage() {
   //
   const postAddEmployee = usePostAddEmployee();
   const handleSubmit = (values) => {
-    postAddEmployee.mutate(
-      {
-        ...values,
-        image: values?.images.map((item) => item),
-        mobileNumbers: values.colors.map((color) => color.value),
+    postAddEmployee.mutate(values, {
+      onSuccess: (res) => {
+        toast.success({ res });
+        formik.resetForm();
       },
-      {
-        onSuccess: (res) => {
-          toast.success({ res });
-          formik.resetForm();
-        },
-        onError: (err) => {
-          toast.error({ err });
-        },
-      }
-    );
+      onError: (err) => {
+        toast.error({ err });
+      },
+    });
   };
   //
   const formik = useFormik({
@@ -62,7 +61,7 @@ function AddNewOrderPage() {
   });
   //
   return (
-    <Box>
+    <Box as="form" onSubmit={formik.handleSubmit}>
       <Stack direction="row" alignItems="center" spacing={2}>
         <BasketIcon boxSize={5} />
         <Text fontWeight="bold" fontSize={20}>
@@ -92,7 +91,6 @@ function AddNewOrderPage() {
         borderRadius={24}
         bg="layout-over"
         p={10}
-        as="form"
       >
         <FormControl>
           <FormLabel fontSize="sm" fontWeight="bold">
