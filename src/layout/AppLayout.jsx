@@ -53,7 +53,7 @@ const AppLayout = (props) => {
           align="center"
           spacing={10}
         >
-          <Link to="/cartable">
+          <Link to="app/cartable">
             <LogoIcon boxSize={10} />
           </Link>
           <Stack
