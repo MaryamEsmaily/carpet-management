@@ -25,6 +25,33 @@ const initialValues = {
   birthDate: "",
   phoneNumber: "",
   image: [],
+  salesManager: {
+    createOrder: false,
+    initialApproval: false,
+    unconfirmedCheck: false,
+    sending: false,
+    allocation: false,
+    disapprovalNotif: false,
+    followingClient: false,
+  },
+  financialManager: {
+    createOrder: false,
+    initialApproval: false,
+    unconfirmedCheck: false,
+    sending: false,
+  },
+  productionManager: {
+    createOrder: false,
+    initialApproval: false,
+    unconfirmedCheck: false,
+    sending: false,
+  },
+  warehouseManager: {
+    createOrder: false,
+    initialApproval: false,
+    unconfirmedCheck: false,
+    sending: false,
+  },
 };
 
 function AddEmployeePage() {
@@ -35,22 +62,15 @@ function AddEmployeePage() {
   //
   const postAddEmployee = usePostAddEmployee();
   const handleSubmit = (values) => {
-    postAddEmployee.mutate(
-      {
-        ...values,
-        image: values?.images.map((item) => item),
-        mobileNumbers: values.colors.map((color) => color.value),
+    postAddEmployee.mutate(values, {
+      onSuccess: (res) => {
+        toast.success({ res });
+        formik.resetForm();
       },
-      {
-        onSuccess: (res) => {
-          toast.success({ res });
-          formik.resetForm();
-        },
-        onError: (err) => {
-          toast.error({ err });
-        },
-      }
-    );
+      onError: (err) => {
+        toast.error({ err });
+      },
+    });
   };
   //
   const formik = useFormik({
@@ -59,7 +79,7 @@ function AddEmployeePage() {
   });
   //
   return (
-    <Box>
+    <Box as="form" onSubmit={formik.handleSubmit}>
       <Stack direction="row" alignItems="center" spacing={2}>
         <BasketIcon boxSize={5} />
         <Text fontWeight="bold" fontSize={20}>
