@@ -23,6 +23,7 @@ import AccountIcon from "components/icon/AccountIcon";
 import EmailIcon from "components/icon/EmailIcon";
 import LocationFillIcon from "components/icon/LocationFillIcon";
 import {
+  useDeleteEmployee,
   usePostEmployeeDetails,
   usePutEmployeeStatus,
 } from "hook/api/useEmployeesApi";
@@ -34,7 +35,7 @@ import EditIcon from "components/icon/EditIcon";
 import DeleteIcon from "components/icon/DeleteIcon";
 import KeyIcon from "components/icon/KeyIcon";
 import ModalChangeEmployeePassword from "components/modal/ModalChangeEmployeePassword";
-import ModalDeleteEmployee from "components/modal/ModalDeleteEmployee";
+import ModalConfirmDelete from "components/modal/ModalConfirmDelete";
 import useModal from "hook/useModal";
 
 function EmployeeDetails() {
@@ -44,6 +45,7 @@ function EmployeeDetails() {
   const { toggle, config } = useModal();
   const { toggle: toggleDelete, config: configDelete } = useModal();
   //
+  const deleteEmployee = useDeleteEmployee();
   const putEmployeeStatus = usePutEmployeeStatus();
   //
   // API
@@ -79,7 +81,7 @@ function EmployeeDetails() {
   return (
     <>
       <ModalChangeEmployeePassword config={config} id="1" />
-      <ModalDeleteEmployee config={configDelete} id="1" />
+      <ModalConfirmDelete config={configDelete} id="1" cb={deleteEmployee} />
       <Box mt={8}>
         <Grid
           templateColumns="repeat(13,minmax(0,1fr))"
@@ -156,7 +158,7 @@ function EmployeeDetails() {
                       direction="row"
                       align="center"
                       spacing={3}
-                      onClick={() => toggleDelete}
+                      onClick={toggleDelete}
                     >
                       <DeleteIcon fill="none" color="red" boxSize={6} />
                       <Text fontSize="sm">حذف</Text>

@@ -34,11 +34,16 @@ import ReportIcon from "components/icon/ReportIcon";
 import ColorIcon from "components/icon/ColorIcon";
 import EraserIcon from "components/icon/EraserIcon";
 import { postOrderItems } from "data/postOrderItems";
+import ModalConfirmDelete from "components/modal/ModalConfirmDelete";
+import useModal from "hook/useModal";
 
 function OrderItems({ filterSearch }) {
   //
   const { t } = useTranslation();
-
+  //
+  const { toggle, config } = useModal();
+  const [id, setId] = useState("");
+  //
   const [collapse, setCollapse] = useState("");
   //
   const toast = useToast();
@@ -72,21 +77,6 @@ function OrderItems({ filterSearch }) {
 
   const totalCount = postOrderItems?.Data?.totalCount;
   //
-  const handleDelete = (id) => {
-    deleteOrderItem.mutate(
-      {
-        id,
-      },
-      {
-        onSuccess: (res) => {
-          toast.success({ res });
-        },
-        onError: (err) => {
-          toast.error({ err });
-        },
-      }
-    );
-  };
   const handleStatus = ({ id, status }) => {
     putOrderItemStatus.mutate(
       {
@@ -105,154 +95,160 @@ function OrderItems({ filterSearch }) {
   };
   //
   return (
-    <Box fontSize="sm">
-      <Stack direction="row" align="center">
-        <ReportIcon boxSize={5} />
-        <Text fontWeight="bold">آیتـم هـا</Text>
-      </Stack>
-      <Grid mt={5} templateColumns="repeat(1,minmax(0,1fr))" gap={7}>
-        {data?.map((OrderItem, index) => (
-          <GridItem key={OrderItem.id} colSpan={1}>
-            <Stack
-              borderRadius={14}
-              px={10}
-              py={4}
-              bg={index % 2 === 0 ? "layout" : "layout-over"}
-            >
-              <Stack direction="row" spacing={40}>
-                <Stack
-                  flexGrow={1}
-                  onClick={() => {
-                    setCollapse({ id: OrderItem.id, show: !collapse.show });
-                  }}
-                  direction={{ base: "column", xl: "row" }}
-                  justify="space-between"
-                  cursor="pointer"
-                >
-                  <Stack direction="row" align="center" spacing={2}>
-                    <AddNewOrderIcon
-                      color="text-primary"
-                      fill="none"
-                      boxSize={5}
-                    />
-                    <Text color="text-primary">کـد طـرح :</Text>
-                    <Text>{OrderItem.code}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={2}>
-                    <ColorIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">نـام رنـگ :</Text>
-                    <Text>{OrderItem.color}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={2}>
-                    <EraserIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">نـام سایـز :</Text>
-                    <Text>{OrderItem.size}</Text>
-                  </Stack>
-                </Stack>
-                <Popover placement="left-start">
-                  <PopoverTrigger>
-                    <IconButton
-                      icon={<MoreIcon boxSize={4} />}
-                      variant="unstyled"
-                    />
-                  </PopoverTrigger>
-                  <PopoverContent
-                    sx={{ width: "140px", borderRadius: "8px", p: 4 }}
+    <>
+      <ModalConfirmDelete config={config} id={id} cb={deleteOrderItem} />
+      <Box fontSize="sm">
+        <Stack direction="row" align="center">
+          <ReportIcon boxSize={5} />
+          <Text fontWeight="bold">آیتـم هـا</Text>
+        </Stack>
+        <Grid mt={5} templateColumns="repeat(1,minmax(0,1fr))" gap={7}>
+          {data?.map((OrderItem, index) => (
+            <GridItem key={OrderItem.id} colSpan={1}>
+              <Stack
+                borderRadius={14}
+                px={10}
+                py={4}
+                bg={index % 2 === 0 ? "layout" : "layout-over"}
+              >
+                <Stack direction="row" spacing={40}>
+                  <Stack
+                    flexGrow={1}
+                    onClick={() => {
+                      setCollapse({ id: OrderItem.id, show: !collapse.show });
+                    }}
+                    direction={{ base: "column", xl: "row" }}
+                    justify="space-between"
+                    cursor="pointer"
                   >
-                    <PopoverArrow />
-                    <Stack spacing={4}>
-                      <Radio
-                        size="lg"
-                        isChecked={OrderItem.status === "0"}
-                        onClick={() =>
-                          handleStatus({
-                            id: OrderItem?.id,
-                            status: OrderItem?.status === "0" ? "1" : "0",
-                          })
-                        }
-                      >
-                        <Text fontSize="md" mx={1}>
-                          {/* غیـرفعـال */}
-                          {t("13")}
-                        </Text>
-                      </Radio>
-                      <Link to={`OrderItem-edit/${OrderItem.id}`}>
+                    <Stack direction="row" align="center" spacing={2}>
+                      <AddNewOrderIcon
+                        color="text-primary"
+                        fill="none"
+                        boxSize={5}
+                      />
+                      <Text color="text-primary">کـد طـرح :</Text>
+                      <Text>{OrderItem.code}</Text>
+                    </Stack>
+                    <Stack direction="row" align="center" spacing={2}>
+                      <ColorIcon color="text-primary" boxSize={5} />
+                      <Text color="text-primary">نـام رنـگ :</Text>
+                      <Text>{OrderItem.color}</Text>
+                    </Stack>
+                    <Stack direction="row" align="center" spacing={2}>
+                      <EraserIcon color="text-primary" boxSize={5} />
+                      <Text color="text-primary">نـام سایـز :</Text>
+                      <Text>{OrderItem.size}</Text>
+                    </Stack>
+                  </Stack>
+                  <Popover placement="left-start">
+                    <PopoverTrigger>
+                      <IconButton
+                        icon={<MoreIcon boxSize={4} />}
+                        variant="unstyled"
+                      />
+                    </PopoverTrigger>
+                    <PopoverContent
+                      sx={{ width: "140px", borderRadius: "8px", p: 4 }}
+                    >
+                      <PopoverArrow />
+                      <Stack spacing={4}>
+                        <Radio
+                          size="lg"
+                          isChecked={OrderItem.status === "0"}
+                          onClick={() =>
+                            handleStatus({
+                              id: OrderItem?.id,
+                              status: OrderItem?.status === "0" ? "1" : "0",
+                            })
+                          }
+                        >
+                          <Text fontSize="md" mx={1}>
+                            {/* غیـرفعـال */}
+                            {t("13")}
+                          </Text>
+                        </Radio>
+                        <Link to={`OrderItem-edit/${OrderItem.id}`}>
+                          <Stack
+                            cursor="pointer"
+                            direction="row"
+                            align="center"
+                            spacing={3}
+                          >
+                            <EditIcon boxSize={5} />
+                            <Text>
+                              {/* ویرایش */}
+                              {t("20")}
+                            </Text>
+                          </Stack>
+                        </Link>
                         <Stack
                           cursor="pointer"
                           direction="row"
                           align="center"
                           spacing={3}
+                          onClick={() => {
+                            toggle();
+                            setId(OrderItem.id);
+                          }}
                         >
-                          <EditIcon boxSize={5} />
+                          <DeleteIcon color="red" boxSize={6} />
                           <Text>
-                            {/* ویرایش */}
-                            {t("20")}
+                            {/* حذف */}
+                            {t("21")}
                           </Text>
                         </Stack>
-                      </Link>
-                      <Stack
-                        cursor="pointer"
-                        direction="row"
-                        align="center"
-                        spacing={3}
-                        onClick={() => handleDelete(OrderItem.id)}
-                      >
-                        <DeleteIcon color="red" boxSize={6} />
-                        <Text>
-                          {/* حذف */}
-                          {t("21")}
-                        </Text>
                       </Stack>
+                    </PopoverContent>
+                  </Popover>
+                </Stack>
+                <Stack
+                  spacing={6}
+                  display={
+                    collapse.id === OrderItem.id && collapse.show
+                      ? "block"
+                      : "none"
+                  }
+                  pb={2}
+                >
+                  <Divider variant="dashed" />
+                  <Stack direction="row" justifyContent="space-evenly">
+                    <Stack direction="row" align="center" spacing={2}>
+                      <TruckIcon color="text-primary" boxSize={5} />
+                      <Text color="text-primary">در حال ارسال :</Text>
+                      <Text>{OrderItem.send}</Text>
                     </Stack>
-                  </PopoverContent>
-                </Popover>
-              </Stack>
-              <Stack
-                spacing={6}
-                display={
-                  collapse.id === OrderItem.id && collapse.show
-                    ? "block"
-                    : "none"
-                }
-                pb={2}
-              >
-                <Divider variant="dashed" />
-                <Stack direction="row" justifyContent="space-evenly">
-                  <Stack direction="row" align="center" spacing={2}>
-                    <TruckIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">در حال ارسال :</Text>
-                    <Text>{OrderItem.send}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={2}>
-                    <StoreIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">در انبـار :</Text>
-                    <Text>{OrderItem.inStore}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={2}>
-                    <SimpleReportIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">در حال بافت :</Text>
-                    <Text>{OrderItem.preparation}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={2}>
-                    <ChartIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">در حـال آهـار :</Text>
-                    <Text>{OrderItem.inProgress}</Text>
+                    <Stack direction="row" align="center" spacing={2}>
+                      <StoreIcon color="text-primary" boxSize={5} />
+                      <Text color="text-primary">در انبـار :</Text>
+                      <Text>{OrderItem.inStore}</Text>
+                    </Stack>
+                    <Stack direction="row" align="center" spacing={2}>
+                      <SimpleReportIcon color="text-primary" boxSize={5} />
+                      <Text color="text-primary">در حال بافت :</Text>
+                      <Text>{OrderItem.preparation}</Text>
+                    </Stack>
+                    <Stack direction="row" align="center" spacing={2}>
+                      <ChartIcon color="text-primary" boxSize={5} />
+                      <Text color="text-primary">در حـال آهـار :</Text>
+                      <Text>{OrderItem.inProgress}</Text>
+                    </Stack>
                   </Stack>
                 </Stack>
               </Stack>
-            </Stack>
-          </GridItem>
-        ))}
-      </Grid>
-      <Pagination
-        pageNumber={pageNumber}
-        setPageNumber={setPageNumber}
-        pageSize={pageSize}
-        setPageSize={setPageSize}
-        totalCount={totalCount}
-        pageNumberOptions={pageNumberOptions}
-      />
-    </Box>
+            </GridItem>
+          ))}
+        </Grid>
+        <Pagination
+          pageNumber={pageNumber}
+          setPageNumber={setPageNumber}
+          pageSize={pageSize}
+          setPageSize={setPageSize}
+          totalCount={totalCount}
+          pageNumberOptions={pageNumberOptions}
+        />
+      </Box>
+    </>
   );
 }
 

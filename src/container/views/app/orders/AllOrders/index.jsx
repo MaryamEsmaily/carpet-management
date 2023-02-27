@@ -31,10 +31,15 @@ import CalenderIcon from "components/icon/CalenderIcon";
 import LampIcon from "components/icon/LampIcon";
 import LayerIcon from "components/icon/LayerIcon";
 import HistoryIcon from "components/icon/HistoryIcon";
+import ModalConfirmDelete from "components/modal/ModalConfirmDelete";
+import useModal from "hook/useModal";
 
 function AllOrders({ filterSearch, filterValue }) {
   //
   const { t } = useTranslation();
+  //
+  const { toggle, config } = useModal();
+  const [id, setId] = useState("");
   //
   const toast = useToast();
   // for pagination
@@ -74,21 +79,6 @@ function AllOrders({ filterSearch, filterValue }) {
 
   const totalCount = postOrders?.Data?.totalCount;
   //
-  const handleDelete = (id) => {
-    deleteOrder.mutate(
-      {
-        id,
-      },
-      {
-        onSuccess: (res) => {
-          toast.success({ res });
-        },
-        onError: (err) => {
-          toast.error({ err });
-        },
-      }
-    );
-  };
   const handleStatus = ({ id, status }) => {
     putOrderStatus.mutate(
       {
@@ -107,134 +97,140 @@ function AllOrders({ filterSearch, filterValue }) {
   };
   //
   return (
-    <Box fontSize="sm">
-      <Grid mt={5} templateColumns="repeat(1,minmax(0,1fr))" gap={7}>
-        {data?.map((order, index) => (
-          <GridItem key={order.id} colSpan={1}>
-            <Stack
-              borderRadius={14}
-              bg={index % 2 === 0 ? "layout" : "layout-over"}
-              p={6}
-              spacing={10}
-            >
-              <Stack direction={"row"} align="center" justify="space-between">
-                <Link to={`order-details/${order.id}`}>
-                  <Stack
-                    direction={{ base: "column", xl: "row" }}
-                    justify="space-between"
-                    spacing={7}
-                  >
-                    <Stack direction="row" align="center" spacing={2}>
-                      <AddNewOrderIcon
-                        color="text-primary"
-                        fill="none"
-                        boxSize={5}
-                      />
-                      <Text color="text-primary">کـد سفارش :</Text>
-                      <Text cursor="pointer">{order.orderCode}</Text>
-                    </Stack>
-                    <Stack direction="row" align="center" spacing={2}>
-                      <LampIcon color="text-primary" boxSize={5} />
-                      <Text color="text-primary">توسط :</Text>
-                      <Text>{order.author}</Text>
-                    </Stack>
-                    <Stack direction="row" align="center" spacing={2}>
-                      <UserIcon color="text-primary" boxSize={5} />
-                      <Text color="text-primary">نام متعامل :</Text>
-                      <Text>{order.fullName}</Text>
-                    </Stack>
-                    <Stack direction="row" align="center" spacing={2}>
-                      <CalenderIcon color="text-primary" boxSize={5} />
-                      <Text color="text-primary">تاریـخ ایجاد :</Text>
-                      <Text>{order.date}</Text>
-                    </Stack>
-                    <Stack direction="row" align="center" spacing={2}>
-                      <LayerIcon color="text-primary" boxSize={5} />
-                      <Text color="text-primary">آیتم های موجود :</Text>
-                      <Text>{order.availableCount}</Text>
-                    </Stack>
-                  </Stack>
-                </Link>
-
-                <Popover placement="left-start">
-                  <PopoverTrigger>
-                    <IconButton
-                      icon={<MoreIcon boxSize={4} />}
-                      variant="unstyled"
-                    />
-                  </PopoverTrigger>
-                  <PopoverContent
-                    sx={{ width: "fit-content", borderRadius: "8px", p: 4 }}
-                  >
-                    <PopoverArrow />
-                    <Stack spacing={4}>
-                      <Radio
-                        size="lg"
-                        isChecked={order.status === "0"}
-                        onClick={() =>
-                          handleStatus({
-                            id: order?.id,
-                            status: order?.status === "0" ? "1" : "0",
-                          })
-                        }
-                      >
-                        <Text fontSize="md" mx={1}>
-                          {/* غیـرفعـال */}
-                          {t("13")}
-                        </Text>
-                      </Radio>
-                      <Link to={`order-edit/${order.id}`}>
-                        <Stack
-                          cursor="pointer"
-                          direction="row"
-                          align="center"
-                          spacing={3}
-                        >
-                          <EditIcon boxSize={5} />
-                          <Text>ایجاد تغییر</Text>
-                        </Stack>
-                      </Link>
-                      <Stack
-                        cursor="pointer"
-                        direction="row"
-                        align="center"
-                        spacing={3}
-                        onClick={() => handleDelete(order.id)}
-                      >
-                        <DeleteIcon color="red" boxSize={6} />
-                        <Text>
-                          {/* حذف */}
-                          {t("21")}
-                        </Text>
+    <>
+      <ModalConfirmDelete config={config} id={id} cb={deleteOrder} />
+      <Box fontSize="sm">
+        <Grid mt={5} templateColumns="repeat(1,minmax(0,1fr))" gap={7}>
+          {data?.map((order, index) => (
+            <GridItem key={order.id} colSpan={1}>
+              <Stack
+                borderRadius={14}
+                bg={index % 2 === 0 ? "layout" : "layout-over"}
+                p={6}
+                spacing={10}
+              >
+                <Stack direction={"row"} align="center" justify="space-between">
+                  <Link to={`order-details/${order.id}`}>
+                    <Stack
+                      direction={{ base: "column", xl: "row" }}
+                      justify="space-between"
+                      spacing={7}
+                    >
+                      <Stack direction="row" align="center" spacing={2}>
+                        <AddNewOrderIcon
+                          color="text-primary"
+                          fill="none"
+                          boxSize={5}
+                        />
+                        <Text color="text-primary">کـد سفارش :</Text>
+                        <Text cursor="pointer">{order.orderCode}</Text>
                       </Stack>
-                      <Link to={`order-history/${order.id}`}>
+                      <Stack direction="row" align="center" spacing={2}>
+                        <LampIcon color="text-primary" boxSize={5} />
+                        <Text color="text-primary">توسط :</Text>
+                        <Text>{order.author}</Text>
+                      </Stack>
+                      <Stack direction="row" align="center" spacing={2}>
+                        <UserIcon color="text-primary" boxSize={5} />
+                        <Text color="text-primary">نام متعامل :</Text>
+                        <Text>{order.fullName}</Text>
+                      </Stack>
+                      <Stack direction="row" align="center" spacing={2}>
+                        <CalenderIcon color="text-primary" boxSize={5} />
+                        <Text color="text-primary">تاریـخ ایجاد :</Text>
+                        <Text>{order.date}</Text>
+                      </Stack>
+                      <Stack direction="row" align="center" spacing={2}>
+                        <LayerIcon color="text-primary" boxSize={5} />
+                        <Text color="text-primary">آیتم های موجود :</Text>
+                        <Text>{order.availableCount}</Text>
+                      </Stack>
+                    </Stack>
+                  </Link>
+
+                  <Popover placement="left-start">
+                    <PopoverTrigger>
+                      <IconButton
+                        icon={<MoreIcon boxSize={4} />}
+                        variant="unstyled"
+                      />
+                    </PopoverTrigger>
+                    <PopoverContent
+                      sx={{ width: "fit-content", borderRadius: "8px", p: 4 }}
+                    >
+                      <PopoverArrow />
+                      <Stack spacing={4}>
+                        <Radio
+                          size="lg"
+                          isChecked={order.status === "0"}
+                          onClick={() =>
+                            handleStatus({
+                              id: order?.id,
+                              status: order?.status === "0" ? "1" : "0",
+                            })
+                          }
+                        >
+                          <Text fontSize="md" mx={1}>
+                            {/* غیـرفعـال */}
+                            {t("13")}
+                          </Text>
+                        </Radio>
+                        <Link to={`order-edit/${order.id}`}>
+                          <Stack
+                            cursor="pointer"
+                            direction="row"
+                            align="center"
+                            spacing={3}
+                          >
+                            <EditIcon boxSize={5} />
+                            <Text>ایجاد تغییر</Text>
+                          </Stack>
+                        </Link>
                         <Stack
                           cursor="pointer"
                           direction="row"
                           align="center"
                           spacing={3}
+                          onClick={() => {
+                            toggle();
+                            setId(order.id);
+                          }}
                         >
-                          <HistoryIcon boxSize={5} />
-                          <Text>تاریخچه تغییرات</Text>
+                          <DeleteIcon color="red" boxSize={6} />
+                          <Text>
+                            {/* حذف */}
+                            {t("21")}
+                          </Text>
                         </Stack>
-                      </Link>
-                    </Stack>
-                  </PopoverContent>
-                </Popover>
+                        <Link to={`order-history/${order.id}`}>
+                          <Stack
+                            cursor="pointer"
+                            direction="row"
+                            align="center"
+                            spacing={3}
+                          >
+                            <HistoryIcon boxSize={5} />
+                            <Text>تاریخچه تغییرات</Text>
+                          </Stack>
+                        </Link>
+                      </Stack>
+                    </PopoverContent>
+                  </Popover>
+                </Stack>
               </Stack>
-            </Stack>
-          </GridItem>
-        ))}
-      </Grid>
-      <Pagination
-        pageNumber={pageNumber}
-        setPageNumber={setPageNumber}
-        pageSize={pageSize}
-        setPageSize={setPageSize}
-        totalCount={totalCount}
-        pageNumberOptions={pageNumberOptions}
-      />
-    </Box>
+            </GridItem>
+          ))}
+        </Grid>
+        <Pagination
+          pageNumber={pageNumber}
+          setPageNumber={setPageNumber}
+          pageSize={pageSize}
+          setPageSize={setPageSize}
+          totalCount={totalCount}
+          pageNumberOptions={pageNumberOptions}
+        />
+      </Box>
+    </>
   );
 }
 

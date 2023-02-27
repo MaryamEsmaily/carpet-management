@@ -25,13 +25,14 @@ import PhoneIcon from "components/icon/PhoneIcon";
 import RoleIcon from "components/icon/RoleIcon";
 import UserNameIcon from "components/icon/UserNameIcon";
 import {
+  useDeleteEmployee,
   usePostAllEmployees,
   usePutEmployeeStatus,
 } from "hook/api/useEmployeesApi";
 import { postAllEmployeesData } from "data/postAllEmployeesData";
 import KeyIcon from "components/icon/KeyIcon";
 import ModalChangeEmployeePassword from "components/modal/ModalChangeEmployeePassword";
-import ModalDeleteEmployee from "components/modal/ModalDeleteEmployee";
+import ModalConfirmDelete from "components/modal/ModalConfirmDelete";
 import useModal from "hook/useModal";
 
 function AllEmployees({ filterSearch, status }) {
@@ -41,6 +42,8 @@ function AllEmployees({ filterSearch, status }) {
   const { toggle, config } = useModal();
   const { toggle: toggleDelete, config: configDelete } = useModal();
   const [id, setId] = useState("");
+  //
+  const deleteEmployee = useDeleteEmployee();
   //
   const toast = useToast();
   // for pagination
@@ -94,7 +97,7 @@ function AllEmployees({ filterSearch, status }) {
   return (
     <>
       <ModalChangeEmployeePassword config={config} id={id} />
-      <ModalDeleteEmployee config={configDelete} id={id} />
+      <ModalConfirmDelete config={configDelete} id={id} cb={deleteEmployee} />
       <Box fontSize="sm">
         <Grid mt={5} templateColumns="repeat(2,minmax(0,1fr))" gap={7}>
           {data?.map((employee) => (

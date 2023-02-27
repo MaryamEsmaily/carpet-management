@@ -3,27 +3,25 @@ import Modal from "components/custom/Modal";
 import { Button, Image, Stack, Text } from "@chakra-ui/react";
 import deleteImage from "assets/images/close.png";
 import useToast from "hook/useToast";
-import { useDeleteEmployee } from "hook/api/useEmployeesApi";
 
-const ModalDeleteEmployee = ({ config, id }) => {
+const ModalConfirmDelete = ({ config, id, cb }) => {
   //
   const toast = useToast();
   //
-  const deleteEmployee = useDeleteEmployee();
-
   const handleDelete = () => {
-    deleteEmployee.mutate(
-      { id },
-      {
-        onSuccess: (res) => {
-          toast.success({ res });
-          config.toggle();
-        },
-        onError: (err) => {
-          toast.error({ err });
-        },
-      }
-    );
+    if (cb)
+      cb.mutate(
+        { id },
+        {
+          onSuccess: (res) => {
+            toast.success({ res });
+            config.toggle();
+          },
+          onError: (err) => {
+            toast.error({ err });
+          },
+        }
+      );
   };
   //
   return (
@@ -56,4 +54,4 @@ const ModalDeleteEmployee = ({ config, id }) => {
   );
 };
 
-export default ModalDeleteEmployee;
+export default ModalConfirmDelete;

@@ -20,10 +20,15 @@ import {
 } from "hook/api/useProductManagementApi";
 import useToast from "hook/useToast";
 import React, { useState } from "react";
+import useModal from "hook/useModal";
+import ModalConfirmDelete from "components/modal/ModalConfirmDelete";
 
 const AllColors = ({ filterSearch, status }) => {
   //
   const toast = useToast();
+  //
+  const { toggle, config } = useModal();
+  const [id, setId] = useState("");
   // for pagination
   const pageNumberOptions = [
     { value: 15, label: "15" },
@@ -56,21 +61,6 @@ const AllColors = ({ filterSearch, status }) => {
 
   const totalCount = postProductColorsData?.Data?.totalCount;
   //
-  const handleDelete = (id) => {
-    deleteProductColor.mutate(
-      {
-        id,
-      },
-      {
-        onSuccess: (res) => {
-          toast.success({ res });
-        },
-        onError: (err) => {
-          toast.error({ err });
-        },
-      }
-    );
-  };
   const handleStatus = ({ id, status }) => {
     putProductColorStatus.mutate(
       {
@@ -88,8 +78,10 @@ const AllColors = ({ filterSearch, status }) => {
     );
   };
   //
+
   return (
     <Box>
+      <ModalConfirmDelete config={config} id={id} cb={deleteProductColor} />
       <Grid mt={5} templateColumns="repeat(5,minmax(0,1fr))" gap={7}>
         {data?.map((color) => (
           <GridItem key={color.id} colSpan={1}>
@@ -118,7 +110,10 @@ const AllColors = ({ filterSearch, status }) => {
                 <Button
                   variant="unstyled"
                   fontWeight="medium"
-                  onClick={() => handleDelete(color.id)}
+                  onClick={() => {
+                    toggle();
+                    setId(color.id);
+                  }}
                 >
                   <Stack
                     direction="row"

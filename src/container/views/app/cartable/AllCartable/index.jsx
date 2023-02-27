@@ -36,12 +36,18 @@ import TruckIcon from "components/icon/TruckIcon";
 import StoreIcon from "components/icon/StoreIcon";
 import SimpleReportIcon from "components/icon/SimpleReportIcon";
 import ChartIcon from "components/icon/ChartIcon";
+import useModal from "hook/useModal";
+import ModalConfirmDelete from "components/modal/ModalConfirmDelete";
 
 function AllCartable({ filterSearch }) {
   //
   const { t } = useTranslation();
 
   const [collapse, setCollapse] = useState("");
+  //
+  const { toggle, config } = useModal();
+  //
+  const [id, setId] = useState("");
   //
   const toast = useToast();
   // for pagination
@@ -72,21 +78,6 @@ function AllCartable({ filterSearch }) {
 
   const totalCount = postCartable?.Data?.totalCount;
   //
-  const handleDelete = (id) => {
-    deleteCartable.mutate(
-      {
-        id,
-      },
-      {
-        onSuccess: (res) => {
-          toast.success({ res });
-        },
-        onError: (err) => {
-          toast.error({ err });
-        },
-      }
-    );
-  };
   const handleStatus = ({ id, status }) => {
     putCartableStatus.mutate(
       {
@@ -105,161 +96,167 @@ function AllCartable({ filterSearch }) {
   };
   //
   return (
-    <Box fontSize="sm">
-      <Grid mt={5} templateColumns="repeat(1,minmax(0,1fr))" gap={7}>
-        {data?.map((cartable, index) => (
-          <GridItem key={cartable.id} colSpan={1}>
-            <Stack
-              borderRadius={14}
-              bg={index % 2 === 0 ? "layout" : "layout-over"}
-              px={10}
-              py={4}
-            >
-              <Flex justify="space-between">
-                <Stack
-                  flexGrow={1}
-                  onClick={() => {
-                    setCollapse({ id: cartable.id, show: !collapse.show });
-                  }}
-                  direction={{ base: "column", xl: "row" }}
-                  justify="space-evenly"
-                  cursor="pointer"
-                >
-                  <Stack direction="row" align="center" spacing={2}>
-                    <AddNewOrderIcon
-                      color="text-primary"
-                      fill="none"
-                      boxSize={5}
-                    />
-                    <Text color="text-primary">کـد سفارش :</Text>
-                    <Text>{cartable.orderCode}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={2}>
-                    <LampIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">توسط :</Text>
-                    <Text>{cartable.author}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={2}>
-                    <UserIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">نام متعامل :</Text>
-                    <Text>{cartable.fullName}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={2}>
-                    <CalenderIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">تاریـخ ایجاد :</Text>
-                    <Text>{cartable.date}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={2}>
-                    <LayerIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">آیتم های موجود :</Text>
-                    <Text>{cartable.availableCount}</Text>
-                  </Stack>
-                </Stack>
-                <Popover placement="left-start">
-                  <PopoverTrigger>
-                    <IconButton
-                      icon={<MoreIcon boxSize={4} />}
-                      variant="unstyled"
-                    />
-                  </PopoverTrigger>
-                  <PopoverContent
-                    sx={{ width: "140px", borderRadius: "8px", p: 4 }}
+    <>
+      <ModalConfirmDelete cb={deleteCartable} config={config} id={id} />
+      <Box fontSize="sm">
+        <Grid mt={5} templateColumns="repeat(1,minmax(0,1fr))" gap={7}>
+          {data?.map((cartable, index) => (
+            <GridItem key={cartable.id} colSpan={1}>
+              <Stack
+                borderRadius={14}
+                bg={index % 2 === 0 ? "layout" : "layout-over"}
+                px={10}
+                py={4}
+              >
+                <Flex justify="space-between">
+                  <Stack
+                    flexGrow={1}
+                    onClick={() => {
+                      setCollapse({ id: cartable.id, show: !collapse.show });
+                    }}
+                    direction={{ base: "column", xl: "row" }}
+                    justify="space-evenly"
+                    cursor="pointer"
                   >
-                    <PopoverArrow />
-                    <Stack spacing={4}>
-                      <Radio
-                        size="lg"
-                        isChecked={cartable.status === "0"}
-                        onClick={() =>
-                          handleStatus({
-                            id: cartable?.id,
-                            status: cartable?.status === "0" ? "1" : "0",
-                          })
-                        }
-                      >
-                        <Text fontSize="md" mx={1}>
-                          {/* غیـرفعـال */}
-                          {t("13")}
-                        </Text>
-                      </Radio>
-                      <Link to={`Cartable-edit/${cartable.id}`}>
+                    <Stack direction="row" align="center" spacing={2}>
+                      <AddNewOrderIcon
+                        color="text-primary"
+                        fill="none"
+                        boxSize={5}
+                      />
+                      <Text color="text-primary">کـد سفارش :</Text>
+                      <Text>{cartable.orderCode}</Text>
+                    </Stack>
+                    <Stack direction="row" align="center" spacing={2}>
+                      <LampIcon color="text-primary" boxSize={5} />
+                      <Text color="text-primary">توسط :</Text>
+                      <Text>{cartable.author}</Text>
+                    </Stack>
+                    <Stack direction="row" align="center" spacing={2}>
+                      <UserIcon color="text-primary" boxSize={5} />
+                      <Text color="text-primary">نام متعامل :</Text>
+                      <Text>{cartable.fullName}</Text>
+                    </Stack>
+                    <Stack direction="row" align="center" spacing={2}>
+                      <CalenderIcon color="text-primary" boxSize={5} />
+                      <Text color="text-primary">تاریـخ ایجاد :</Text>
+                      <Text>{cartable.date}</Text>
+                    </Stack>
+                    <Stack direction="row" align="center" spacing={2}>
+                      <LayerIcon color="text-primary" boxSize={5} />
+                      <Text color="text-primary">آیتم های موجود :</Text>
+                      <Text>{cartable.availableCount}</Text>
+                    </Stack>
+                  </Stack>
+                  <Popover placement="left-start">
+                    <PopoverTrigger>
+                      <IconButton
+                        icon={<MoreIcon boxSize={4} />}
+                        variant="unstyled"
+                      />
+                    </PopoverTrigger>
+                    <PopoverContent
+                      sx={{ width: "140px", borderRadius: "8px", p: 4 }}
+                    >
+                      <PopoverArrow />
+                      <Stack spacing={4}>
+                        <Radio
+                          size="lg"
+                          isChecked={cartable.status === "0"}
+                          onClick={() =>
+                            handleStatus({
+                              id: cartable?.id,
+                              status: cartable?.status === "0" ? "1" : "0",
+                            })
+                          }
+                        >
+                          <Text fontSize="md" mx={1}>
+                            {/* غیـرفعـال */}
+                            {t("13")}
+                          </Text>
+                        </Radio>
+                        <Link to={`Cartable-edit/${cartable.id}`}>
+                          <Stack
+                            cursor="pointer"
+                            direction="row"
+                            align="center"
+                            spacing={3}
+                          >
+                            <EditIcon boxSize={5} />
+                            <Text>
+                              {/* ویرایش */}
+                              {t("20")}
+                            </Text>
+                          </Stack>
+                        </Link>
                         <Stack
                           cursor="pointer"
                           direction="row"
                           align="center"
                           spacing={3}
+                          onClick={() => {
+                            setId(cartable.id);
+                            toggle();
+                          }}
                         >
-                          <EditIcon boxSize={5} />
+                          <DeleteIcon color="red" boxSize={6} />
                           <Text>
-                            {/* ویرایش */}
-                            {t("20")}
+                            {/* حذف */}
+                            {t("21")}
                           </Text>
                         </Stack>
-                      </Link>
-                      <Stack
-                        cursor="pointer"
-                        direction="row"
-                        align="center"
-                        spacing={3}
-                        onClick={() => handleDelete(cartable.id)}
-                      >
-                        <DeleteIcon color="red" boxSize={6} />
-                        <Text>
-                          {/* حذف */}
-                          {t("21")}
-                        </Text>
                       </Stack>
-                    </Stack>
-                  </PopoverContent>
-                </Popover>
-              </Flex>
+                    </PopoverContent>
+                  </Popover>
+                </Flex>
 
-              <Stack
-                spacing={6}
-                display={
-                  collapse.id === cartable.id && collapse.show
-                    ? "block"
-                    : "none"
-                }
-                pb={2}
-              >
-                <Divider variant="dashed" />
-                <Stack direction="row" justifyContent="space-evenly">
-                  <Stack direction="row" align="center" spacing={2}>
-                    <TruckIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">در حال ارسال :</Text>
-                    <Text>{cartable.send}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={2}>
-                    <StoreIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">در انبـار :</Text>
-                    <Text>{cartable.inStore}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={2}>
-                    <SimpleReportIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">در حال بافت :</Text>
-                    <Text>{cartable.preparation}</Text>
-                  </Stack>
-                  <Stack direction="row" align="center" spacing={2}>
-                    <ChartIcon color="text-primary" boxSize={5} />
-                    <Text color="text-primary">در حـال آهـار :</Text>
-                    <Text>{cartable.inProgress}</Text>
+                <Stack
+                  spacing={6}
+                  display={
+                    collapse.id === cartable.id && collapse.show
+                      ? "block"
+                      : "none"
+                  }
+                  pb={2}
+                >
+                  <Divider variant="dashed" />
+                  <Stack direction="row" justifyContent="space-evenly">
+                    <Stack direction="row" align="center" spacing={2}>
+                      <TruckIcon color="text-primary" boxSize={5} />
+                      <Text color="text-primary">در حال ارسال :</Text>
+                      <Text>{cartable.send}</Text>
+                    </Stack>
+                    <Stack direction="row" align="center" spacing={2}>
+                      <StoreIcon color="text-primary" boxSize={5} />
+                      <Text color="text-primary">در انبـار :</Text>
+                      <Text>{cartable.inStore}</Text>
+                    </Stack>
+                    <Stack direction="row" align="center" spacing={2}>
+                      <SimpleReportIcon color="text-primary" boxSize={5} />
+                      <Text color="text-primary">در حال بافت :</Text>
+                      <Text>{cartable.preparation}</Text>
+                    </Stack>
+                    <Stack direction="row" align="center" spacing={2}>
+                      <ChartIcon color="text-primary" boxSize={5} />
+                      <Text color="text-primary">در حـال آهـار :</Text>
+                      <Text>{cartable.inProgress}</Text>
+                    </Stack>
                   </Stack>
                 </Stack>
               </Stack>
-            </Stack>
-          </GridItem>
-        ))}
-      </Grid>
-      <Pagination
-        pageNumber={pageNumber}
-        setPageNumber={setPageNumber}
-        pageSize={pageSize}
-        setPageSize={setPageSize}
-        totalCount={totalCount}
-        pageNumberOptions={pageNumberOptions}
-      />
-    </Box>
+            </GridItem>
+          ))}
+        </Grid>
+        <Pagination
+          pageNumber={pageNumber}
+          setPageNumber={setPageNumber}
+          pageSize={pageSize}
+          setPageSize={setPageSize}
+          totalCount={totalCount}
+          pageNumberOptions={pageNumberOptions}
+        />
+      </Box>
+    </>
   );
 }
 
