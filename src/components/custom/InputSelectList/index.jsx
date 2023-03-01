@@ -17,6 +17,8 @@ function InputSelectList({ name, onChange, value }) {
       height={50}
       rounded="lg"
       bg={InputBg}
+      width="100%"
+      overflowX="auto"
     >
       {value?.map((item) => (
         <Box

@@ -9,7 +9,6 @@ import {
   Stack,
   Textarea,
 } from "@chakra-ui/react";
-import SelectCustom from "components/custom/SelectCustom";
 import { useFormik } from "formik";
 import { useNavigate, useParams } from "react-router-dom";
 import useToast from "hook/useToast";
@@ -17,6 +16,7 @@ import getInitialValuesFormik from "utils/getInitialValuesFormik";
 import Input from "components/custom/Input";
 import { usePostBuyerDetails, usePutBuyer } from "hook/api/useBuyersApi";
 import { postBuyerDetailsData } from "data/postBuyerDetailsData";
+import InputSelectList from "components/custom/InputSelectList";
 //
 const initialValues = {
   fullName: "",
@@ -125,11 +125,7 @@ function EditBuyer() {
         <GridItem colSpan={1}>
           <FormControl isRequired>
             <FormLabel fontWeight="bold">شماره همـراه </FormLabel>
-            <SelectCustom
-              {...formik.getFieldProps("mobileNumbers")}
-              isMulti
-              // options={getAllColors?.Data.content}
-            />
+            <InputSelectList {...formik.getFieldProps("mobileNumbers")} />
           </FormControl>
           <FormControl mt={10} isRequired>
             <FormLabel fontWeight="bold">آدرس </FormLabel>
