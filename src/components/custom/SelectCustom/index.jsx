@@ -45,7 +45,7 @@ const style = ({ menuPortalBg, InputBg, selectedColor, direction }) => ({
       ...provided,
       [direction === "ltr" ? "left" : "right"]: provided.left,
       [direction === "ltr" ? "right" : "left"]: "unset",
-      zIndex: 9999,
+      zIndex: 3,
     };
   },
   menu: (base) => ({
