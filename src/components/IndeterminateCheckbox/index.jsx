@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Checkbox, Grid, GridItem } from "@chakra-ui/react";
 
-function IndeterminateExample({
+function IndeterminateCheckbox({
   name,
   value,
   onChange,
@@ -60,4 +60,4 @@ function IndeterminateExample({
   );
 }
 
-export default IndeterminateExample;
+export default IndeterminateCheckbox;

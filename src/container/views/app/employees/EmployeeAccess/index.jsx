@@ -3,7 +3,7 @@ import { Box, Divider, Stack } from "@chakra-ui/react";
 import AccessIcon from "components/icon/AccessIcon";
 import { salesManager } from "constant/salesManager";
 import { financialManager } from "constant/financialManager";
-import IndeterminateExample from "components/IndeterminateExample";
+import IndeterminateCheckbox from "components/IndeterminateCheckbox";
 //
 function EmployeeAccess({ formik }) {
   //
@@ -15,25 +15,25 @@ function EmployeeAccess({ formik }) {
       </Stack>
       <Divider my={5} />
       <Box>
-        <IndeterminateExample
+        <IndeterminateCheckbox
           parentLabel=" مدیـر فـروش"
           {...formik.getFieldProps("salesManager")}
           checkboxes={salesManager}
         />
         <Divider variant="dashed" my={5} />
-        <IndeterminateExample
+        <IndeterminateCheckbox
           parentLabel="مدیـر مالـی"
           {...formik.getFieldProps("financialManager")}
           checkboxes={financialManager}
         />
         <Divider variant="dashed" my={5} />
-        <IndeterminateExample
+        <IndeterminateCheckbox
           parentLabel="مدیـر تولیـد"
           {...formik.getFieldProps("productionManager")}
           checkboxes={financialManager}
         />
         <Divider variant="dashed" my={5} />
-        <IndeterminateExample
+        <IndeterminateCheckbox
           parentLabel="مدیـر انبـار"
           {...formik.getFieldProps("warehouseManager")}
           checkboxes={financialManager}
