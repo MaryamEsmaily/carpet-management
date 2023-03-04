@@ -32,7 +32,7 @@ root.render(
           icon={false}
           theme="colored"
         />
-        <GlobalThemeProvider>{({ _dir }) => <App />}</GlobalThemeProvider>
+        <GlobalThemeProvider>{<App />}</GlobalThemeProvider>
       </BrowserRouter>
     </QueryClientProvider>
   </React.StrictMode>

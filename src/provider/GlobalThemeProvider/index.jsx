@@ -1,11 +1,4 @@
-import React, { useEffect, useReducer } from "react";
-import {
-  globalThemeDispatchCtx,
-  globalThemeStateCtx,
-} from "context/globalTheme";
-import globalThemeReducer, {
-  initialStateGlobalTheme,
-} from "reducer/globalThemeReducer";
+import React, { useEffect } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import { RtlProvider } from "provider/RtlProvider";
 import theme from "theme/theme";
@@ -25,22 +18,13 @@ function GlobalThemeProvider({ children }) {
     }
   }, []);
   //
-  const [state, dispatch] = useReducer(
-    globalThemeReducer,
-    initialStateGlobalTheme
-  );
-  //
   return (
-    <globalThemeDispatchCtx.Provider value={dispatch}>
-      <globalThemeStateCtx.Provider value={state}>
-        <ChakraProvider
-          resetCSS
-          theme={theme(locales.find((item) => item.locale === locale)?.dir)}
-        >
-          <RtlProvider>{children(state)}</RtlProvider>
-        </ChakraProvider>
-      </globalThemeStateCtx.Provider>
-    </globalThemeDispatchCtx.Provider>
+    <ChakraProvider
+      resetCSS
+      theme={theme(locales.find((item) => item.locale === locale)?.dir)}
+    >
+      <RtlProvider>{children}</RtlProvider>
+    </ChakraProvider>
   );
 }
 
