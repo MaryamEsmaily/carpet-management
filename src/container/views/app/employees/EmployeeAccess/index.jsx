@@ -1,9 +1,10 @@
 import React from "react";
-import { Box, Divider, Stack } from "@chakra-ui/react";
+import { Box, Divider, Stack, Text } from "@chakra-ui/react";
 import AccessIcon from "components/icon/AccessIcon";
 import { salesManager } from "constant/salesManager";
 import { financialManager } from "constant/financialManager";
 import IndeterminateCheckbox from "components/IndeterminateCheckbox";
+import ReactSelect from "react-select";
 //
 function EmployeeAccess({ formik }) {
   //
@@ -34,7 +35,31 @@ function EmployeeAccess({ formik }) {
         />
         <Divider variant="dashed" my={5} />
         <IndeterminateCheckbox
-          parentLabel="مدیـر انبـار"
+          parentLabel={
+            <Stack direction="row" spacing={5} align="center">
+              <Text>مدیـر انبـار</Text>
+              <ReactSelect
+                styles={{
+                  control: (base) => ({
+                    ...base,
+                    height: 40,
+                    minHeight: 40,
+                    borderRadius: "6px",
+                    width: "200px",
+                  }),
+                  indicatorSeparator: (base) => ({
+                    ...base,
+                    display: "none",
+                  }),
+                }}
+                placeholder="انبار را انتخاب کنید"
+                options={[
+                  { label: "انبار شماره یک", value: "1" },
+                  { label: "انبار شماره دو", value: "2" },
+                ]}
+              />
+            </Stack>
+          }
           {...formik.getFieldProps("warehouseManager")}
           checkboxes={financialManager}
         />

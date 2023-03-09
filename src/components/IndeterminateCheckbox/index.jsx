@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Checkbox, Grid, GridItem } from "@chakra-ui/react";
+import { Box, Checkbox, Grid, GridItem, Stack } from "@chakra-ui/react";
 
 function IndeterminateCheckbox({
   name,
@@ -15,24 +15,23 @@ function IndeterminateCheckbox({
   //
   return (
     <>
-      <Checkbox
-        mb={6}
-        isChecked={allChecked}
-        isIndeterminate={isIndeterminate}
-        onChange={(e) =>
-          onChange({
-            target: {
-              name,
-              value: Object.keys(value).reduce((value, key) => {
-                return { ...value, [key]: e.target.checked };
-              }, {}),
-            },
-          })
-        }
-      >
-        {parentLabel}
-      </Checkbox>
-
+      <Stack direction="row" align="center" mb={6}>
+        <Checkbox
+          isChecked={allChecked}
+          isIndeterminate={isIndeterminate}
+          onChange={(e) =>
+            onChange({
+              target: {
+                name,
+                value: Object.keys(value).reduce((value, key) => {
+                  return { ...value, [key]: e.target.checked };
+                }, {}),
+              },
+            })
+          }
+        />
+        <Box>{parentLabel}</Box>
+      </Stack>
       <Grid templateColumns="repeat(4,minmax(0,1fr))" gap={8}>
         {checkboxes.map((checkbox) => {
           return (
