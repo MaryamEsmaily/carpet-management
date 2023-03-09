@@ -46,7 +46,7 @@ const ImageSlider = ({ images }) => {
               <Image
                 cursor="pointer"
                 src={img}
-                width="80px"
+                width="100%"
                 height="80px"
                 objectFit="cover"
                 borderRadius={10}
