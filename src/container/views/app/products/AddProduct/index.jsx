@@ -19,6 +19,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { usePostAddProduct } from "hook/api/useProductManagementApi";
 import useToast from "hook/useToast";
 import Input from "components/custom/Input";
+import getValidationFieldProps from "utils/getValidationFieldProps";
 //
 const initialValues = {
   title: "",
@@ -85,6 +86,7 @@ function AddProduct() {
               _placeholder={{ color: "text-primary" }}
               placeholder="نـام محصول"
               {...formik.getFieldProps("title")}
+              {...getValidationFieldProps(formik, "title")}
             />
           </FormControl>
           <FormControl mt={10} isRequired>
@@ -125,6 +127,7 @@ function AddProduct() {
               _placeholder={{ color: "text-primary" }}
               placeholder="کـد طرح "
               {...formik.getFieldProps("code")}
+              {...getValidationFieldProps(formik, "code")}
             />
           </FormControl>
           <FormControl mt={10} isRequired>

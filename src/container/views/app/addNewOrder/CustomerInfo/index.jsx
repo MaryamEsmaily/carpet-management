@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import Input from "components/custom/Input";
 import BuyerIcon from "components/icon/BuyerIcon";
+import getValidationFieldProps from "utils/getValidationFieldProps";
 //
 function CustomerInfo({ formik }) {
   return (
@@ -48,6 +49,7 @@ function CustomerInfo({ formik }) {
               _placeholder={{ color: "text-primary" }}
               placeholder="انتخاب سفـارش توسط"
               {...formik.getFieldProps("customerName")}
+              {...getValidationFieldProps(formik, "customerName")}
             />
           </FormControl>
         </GridItem>
@@ -61,6 +63,7 @@ function CustomerInfo({ formik }) {
               _placeholder={{ color: "text-primary" }}
               placeholder="تاریخ سفـارش"
               {...formik.getFieldProps("orderDate")}
+              {...getValidationFieldProps(formik, "orderDate")}
             />
           </FormControl>
         </GridItem>

@@ -13,6 +13,7 @@ import Uploader from "components/Uploader";
 import Input from "components/custom/Input";
 import AccountIcon from "components/icon/AccountIcon";
 import InputSelectList from "components/custom/InputSelectList";
+import getValidationFieldProps from "utils/getValidationFieldProps";
 //
 function EmployeeProfileDetails({ formik }) {
   return (
@@ -31,6 +32,7 @@ function EmployeeProfileDetails({ formik }) {
               _placeholder={{ color: "text-primary" }}
               placeholder="نام و نام خانوادگـی"
               {...formik.getFieldProps("fullName")}
+              {...getValidationFieldProps(formik, "fullName")}
             />
           </FormControl>
           <FormControl mt={10} isRequired>
@@ -40,6 +42,7 @@ function EmployeeProfileDetails({ formik }) {
               _placeholder={{ color: "text-primary" }}
               placeholder="نام کاربری "
               {...formik.getFieldProps("userName")}
+              {...getValidationFieldProps(formik, "userName")}
             />
           </FormControl>
           <FormControl mt={10} isRequired>
@@ -49,6 +52,7 @@ function EmployeeProfileDetails({ formik }) {
               _placeholder={{ color: "text-primary" }}
               placeholder="پست الکترونیـک"
               {...formik.getFieldProps("email")}
+              {...getValidationFieldProps(formik, "email")}
             />
           </FormControl>
           <FormControl mt={10}>

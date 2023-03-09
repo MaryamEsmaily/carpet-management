@@ -30,6 +30,7 @@ import forthProduct from "assets/images/product-4.avif";
 import getInitialValuesFormik from "utils/getInitialValuesFormik";
 import { postProductDetailsData } from "data/postProductDetailsData";
 import Input from "components/custom/Input";
+import getValidationFieldProps from "utils/getValidationFieldProps";
 //
 const initialValues = {
   title: "",
@@ -118,6 +119,7 @@ function EditProduct() {
               _placeholder={{ color: "text-primary" }}
               placeholder="نـام محصول"
               {...formik.getFieldProps("title")}
+              {...getValidationFieldProps(formik, "title")}
             />
           </FormControl>
           <FormControl mt={10} isRequired>
@@ -147,6 +149,7 @@ function EditProduct() {
               _placeholder={{ color: "text-primary" }}
               placeholder="کـد طرح "
               {...formik.getFieldProps("code")}
+              {...getValidationFieldProps(formik, "code")}
             />
           </FormControl>
           <FormControl mt={10} isRequired>

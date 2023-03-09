@@ -17,6 +17,7 @@ import getInitialValuesFormik from "utils/getInitialValuesFormik";
 import Input from "components/custom/Input";
 import { postBuyerDetailsData } from "data/postBuyerDetailsData";
 import { usePutStore } from "hook/api/useStoresApi";
+import getValidationFieldProps from "utils/getValidationFieldProps";
 //
 const initialValues = {
   fullName: "",
@@ -101,6 +102,7 @@ function EditStore() {
               _placeholder={{ color: "text-primary" }}
               placeholder="نام"
               {...formik.getFieldProps("title")}
+              {...getValidationFieldProps(formik, "title")}
             />
           </FormControl>
         </GridItem>
@@ -122,6 +124,7 @@ function EditStore() {
               _placeholder={{ color: "text-primary" }}
               placeholder="انباردار"
               {...formik.getFieldProps("fullName")}
+              {...getValidationFieldProps(formik, "fullName")}
             />
           </FormControl>
         </GridItem>
@@ -144,6 +147,7 @@ function EditStore() {
               _placeholder={{ color: "text-primary" }}
               placeholder="آدرس را وارد کنید ..."
               {...formik.getFieldProps("address")}
+              {...getValidationFieldProps(formik, "address")}
             />
           </FormControl>
         </GridItem>

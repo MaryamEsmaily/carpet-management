@@ -16,6 +16,7 @@ import useToast from "hook/useToast";
 import Input from "components/custom/Input";
 import { usePostAddBuyer } from "hook/api/useBuyersApi";
 import InputSelectList from "components/custom/InputSelectList";
+import getValidationFieldProps from "utils/getValidationFieldProps";
 //
 const initialValues = {
   title: "",
@@ -75,6 +76,7 @@ function AddStore() {
               _placeholder={{ color: "text-primary" }}
               placeholder="نام"
               {...formik.getFieldProps("title")}
+              {...getValidationFieldProps(formik, "title")}
             />
           </FormControl>
         </GridItem>
@@ -96,6 +98,7 @@ function AddStore() {
               _placeholder={{ color: "text-primary" }}
               placeholder="انباردار"
               {...formik.getFieldProps("fullName")}
+              {...getValidationFieldProps(formik, "fullName")}
             />
           </FormControl>
         </GridItem>
@@ -114,6 +117,7 @@ function AddStore() {
               _placeholder={{ color: "text-primary" }}
               placeholder="آدرس را وارد کنید ..."
               {...formik.getFieldProps("address")}
+              {...getValidationFieldProps(formik, "address")}
             />
           </FormControl>
         </GridItem>
