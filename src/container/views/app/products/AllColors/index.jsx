@@ -126,7 +126,7 @@ const AllColors = ({ filterSearch, status }) => {
                   </Stack>
                 </Button>
                 <Radio
-                  isChecked={color.status === "0"}
+                  isChecked={color.status === "1"}
                   onClick={() =>
                     handleStatus({
                       id: color.id,
@@ -134,7 +134,7 @@ const AllColors = ({ filterSearch, status }) => {
                     })
                   }
                 >
-                  <Text fontSize="sm">غیـرفعـال</Text>
+                  <Text fontSize="sm">فعـال</Text>
                 </Radio>
               </Stack>
             </Stack>

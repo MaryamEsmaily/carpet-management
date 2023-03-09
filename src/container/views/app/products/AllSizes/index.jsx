@@ -130,7 +130,7 @@ function AllSizes({ filterSearch, status }) {
                     </Stack>
                   </Button>
                   <Radio
-                    isChecked={item.status === "0"}
+                    isChecked={item.status === "1"}
                     onClick={() =>
                       handleStatus({
                         id: item?.id,
@@ -138,7 +138,7 @@ function AllSizes({ filterSearch, status }) {
                       })
                     }
                   >
-                    <Text fontSize="sm">غیـرفعـال</Text>
+                    <Text fontSize="sm">فعـال</Text>
                   </Radio>
                 </Stack>
               </Stack>

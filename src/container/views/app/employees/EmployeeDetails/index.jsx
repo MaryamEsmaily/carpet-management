@@ -122,7 +122,7 @@ function EmployeeDetails() {
                   <Stack spacing={4}>
                     <Radio
                       size="lg"
-                      isChecked={data?.status === "0"}
+                      isChecked={data?.status === "1"}
                       onClick={() =>
                         handleStatus({
                           id: data?.id,
@@ -130,7 +130,7 @@ function EmployeeDetails() {
                         })
                       }
                     >
-                      <Text fontSize="sm">غیـرفعـال</Text>
+                      <Text fontSize="sm">فعـال</Text>
                     </Radio>
                     <Stack
                       cursor="pointer"

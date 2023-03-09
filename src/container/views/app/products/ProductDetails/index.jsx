@@ -110,7 +110,7 @@ function ProductDetails() {
                   <Stack spacing={4}>
                     <Radio
                       size="lg"
-                      isChecked={data?.status === "0"}
+                      isChecked={data?.status === "1"}
                       onClick={() =>
                         handleStatus({
                           id: data?.id,
@@ -118,7 +118,7 @@ function ProductDetails() {
                         })
                       }
                     >
-                      غیـرفعـال
+                      فعـال
                     </Radio>
                     <Stack
                       cursor="pointer"

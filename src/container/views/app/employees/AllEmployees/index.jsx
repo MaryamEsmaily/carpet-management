@@ -138,7 +138,7 @@ function AllEmployees({ filterSearch, status }) {
                           <Stack spacing={4}>
                             <Radio
                               size="lg"
-                              isChecked={employee.status === "0"}
+                              isChecked={employee.status === "1"}
                               onClick={() =>
                                 handleStatus({
                                   id: employee?.id,
@@ -147,7 +147,7 @@ function AllEmployees({ filterSearch, status }) {
                               }
                             >
                               <Text fontSize="sm" mx={1}>
-                                {/* غیـرفعـال */}
+                                {/* فعـال */}
                                 {t("13")}
                               </Text>
                             </Radio>

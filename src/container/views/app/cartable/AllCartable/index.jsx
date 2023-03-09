@@ -162,7 +162,7 @@ function AllCartable({ filterSearch }) {
                       <Stack spacing={4}>
                         <Radio
                           size="lg"
-                          isChecked={cartable.status === "0"}
+                          isChecked={cartable.status === "1"}
                           onClick={() =>
                             handleStatus({
                               id: cartable?.id,
@@ -171,7 +171,7 @@ function AllCartable({ filterSearch }) {
                           }
                         >
                           <Text fontSize="md" mx={1}>
-                            {/* غیـرفعـال */}
+                            {/* فعـال */}
                             {t("13")}
                           </Text>
                         </Radio>

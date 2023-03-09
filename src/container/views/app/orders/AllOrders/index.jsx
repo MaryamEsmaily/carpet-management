@@ -162,7 +162,7 @@ function AllOrders({ filterSearch, filterValue }) {
                       <Stack spacing={4}>
                         <Radio
                           size="lg"
-                          isChecked={order.status === "0"}
+                          isChecked={order.status === "1"}
                           onClick={() =>
                             handleStatus({
                               id: order?.id,
@@ -171,7 +171,7 @@ function AllOrders({ filterSearch, filterValue }) {
                           }
                         >
                           <Text fontSize="md" mx={1}>
-                            {/* غیـرفعـال */}
+                            {/* فعـال */}
                             {t("13")}
                           </Text>
                         </Radio>

@@ -145,7 +145,7 @@ function AllStores({ filterSearch, status }) {
                     <Stack spacing={4}>
                       <Radio
                         size="lg"
-                        isChecked={store.status === "0"}
+                        isChecked={store.status === "1"}
                         onClick={() =>
                           handleStatus({
                             id: store?.id,
@@ -154,7 +154,7 @@ function AllStores({ filterSearch, status }) {
                         }
                       >
                         <Text fontSize="md" mx={1}>
-                          {/* غیـرفعـال */}
+                          {/* فعـال */}
                           {t("13")}
                         </Text>
                       </Radio>
