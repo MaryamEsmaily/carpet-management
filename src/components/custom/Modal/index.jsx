@@ -10,7 +10,7 @@ import {
 import CloseIcon from "components/icon/CloseIcon";
 import React from "react";
 
-function Modal({ children, config, header }) {
+function Modal({ children, config, header, borderRadius = 38, size = "sm" }) {
   //
   const { isShowing, toggle } = config;
   //
@@ -21,10 +21,10 @@ function Modal({ children, config, header }) {
       autoFocus={false}
       isCentered
       scrollBehavior="inside"
-      size="sm"
+      size={size}
     >
       <ModalOverlay />
-      <ModalContent mx={4} bg="layout" borderRadius={38}>
+      <ModalContent mx={4} bg="layout" borderRadius={borderRadius}>
         {header ? <ModalHeader>{header}</ModalHeader> : null}
         <Box w="full" textAlign="end">
           <IconButton

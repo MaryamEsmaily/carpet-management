@@ -30,7 +30,7 @@ function AddBuyerPage() {
           <BreadcrumbLink href="/app/products">داشبورد</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <BreadcrumbLink href="#">افزودن خریـدار</BreadcrumbLink>
+          <BreadcrumbLink href="#">افزودن متعـامـل</BreadcrumbLink>
         </BreadcrumbItem>
       </Breadcrumb>
       <AddBuyer />
