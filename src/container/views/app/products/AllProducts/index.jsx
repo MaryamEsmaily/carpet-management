@@ -96,162 +96,168 @@ function AllProducts({ filterValues, filterSearch, status }) {
   return (
     <>
       <ModalConfirmDelete config={config} id={id} cb={deleteProduct} />
-
       <Box fontSize="sm">
         <Grid mt={5} templateColumns="repeat(2,minmax(0,1fr))" gap={7}>
           {data?.map((product) => (
-            <GridItem key={product.id} colSpan={{ base: 2, lg: 1 }}>
-              <Grid
-                templateColumns="repeat(7,minmax(0,1fr))"
-                direction="row"
-                borderRadius={14}
-                bg="layout"
-                p={4}
-                gap={4}
-              >
-                <GridItem colSpan={{ base: 7, xl: 3 }}>
-                  <Image
-                    src={product.image}
-                    objectFit="cover"
-                    width="100%"
-                    h={200}
-                    borderRadius={14}
-                  />
-                </GridItem>
-                <GridItem colSpan={{ base: 7, xl: 4 }}>
-                  <Stack justifyContent="space-between">
-                    <Box textAlign="end">
-                      <Popover placement="left-start">
-                        <PopoverTrigger>
-                          <IconButton
-                            icon={<MoreIcon boxSize={5} />}
-                            variant="unstyled"
-                          />
-                        </PopoverTrigger>
-                        <PopoverContent
-                          sx={{ width: "140px", borderRadius: "8px", p: 4 }}
-                        >
-                          <PopoverArrow />
-                          <Stack spacing={4}>
-                            <Radio
-                              size="lg"
-                              isChecked={product.status === "1"}
-                              onClick={() =>
-                                handleStatus({
-                                  id: product?.id,
-                                  status: product?.status === "0" ? "1" : "0",
-                                })
+            <GridItem
+              key={product.id}
+              colSpan={{ base: 2, lg: 1 }}
+              position="relative"
+            >
+              <Link to={`product-details/${product.id}`}>
+                <Grid
+                  templateColumns="repeat(7,minmax(0,1fr))"
+                  direction="row"
+                  borderRadius={14}
+                  bg="layout"
+                  p={4}
+                  gap={4}
+                >
+                  <GridItem colSpan={{ base: 7, xl: 3 }}>
+                    <Image
+                      src={product.image}
+                      objectFit="cover"
+                      width="100%"
+                      h={200}
+                      borderRadius={14}
+                    />
+                  </GridItem>
+                  <GridItem colSpan={{ base: 7, xl: 4 }}>
+                    <Stack spacing={4} h="100%" justify="flex-end" pb={2}>
+                      <Stack direction="row" align="center" spacing={2}>
+                        <CardIcon color="text-primary" boxSize={5} />
+                        <Text color="text-primary">
+                          {/* نـام محصول : */}
+                          {t("22")}
+                        </Text>
+                        <Text noOfLines={1}>{product.label}</Text>
+                      </Stack>
+                      <Stack direction="row" align="center" spacing={2}>
+                        <AddNewOrderIcon
+                          color="text-primary"
+                          fill="none"
+                          boxSize={5}
+                        />
+                        <Text color="text-primary">
+                          {/* کـد طـرح : */}
+                          {t("23")}
+                        </Text>
+                        <Text>{product.code}</Text>
+                      </Stack>
+                      <Stack direction="row" align="center" spacing={2}>
+                        <ColorFilterIcon color="text-primary" boxSize={5} />
+                        <Text color="text-primary">
+                          {/* رنـگ : */}
+                          {t("24")}
+                        </Text>
+                        {product?.colors?.map((item, index) => (
+                          <Text key={index}>
+                            {item}{" "}
+                            <Text
+                              as="span"
+                              display={
+                                index === product?.colors?.length - 1
+                                  ? "none"
+                                  : "unset"
                               }
                             >
-                              <Text fontSize="md" mx={1}>
-                                {/* فعـال */}
-                                {t("13")}
-                              </Text>
-                            </Radio>
-                            <Link to={`product-edit/${product.id}`}>
-                              <Stack
-                                cursor="pointer"
-                                direction="row"
-                                align="center"
-                                spacing={3}
-                              >
-                                <EditIcon boxSize={5} />
-                                <Text>
-                                  {/* ویرایش */}
-                                  {t("20")}
-                                </Text>
-                              </Stack>
-                            </Link>
-                            <Stack
-                              cursor="pointer"
-                              direction="row"
-                              align="center"
-                              spacing={3}
-                              onClick={() => {
-                                toggle();
-                                setId(product.id);
-                              }}
-                            >
-                              <DeleteIcon fill="none" color="red" boxSize={6} />
-                              <Text>
-                                {/* حذف */}
-                                {t("21")}
-                              </Text>
-                            </Stack>
-                          </Stack>
-                        </PopoverContent>
-                      </Popover>
-                    </Box>
-                    <Link to={`product-details/${product.id}`}>
-                      <Stack spacing={4}>
-                        <Stack direction="row" align="center" spacing={2}>
-                          <CardIcon color="text-primary" boxSize={5} />
-                          <Text color="text-primary">
-                            {/* نـام محصول : */}
-                            {t("22")}
-                          </Text>
-                          <Text noOfLines={1}>{product.label}</Text>
-                        </Stack>
-                        <Stack direction="row" align="center" spacing={2}>
-                          <AddNewOrderIcon
-                            color="text-primary"
-                            fill="none"
-                            boxSize={5}
-                          />
-                          <Text color="text-primary">
-                            {/* کـد طـرح : */}
-                            {t("23")}
-                          </Text>
-                          <Text>{product.code}</Text>
-                        </Stack>
-                        <Stack direction="row" align="center" spacing={2}>
-                          <ColorFilterIcon color="text-primary" boxSize={5} />
-                          <Text color="text-primary">
-                            {/* رنـگ : */}
-                            {t("24")}
-                          </Text>
-                          {product?.colors?.map((item, index) => (
-                            <Text key={index}>
-                              {item}{" "}
-                              <Text
-                                as="span"
-                                display={
-                                  index === product?.colors?.length - 1
-                                    ? "none"
-                                    : "unset"
-                                }
-                              >
-                                -
-                              </Text>
+                              -
                             </Text>
-                          ))}
-                        </Stack>
-                        <Stack direction="row" align="center" spacing={2}>
-                          <EraserIcon color="text-primary" boxSize={5} />
-                          <Text color="text-primary">سایـز :</Text>
-                          {product?.sizes?.map((item, index) => (
-                            <Text key={index}>
-                              {item}
-                              {/* متـری */}
-                              {t("25")}
-                              <Text
-                                as="span"
-                                display={
-                                  index === product?.sizes?.length - 1
-                                    ? "none"
-                                    : "unset"
-                                }
-                              >
-                                -
-                              </Text>
-                            </Text>
-                          ))}
-                        </Stack>
+                          </Text>
+                        ))}
                       </Stack>
-                    </Link>
-                  </Stack>
-                </GridItem>
-              </Grid>
+                      <Stack direction="row" align="center" spacing={2}>
+                        <EraserIcon color="text-primary" boxSize={5} />
+                        <Text color="text-primary">سایـز :</Text>
+                        {product?.sizes?.map((item, index) => (
+                          <Text key={index}>
+                            {item}
+                            {/* متـری */}
+                            {t("25")}
+                            <Text
+                              as="span"
+                              display={
+                                index === product?.sizes?.length - 1
+                                  ? "none"
+                                  : "unset"
+                              }
+                            >
+                              -
+                            </Text>
+                          </Text>
+                        ))}
+                      </Stack>
+                    </Stack>
+                  </GridItem>
+                </Grid>
+              </Link>
+              <Box
+                textAlign="end"
+                position="absolute"
+                top={{ base: "60%", xl: 4 }}
+                right={{ base: 2, xl: 4 }}
+              >
+                <Popover placement="left-start">
+                  <PopoverTrigger>
+                    <IconButton
+                      icon={<MoreIcon boxSize={5} />}
+                      variant="unstyled"
+                    />
+                  </PopoverTrigger>
+                  <PopoverContent
+                    sx={{ width: "140px", borderRadius: "8px", p: 4 }}
+                  >
+                    <PopoverArrow />
+                    <Stack spacing={4}>
+                      <Radio
+                        size="lg"
+                        isChecked={product.status === "1"}
+                        onClick={() =>
+                          handleStatus({
+                            id: product?.id,
+                            status: product?.status === "0" ? "1" : "0",
+                          })
+                        }
+                      >
+                        <Text fontSize="md" mx={1}>
+                          {/* فعـال */}
+                          {t("13")}
+                        </Text>
+                      </Radio>
+                      <Link to={`product-edit/${product.id}`}>
+                        <Stack
+                          cursor="pointer"
+                          direction="row"
+                          align="center"
+                          spacing={3}
+                        >
+                          <EditIcon boxSize={5} />
+                          <Text>
+                            {/* ویرایش */}
+                            {t("20")}
+                          </Text>
+                        </Stack>
+                      </Link>
+                      <Stack
+                        cursor="pointer"
+                        direction="row"
+                        align="center"
+                        spacing={3}
+                        onClick={() => {
+                          toggle();
+                          setId(product.id);
+                        }}
+                      >
+                        <DeleteIcon fill="none" color="red" boxSize={6} />
+                        <Text>
+                          {/* حذف */}
+                          {t("21")}
+                        </Text>
+                      </Stack>
+                    </Stack>
+                  </PopoverContent>
+                </Popover>
+              </Box>
             </GridItem>
           ))}
         </Grid>
