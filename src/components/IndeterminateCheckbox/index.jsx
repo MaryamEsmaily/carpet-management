@@ -36,7 +36,7 @@ function IndeterminateCheckbox({
       <Grid templateColumns="repeat(4,minmax(0,1fr))" gap={8}>
         {checkboxes.map((checkbox) => {
           return (
-            <GridItem colSpan={{ base: 4, lg: 1 }} key={checkbox.value}>
+            <GridItem colSpan={{ base: 4, lg: 1 }} key={checkbox.key}>
               <Checkbox
                 isChecked={value[checkbox.key]}
                 onChange={(e) => {

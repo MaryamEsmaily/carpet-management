@@ -17,7 +17,7 @@ import getValidationFieldProps from "utils/getValidationFieldProps";
 //
 function EmployeeProfileDetails({ formik }) {
   return (
-    <Box mt={8} borderRadius={24} bg="layout-over" p={10} as="form">
+    <Box mt={8} borderRadius={24} bg="layout-over" p={10}>
       <Stack direction="row" align="center">
         <AccountIcon />
         <Box>اطلاعـات پـروفایـلی</Box>
