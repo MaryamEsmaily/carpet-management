@@ -14,6 +14,7 @@ import Input from "components/custom/Input";
 import AccountIcon from "components/icon/AccountIcon";
 import InputSelectList from "components/custom/InputSelectList";
 import getValidationFieldProps from "utils/getValidationFieldProps";
+import FormHelperMessage from "components/FormHelperMessage";
 //
 function EmployeeProfileDetails({ formik }) {
   return (
@@ -34,6 +35,7 @@ function EmployeeProfileDetails({ formik }) {
               {...formik.getFieldProps("fullName")}
               {...getValidationFieldProps(formik, "fullName")}
             />
+            <FormHelperMessage formik={formik} name="fullName" />
           </FormControl>
           <FormControl mt={10} isRequired>
             <FormLabel fontWeight="bold">نام کاربری </FormLabel>
@@ -44,6 +46,7 @@ function EmployeeProfileDetails({ formik }) {
               {...formik.getFieldProps("userName")}
               {...getValidationFieldProps(formik, "userName")}
             />
+            <FormHelperMessage formik={formik} name="userName" />
           </FormControl>
           <FormControl mt={10} isRequired>
             <FormLabel fontWeight="bold">پست الکترونیـک </FormLabel>
@@ -54,6 +57,7 @@ function EmployeeProfileDetails({ formik }) {
               {...formik.getFieldProps("email")}
               {...getValidationFieldProps(formik, "email")}
             />
+            <FormHelperMessage formik={formik} name="email" />
           </FormControl>
           <FormControl mt={10}>
             <FormLabel fontWeight="bold">آدرس</FormLabel>
@@ -69,7 +73,11 @@ function EmployeeProfileDetails({ formik }) {
         <GridItem colSpan={1}>
           <FormControl isRequired>
             <FormLabel fontWeight="bold"> شماره همـراه </FormLabel>
-            <InputSelectList {...formik.getFieldProps("mobileNumbers")} />
+            <InputSelectList
+              {...formik.getFieldProps("mobileNumbers")}
+              {...getValidationFieldProps(formik, "mobileNumbers")}
+            />
+            <FormHelperMessage formik={formik} name="mobileNumbers" />
           </FormControl>
           <FormControl mt={10}>
             <FormLabel fontWeight="bold">تاریخ تولـد </FormLabel>

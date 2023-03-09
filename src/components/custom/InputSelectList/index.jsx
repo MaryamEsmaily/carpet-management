@@ -2,11 +2,11 @@ import { Box, Flex, Input, Text, useColorModeValue } from "@chakra-ui/react";
 import RoundedCloseIcon from "components/icon/RoundedCloseIcon";
 import React, { useState } from "react";
 
-function InputSelectList({ name, onChange, value }) {
+function InputSelectList({ name, onChange, value, ...props }) {
   //
   const InputBg = useColorModeValue("#edf2f7", "#2a2e37");
   //
-  const [inputValue, setInputValue] = useState();
+  const [inputValue, setInputValue] = useState("");
   //
   return (
     <Flex
@@ -19,6 +19,8 @@ function InputSelectList({ name, onChange, value }) {
       bg={InputBg}
       width="100%"
       overflowX="auto"
+      border={props.isInvalid ? "2px solid red" : ""}
+      {...props}
     >
       {value?.map((item) => (
         <Box
@@ -49,6 +51,7 @@ function InputSelectList({ name, onChange, value }) {
       ))}
 
       <Input
+        name={name}
         isRequired={false}
         type="number"
         sx={{

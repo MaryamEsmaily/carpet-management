@@ -15,6 +15,7 @@ import { useFormik } from "formik";
 import useToast from "hook/useToast";
 import { useNavigate } from "react-router-dom";
 import { usePostAddEmployee } from "hook/api/useEmployeesApi";
+import addEmployeeSchema from "schemas/addEmployeeSchema";
 
 const initialValues = {
   fullName: "",
@@ -75,6 +76,7 @@ function AddEmployeePage() {
   //
   const formik = useFormik({
     onSubmit: handleSubmit,
+    validationSchema: addEmployeeSchema,
     initialValues: initialValues,
   });
   //

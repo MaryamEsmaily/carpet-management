@@ -10,5 +10,8 @@ const Input = {
       field: sizeMd,
     },
   },
+  defaultProps: {
+    errorBorderColor: "red.500",
+  },
 };
 export default Input;
