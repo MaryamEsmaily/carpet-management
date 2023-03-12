@@ -16,6 +16,8 @@
     "formik": "^2.2.9",
     "framer-motion": "^7.6.19",
     "i18next": "^22.4.9",
+    "jalaali-js": "^1.2.6",
+    "jalali-moment": "^3.3.11",
     "lodash.isfunction": "^3.0.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

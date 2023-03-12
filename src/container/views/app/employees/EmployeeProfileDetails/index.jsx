@@ -20,6 +20,7 @@ import InputSelectList from "components/custom/InputSelectList";
 import getValidationFieldProps from "utils/getValidationFieldProps";
 import FormHelperMessage from "components/FormHelperMessage";
 import RoundedInfoIcon from "components/icon/RoundedInfoIcon";
+import SelectDatePicker from "components/custom/SelectDatePicker";
 //
 function EmployeeProfileDetails({ formik }) {
   return (
@@ -129,12 +130,7 @@ function EmployeeProfileDetails({ formik }) {
           </FormControl>
           <FormControl mt={10}>
             <FormLabel fontWeight="bold">تاریخ تولـد </FormLabel>
-            <Input
-              variant="filled"
-              _placeholder={{ color: "text-primary" }}
-              placeholder="تاریخ تولـد "
-              {...formik.getFieldProps("birthDate")}
-            />
+            <SelectDatePicker {...formik.getFieldProps("birthDate")} />
           </FormControl>
           <FormControl mt={10}>
             <FormLabel fontWeight="bold">تلفـن </FormLabel>
